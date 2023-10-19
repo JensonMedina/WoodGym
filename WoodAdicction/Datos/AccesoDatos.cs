@@ -21,15 +21,15 @@ namespace Datos
             Conexion = new SqlConnection("server=.\\SQLEXPRESS; database=testGym; integrated security=true");
             Comando = new SqlCommand();
         }
-        public void setQuery(string Consulta)
+        public void setearConsulta(string Consulta)
         {
             Comando.CommandType = System.Data.CommandType.Text;
             Comando.CommandText = Consulta;
         }
-        public void setSP(string Sp)
+        public void setearStoredProcedure(string storedProcedure)
         {
             Comando.CommandType = System.Data.CommandType.StoredProcedure;
-            Comando.CommandText = Sp;
+            Comando.CommandText = storedProcedure;
         }
         public void EjecutarLectura()
         {

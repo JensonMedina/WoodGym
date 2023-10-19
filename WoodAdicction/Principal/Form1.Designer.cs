@@ -1,7 +1,7 @@
 ﻿
 namespace Principal
 {
-    partial class Form1
+    partial class FrmFichaCliente
     {
         /// <summary>
         /// Required designer variable.
@@ -34,12 +34,18 @@ namespace Principal
             this.pcbCliente = new System.Windows.Forms.PictureBox();
             this.lblDni = new System.Windows.Forms.Label();
             this.lblFechaNacimiento = new System.Windows.Forms.Label();
-            this.lblTituloActividades = new System.Windows.Forms.Label();
-            this.dgvActividades = new System.Windows.Forms.DataGridView();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnCuota = new System.Windows.Forms.Button();
+            this.txtNombre = new System.Windows.Forms.TextBox();
+            this.txtFechaNacimiento = new System.Windows.Forms.TextBox();
+            this.txtDni = new System.Windows.Forms.TextBox();
+            this.txtFechaInicio = new System.Windows.Forms.TextBox();
+            this.txtTipoMembresia = new System.Windows.Forms.TextBox();
+            this.txtTelefono = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pcbCliente)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvActividades)).BeginInit();
             this.SuspendLayout();
             // 
             // labelFichaSocio
@@ -58,7 +64,7 @@ namespace Principal
             this.lblNombre.AutoSize = true;
             this.lblNombre.Font = new System.Drawing.Font("Berlin Sans FB", 13F);
             this.lblNombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
-            this.lblNombre.Location = new System.Drawing.Point(156, 62);
+            this.lblNombre.Location = new System.Drawing.Point(443, 47);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(82, 20);
             this.lblNombre.TabIndex = 1;
@@ -68,7 +74,7 @@ namespace Principal
             // 
             this.pcbCliente.Location = new System.Drawing.Point(15, 47);
             this.pcbCliente.Name = "pcbCliente";
-            this.pcbCliente.Size = new System.Drawing.Size(115, 129);
+            this.pcbCliente.Size = new System.Drawing.Size(357, 301);
             this.pcbCliente.TabIndex = 2;
             this.pcbCliente.TabStop = false;
             // 
@@ -77,7 +83,7 @@ namespace Principal
             this.lblDni.AutoSize = true;
             this.lblDni.Font = new System.Drawing.Font("Berlin Sans FB", 13F);
             this.lblDni.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
-            this.lblDni.Location = new System.Drawing.Point(159, 85);
+            this.lblDni.Location = new System.Drawing.Point(455, 76);
             this.lblDni.Name = "lblDni";
             this.lblDni.Size = new System.Drawing.Size(39, 20);
             this.lblDni.TabIndex = 3;
@@ -88,30 +94,11 @@ namespace Principal
             this.lblFechaNacimiento.AutoSize = true;
             this.lblFechaNacimiento.Font = new System.Drawing.Font("Berlin Sans FB", 13F);
             this.lblFechaNacimiento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
-            this.lblFechaNacimiento.Location = new System.Drawing.Point(156, 117);
+            this.lblFechaNacimiento.Location = new System.Drawing.Point(443, 112);
             this.lblFechaNacimiento.Name = "lblFechaNacimiento";
             this.lblFechaNacimiento.Size = new System.Drawing.Size(147, 20);
             this.lblFechaNacimiento.TabIndex = 4;
             this.lblFechaNacimiento.Text = "Fecha nacimiento:";
-            // 
-            // lblTituloActividades
-            // 
-            this.lblTituloActividades.AutoSize = true;
-            this.lblTituloActividades.Font = new System.Drawing.Font("Berlin Sans FB", 11F);
-            this.lblTituloActividades.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
-            this.lblTituloActividades.Location = new System.Drawing.Point(22, 263);
-            this.lblTituloActividades.Name = "lblTituloActividades";
-            this.lblTituloActividades.Size = new System.Drawing.Size(188, 17);
-            this.lblTituloActividades.TabIndex = 5;
-            this.lblTituloActividades.Text = "ACTIVIDADES QUE REALIZA";
-            // 
-            // dgvActividades
-            // 
-            this.dgvActividades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvActividades.Location = new System.Drawing.Point(15, 305);
-            this.dgvActividades.Name = "dgvActividades";
-            this.dgvActividades.Size = new System.Drawing.Size(536, 60);
-            this.dgvActividades.TabIndex = 6;
             // 
             // btnEditar
             // 
@@ -120,7 +107,7 @@ namespace Principal
             this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditar.Font = new System.Drawing.Font("Berlin Sans FB", 12F);
             this.btnEditar.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnEditar.Location = new System.Drawing.Point(454, 47);
+            this.btnEditar.Location = new System.Drawing.Point(447, 276);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(113, 35);
             this.btnEditar.TabIndex = 7;
@@ -134,33 +121,114 @@ namespace Principal
             this.btnCuota.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCuota.Font = new System.Drawing.Font("Berlin Sans FB", 12F);
             this.btnCuota.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnCuota.Location = new System.Drawing.Point(454, 106);
+            this.btnCuota.Location = new System.Drawing.Point(733, 313);
             this.btnCuota.Name = "btnCuota";
             this.btnCuota.Size = new System.Drawing.Size(113, 35);
             this.btnCuota.TabIndex = 8;
             this.btnCuota.Text = "Cobrar Cuota";
             this.btnCuota.UseVisualStyleBackColor = false;
             // 
-            // Form1
+            // txtNombre
+            // 
+            this.txtNombre.Location = new System.Drawing.Point(631, 47);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(100, 20);
+            this.txtNombre.TabIndex = 9;
+            // 
+            // txtFechaNacimiento
+            // 
+            this.txtFechaNacimiento.Location = new System.Drawing.Point(631, 114);
+            this.txtFechaNacimiento.Name = "txtFechaNacimiento";
+            this.txtFechaNacimiento.Size = new System.Drawing.Size(100, 20);
+            this.txtFechaNacimiento.TabIndex = 10;
+            // 
+            // txtDni
+            // 
+            this.txtDni.Location = new System.Drawing.Point(631, 78);
+            this.txtDni.Name = "txtDni";
+            this.txtDni.Size = new System.Drawing.Size(100, 20);
+            this.txtDni.TabIndex = 11;
+            // 
+            // txtFechaInicio
+            // 
+            this.txtFechaInicio.Location = new System.Drawing.Point(631, 180);
+            this.txtFechaInicio.Name = "txtFechaInicio";
+            this.txtFechaInicio.Size = new System.Drawing.Size(100, 20);
+            this.txtFechaInicio.TabIndex = 17;
+            // 
+            // txtTipoMembresia
+            // 
+            this.txtTipoMembresia.Location = new System.Drawing.Point(631, 218);
+            this.txtTipoMembresia.Name = "txtTipoMembresia";
+            this.txtTipoMembresia.Size = new System.Drawing.Size(100, 20);
+            this.txtTipoMembresia.TabIndex = 16;
+            // 
+            // txtTelefono
+            // 
+            this.txtTelefono.Location = new System.Drawing.Point(631, 149);
+            this.txtTelefono.Name = "txtTelefono";
+            this.txtTelefono.Size = new System.Drawing.Size(100, 20);
+            this.txtTelefono.TabIndex = 15;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Berlin Sans FB", 13F);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
+            this.label1.Location = new System.Drawing.Point(443, 216);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(128, 20);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "Tipo Membresia";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Berlin Sans FB", 13F);
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
+            this.label2.Location = new System.Drawing.Point(443, 180);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(96, 20);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "Fecha Inicio";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Berlin Sans FB", 13F);
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
+            this.label3.Location = new System.Drawing.Point(443, 147);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(72, 20);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Telefono";
+            // 
+            // FrmFichaCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(40)))), ((int)(((byte)(41)))));
-            this.ClientSize = new System.Drawing.Size(602, 413);
+            this.ClientSize = new System.Drawing.Size(909, 413);
+            this.Controls.Add(this.txtFechaInicio);
+            this.Controls.Add(this.txtTipoMembresia);
+            this.Controls.Add(this.txtTelefono);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.txtDni);
+            this.Controls.Add(this.txtFechaNacimiento);
+            this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.btnCuota);
             this.Controls.Add(this.btnEditar);
-            this.Controls.Add(this.dgvActividades);
-            this.Controls.Add(this.lblTituloActividades);
             this.Controls.Add(this.lblFechaNacimiento);
             this.Controls.Add(this.lblDni);
             this.Controls.Add(this.pcbCliente);
             this.Controls.Add(this.lblNombre);
             this.Controls.Add(this.labelFichaSocio);
-            this.Name = "Form1";
+            this.Name = "FrmFichaCliente";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.FrmFichaCliente_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pcbCliente)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvActividades)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -173,10 +241,17 @@ namespace Principal
         private System.Windows.Forms.PictureBox pcbCliente;
         private System.Windows.Forms.Label lblDni;
         private System.Windows.Forms.Label lblFechaNacimiento;
-        private System.Windows.Forms.Label lblTituloActividades;
-        private System.Windows.Forms.DataGridView dgvActividades;
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnCuota;
+        private System.Windows.Forms.TextBox txtNombre;
+        private System.Windows.Forms.TextBox txtFechaNacimiento;
+        private System.Windows.Forms.TextBox txtDni;
+        private System.Windows.Forms.TextBox txtFechaInicio;
+        private System.Windows.Forms.TextBox txtTipoMembresia;
+        private System.Windows.Forms.TextBox txtTelefono;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }
 

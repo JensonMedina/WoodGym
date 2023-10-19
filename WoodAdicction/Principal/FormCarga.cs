@@ -26,7 +26,7 @@ namespace Principal
             {
                 myProgressBar.Value = 0;
                 timer1.Stop();
-                Form1 log = new Form1();
+                FrmFichaCliente log = new FrmFichaCliente();
                 this.Hide();
                 log.Show();
             }

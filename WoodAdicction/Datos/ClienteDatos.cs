@@ -16,9 +16,7 @@ namespace Datos
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                string consulta = "Select C.dni, C.Nombre, C.fechaInicio, C.UrlImagen, C.estado, M.tipo, M.id, M.duracion From Clientes C, Membresias M Where M.id = C.idTipoMembresia";
-
-                datos.setQuery(consulta);
+                datos.setearStoredProcedure("storedListar");
                 datos.EjecutarLectura();
 
                 while (datos.lector.Read())
@@ -26,6 +24,9 @@ namespace Datos
                     Cliente aux = new Cliente();
                     aux.dni = (int)datos.lector["dni"];
                     aux.Nombre = (string)datos.lector["nombre"];
+                    aux.fechaNacimiento = datos.lector["fechaNacimiento"] is DBNull ? DateTime.Now : (DateTime)datos.lector["fechaNacimiento"];
+                    
+                    aux.telefono = datos.lector["telefono"] is DBNull ? "Sin numero" : (string)datos.lector["telefono"];
                     aux.fechaInicio = (DateTime)datos.lector["fechaInicio"];
                     aux.estado = datos.lector["estado"] is DBNull ? false : (bool)datos.lector["estado"];
                     aux.urlImagen = datos.lector["UrlImagen"] is DBNull ? "C:/Users/chuni/OneDrive/Escritorio/WoodAdicctionGym/Imagenes/placeholderPortrait.jpg" : (string)datos.lector["UrlImagen"];
@@ -38,7 +39,9 @@ namespace Datos
                     aux.tipo = new Membresias();
                     aux.tipo.id = (int)datos.lector["id"];
                     aux.tipo.tipo = (string)datos.lector["tipo"];
-                    aux.tipo.duracion = (int)datos.lector["duracion"];
+
+                    aux.precio = (decimal)datos.lector["precio"];
+                    aux.duracion = (int)datos.lector["duracion"];
 
                     lista.Add(aux);
                 }
