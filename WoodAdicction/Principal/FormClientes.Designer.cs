@@ -38,6 +38,7 @@ namespace Principal
             this.dgvClientes = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
             this.btnVerCliente = new System.Windows.Forms.Button();
+            this.btnAgregarCliente = new System.Windows.Forms.Button();
             this.pnlFr.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).BeginInit();
             this.SuspendLayout();
@@ -131,11 +132,22 @@ namespace Principal
             this.btnVerCliente.UseVisualStyleBackColor = true;
             this.btnVerCliente.Click += new System.EventHandler(this.btnVerCliente_Click);
             // 
+            // btnAgregarCliente
+            // 
+            this.btnAgregarCliente.Location = new System.Drawing.Point(177, 390);
+            this.btnAgregarCliente.Name = "btnAgregarCliente";
+            this.btnAgregarCliente.Size = new System.Drawing.Size(99, 48);
+            this.btnAgregarCliente.TabIndex = 4;
+            this.btnAgregarCliente.Text = "Agregar Cliente";
+            this.btnAgregarCliente.UseVisualStyleBackColor = true;
+            this.btnAgregarCliente.Click += new System.EventHandler(this.btnAgregarCliente_Click);
+            // 
             // FormClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnAgregarCliente);
             this.Controls.Add(this.btnVerCliente);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dgvClientes);
@@ -162,5 +174,6 @@ namespace Principal
         private System.Windows.Forms.DataGridView dgvClientes;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnVerCliente;
+        private System.Windows.Forms.Button btnAgregarCliente;
     }
 }

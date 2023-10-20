@@ -10,7 +10,7 @@ namespace Datos
 {
     public class ClienteDatos
     {
-        public List<Cliente> listarConSP()
+        public List<Cliente> listarClientesConSP()
         {
             List<Cliente> lista = new List<Cliente>();
             AccesoDatos datos = new AccesoDatos();
@@ -23,18 +23,14 @@ namespace Datos
                 {
                     Cliente aux = new Cliente();
                     aux.dni = (int)datos.lector["dni"];
-                    aux.Nombre = (string)datos.lector["nombre"];
+                    aux.nombre = (string)datos.lector["nombre"];
+                    aux.apellido = (string)datos.lector["apellido"];
                     aux.fechaNacimiento = datos.lector["fechaNacimiento"] is DBNull ? DateTime.Now : (DateTime)datos.lector["fechaNacimiento"];
                     
                     aux.telefono = datos.lector["telefono"] is DBNull ? "Sin numero" : (string)datos.lector["telefono"];
                     aux.fechaInicio = (DateTime)datos.lector["fechaInicio"];
                     aux.estado = datos.lector["estado"] is DBNull ? false : (bool)datos.lector["estado"];
                     aux.urlImagen = datos.lector["UrlImagen"] is DBNull ? "C:/Users/chuni/OneDrive/Escritorio/WoodAdicctionGym/Imagenes/placeholderPortrait.jpg" : (string)datos.lector["UrlImagen"];
-
-                    //aux.estado = (bool)datos.lector["ESTADO"];
-
-                    //if (!(datos.lector["UrlImagen"] is DBNull))
-                    //    aux.urlImagen = (string)datos.lector["UrlImagen"];
 
                     aux.tipo = new Membresias();
                     aux.tipo.id = (int)datos.lector["id"];
@@ -52,6 +48,33 @@ namespace Datos
             {
                 throw ex;
             }
+        }
+        public void AgregarClienteConSP(Cliente Nuevo)
+        {
+            AccesoDatos Datos = new AccesoDatos();
+            try
+            {
+                Datos.setearStoredProcedure("storedAltaCliente");
+                Datos.setParametros("@dni", Nuevo.dni);
+                Datos.setParametros("@nombre", Nuevo.nombre);
+                Datos.setParametros("@apellido", Nuevo.apellido);
+                Datos.setParametros("@fechaNacimiento", Nuevo.fechaNacimiento);
+                Datos.setParametros("@telefono", Nuevo.telefono);
+                Datos.setParametros("@urlImagen", Nuevo.urlImagen);
+                Datos.setParametros("@fechaInicio", Nuevo.fechaInicio);
+                Datos.setParametros("@idTipoMembresia", Nuevo.tipo.id);
+                Datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                Datos.CerrarConexion();
+            }
+
         }
     }
 }
