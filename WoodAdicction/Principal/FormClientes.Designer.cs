@@ -39,6 +39,7 @@ namespace Principal
             this.label3 = new System.Windows.Forms.Label();
             this.btnVerCliente = new System.Windows.Forms.Button();
             this.btnAgregarCliente = new System.Windows.Forms.Button();
+            this.btnModificar = new System.Windows.Forms.Button();
             this.pnlFr.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).BeginInit();
             this.SuspendLayout();
@@ -128,31 +129,43 @@ namespace Principal
             this.btnVerCliente.Name = "btnVerCliente";
             this.btnVerCliente.Size = new System.Drawing.Size(75, 48);
             this.btnVerCliente.TabIndex = 3;
-            this.btnVerCliente.Text = "Ver Cliente";
+            this.btnVerCliente.Text = "Ver Socio";
             this.btnVerCliente.UseVisualStyleBackColor = true;
             this.btnVerCliente.Click += new System.EventHandler(this.btnVerCliente_Click);
             // 
             // btnAgregarCliente
             // 
-            this.btnAgregarCliente.Location = new System.Drawing.Point(177, 390);
+            this.btnAgregarCliente.Location = new System.Drawing.Point(390, 390);
             this.btnAgregarCliente.Name = "btnAgregarCliente";
             this.btnAgregarCliente.Size = new System.Drawing.Size(99, 48);
             this.btnAgregarCliente.TabIndex = 4;
-            this.btnAgregarCliente.Text = "Agregar Cliente";
+            this.btnAgregarCliente.Text = "Agregar Socio";
             this.btnAgregarCliente.UseVisualStyleBackColor = true;
             this.btnAgregarCliente.Click += new System.EventHandler(this.btnAgregarCliente_Click);
+            // 
+            // btnModificar
+            // 
+            this.btnModificar.Location = new System.Drawing.Point(221, 390);
+            this.btnModificar.Name = "btnModificar";
+            this.btnModificar.Size = new System.Drawing.Size(105, 48);
+            this.btnModificar.TabIndex = 5;
+            this.btnModificar.Text = "Modificar Socio";
+            this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // FormClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnAgregarCliente);
             this.Controls.Add(this.btnVerCliente);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dgvClientes);
             this.Controls.Add(this.pnlFr);
             this.Name = "FormClientes";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormClientes";
             this.Load += new System.EventHandler(this.FormClientes_Load);
             this.pnlFr.ResumeLayout(false);
@@ -175,5 +188,6 @@ namespace Principal
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnVerCliente;
         private System.Windows.Forms.Button btnAgregarCliente;
+        private System.Windows.Forms.Button btnModificar;
     }
 }

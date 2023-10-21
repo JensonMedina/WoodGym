@@ -31,7 +31,7 @@ namespace Principal
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDatosSocio));
             this.pbxCliente = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblTitulo = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.txtApellido = new System.Windows.Forms.TextBox();
@@ -61,16 +61,16 @@ namespace Principal
             this.pbxCliente.TabIndex = 0;
             this.pbxCliente.TabStop = false;
             // 
-            // label1
+            // lblTitulo
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Berlin Sans FB", 20F);
-            this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label1.Location = new System.Drawing.Point(263, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(233, 30);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "DATOS DEL SOCIO";
+            this.lblTitulo.AutoSize = true;
+            this.lblTitulo.Font = new System.Drawing.Font("Berlin Sans FB", 20F);
+            this.lblTitulo.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblTitulo.Location = new System.Drawing.Point(263, 20);
+            this.lblTitulo.Name = "lblTitulo";
+            this.lblTitulo.Size = new System.Drawing.Size(233, 30);
+            this.lblTitulo.TabIndex = 1;
+            this.lblTitulo.Text = "DATOS DEL SOCIO";
             // 
             // label2
             // 
@@ -302,7 +302,7 @@ namespace Principal
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.pbxCliente);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
@@ -321,7 +321,7 @@ namespace Principal
         #endregion
 
         private System.Windows.Forms.PictureBox pbxCliente;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.TextBox txtApellido;

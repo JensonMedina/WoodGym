@@ -20,6 +20,13 @@ namespace Principal
         {
             InitializeComponent();
         }
+        public enum ModoOperacionEnum
+        {
+            VerCliente,
+            Agregar,
+            Modificar
+        }
+        public ModoOperacionEnum ModoOperacion { get; set; }
         public FrmDatosSocio(Cliente cliente)
         {
             InitializeComponent();
@@ -44,6 +51,37 @@ namespace Principal
                 cbxTipoMembresia.DataSource = membresiasDatos.listarMembresiasConSp();
                 cbxTipoMembresia.ValueMember = "id";
                 cbxTipoMembresia.DisplayMember = "tipo";
+                if (ModoOperacion == ModoOperacionEnum.VerCliente)
+                {
+                    lblTitulo.Text = "Datos del Socio";
+                    txtNombre.ReadOnly = true;
+                    txtApellido.ReadOnly = true;
+                    txtDni.ReadOnly = true;
+                    txtTelefono.ReadOnly = true;
+                    dtpFechaNacimiento.Enabled = false;
+                    dtpFechaInicio.Enabled = false;
+                    cbxTipoMembresia.Enabled = false;
+                }
+                else
+                {
+                    txtNombre.ReadOnly = false;
+                    txtApellido.ReadOnly = false;
+                    txtDni.ReadOnly = false;
+                    txtTelefono.ReadOnly = false;
+                    dtpFechaNacimiento.Enabled = true;
+                    dtpFechaInicio.Enabled = true;
+                    cbxTipoMembresia.Enabled = true;
+                    if (ModoOperacion == ModoOperacionEnum.Agregar)
+                    {
+                        lblTitulo.Text = "Agregar Socio";
+                    }
+                    if (ModoOperacion == ModoOperacionEnum.Modificar)
+                    {
+                        lblTitulo.Text = "Modificar Datos";
+                    }
+                }
+
+
                 if (Cliente != null)
                 {
                     txtNombre.Text = Cliente.nombre;

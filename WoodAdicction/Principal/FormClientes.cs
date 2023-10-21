@@ -61,19 +61,37 @@ namespace Principal
             {
                 Cliente Seleccionado = (Cliente)dgvClientes.CurrentRow.DataBoundItem;
                 FrmDatosSocio verCliente = new FrmDatosSocio(Seleccionado);
+                verCliente.ModoOperacion = FrmDatosSocio.ModoOperacionEnum.VerCliente;
                 verCliente.ShowDialog();
             }
             else
             {
-                MessageBox.Show("Debe seleccionar una fila antes de modificar un articulo", "Error de seleccion", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Debe seleccionar un socio", "Error de seleccion", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
         private void btnAgregarCliente_Click(object sender, EventArgs e)
         {
             FrmDatosSocio clienteNuevo = new FrmDatosSocio();
+            clienteNuevo.ModoOperacion = FrmDatosSocio.ModoOperacionEnum.Agregar;
             clienteNuevo.ShowDialog();
             Cargar();
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            
+            if (dgvClientes.CurrentRow != null && dgvClientes.CurrentRow.DataBoundItem != null)
+            {
+                Cliente Seleccionado = (Cliente)dgvClientes.CurrentRow.DataBoundItem;
+                FrmDatosSocio modificarCliente = new FrmDatosSocio(Seleccionado);
+                modificarCliente.ModoOperacion = FrmDatosSocio.ModoOperacionEnum.Modificar;
+                modificarCliente.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una socio", "Error de seleccion", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }

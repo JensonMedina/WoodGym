@@ -26,7 +26,7 @@ namespace Principal
             {
                 myProgressBar.Value = 0;
                 timer1.Stop();
-                FrmFichaCliente log = new FrmFichaCliente();
+                FrmPrincipal log = new FrmPrincipal();
                 this.Hide();
                 log.Show();
             }
