@@ -29,15 +29,11 @@ namespace Principal
         {
             try
             {
-                CultureInfo Culture = new CultureInfo("es-AR");
-                Culture.NumberFormat.CurrencySymbol = "ARS";
+                
                 ClienteDatos datos = new ClienteDatos();
                 listaClientes = datos.listarClientesConSP();
                 dgvClientes.DataSource = listaClientes;
-                dgvClientes.Columns["precio"].DefaultCellStyle.Format = "C2";
-                dgvClientes.Columns["precio"].DefaultCellStyle.FormatProvider = Culture;
-                //OcultarColumnas();
-                //CargarImagen(ListaPokemon[0].UrlImagen);
+                OcultarYModificarColumnas();
             }
             catch (Exception ex)
             {
@@ -45,13 +41,27 @@ namespace Principal
                 //MessageBox.Show(ex.ToString());
             }
         }
-
+        private void OcultarYModificarColumnas()
+        {
+            CultureInfo Culture = new CultureInfo("es-AR");
+            Culture.NumberFormat.CurrencySymbol = "ARS";
+            dgvClientes.Columns["dni"].Visible = false;
+            dgvClientes.Columns["urlImagen"].Visible = false;
+            dgvClientes.Columns["fechaNacimiento"].Visible = false;
+            dgvClientes.Columns["precio"].Visible = false;
+            dgvClientes.Columns["duracion"].Visible = false;
+            dgvClientes.Columns["fechaInicio"].HeaderText = "Fecha de inicio";
+            dgvClientes.Columns["estado"].HeaderText = "Activo";
+            dgvClientes.Columns["tipo"].HeaderText = "Tipo de membresia";
+            dgvClientes.Columns["precio"].DefaultCellStyle.Format = "C2";
+            dgvClientes.Columns["precio"].DefaultCellStyle.FormatProvider = Culture;
+        }
         private void dgvClientes_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvClientes.CurrentRow != null)
             {
                 Cliente Seleccionado = (Cliente)dgvClientes.CurrentRow.DataBoundItem;
-                label3.Text = Seleccionado.tipo.id.ToString();
+                label3.Text = Seleccionado.Tipo.Id.ToString();
             }
         }
 
@@ -80,13 +90,14 @@ namespace Principal
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            
+
             if (dgvClientes.CurrentRow != null && dgvClientes.CurrentRow.DataBoundItem != null)
             {
                 Cliente Seleccionado = (Cliente)dgvClientes.CurrentRow.DataBoundItem;
                 FrmDatosSocio modificarCliente = new FrmDatosSocio(Seleccionado);
                 modificarCliente.ModoOperacion = FrmDatosSocio.ModoOperacionEnum.Modificar;
                 modificarCliente.ShowDialog();
+                Cargar();
             }
             else
             {

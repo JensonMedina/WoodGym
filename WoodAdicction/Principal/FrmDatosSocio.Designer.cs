@@ -50,6 +50,7 @@ namespace Principal
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.btnCamara = new System.Windows.Forms.Button();
+            this.ckbEstado = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbxCliente)).BeginInit();
             this.SuspendLayout();
             // 
@@ -97,7 +98,7 @@ namespace Principal
             // 
             this.txtApellido.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtApellido.Font = new System.Drawing.Font("Calibri", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtApellido.Location = new System.Drawing.Point(476, 115);
+            this.txtApellido.Location = new System.Drawing.Point(476, 112);
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(177, 32);
             this.txtApellido.TabIndex = 5;
@@ -107,7 +108,7 @@ namespace Principal
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
-            this.label3.Location = new System.Drawing.Point(472, 91);
+            this.label3.Location = new System.Drawing.Point(472, 89);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(89, 23);
             this.label3.TabIndex = 4;
@@ -140,7 +141,7 @@ namespace Principal
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
-            this.label5.Location = new System.Drawing.Point(472, 148);
+            this.label5.Location = new System.Drawing.Point(472, 147);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(181, 23);
             this.label5.TabIndex = 8;
@@ -173,7 +174,7 @@ namespace Principal
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
-            this.label7.Location = new System.Drawing.Point(472, 201);
+            this.label7.Location = new System.Drawing.Point(472, 198);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(139, 23);
             this.label7.TabIndex = 12;
@@ -195,7 +196,7 @@ namespace Principal
             // dtpFechaNacimiento
             // 
             this.dtpFechaNacimiento.Font = new System.Drawing.Font("Calibri", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpFechaNacimiento.Location = new System.Drawing.Point(476, 172);
+            this.dtpFechaNacimiento.Location = new System.Drawing.Point(476, 167);
             this.dtpFechaNacimiento.Name = "dtpFechaNacimiento";
             this.dtpFechaNacimiento.Size = new System.Drawing.Size(177, 28);
             this.dtpFechaNacimiento.TabIndex = 16;
@@ -203,7 +204,7 @@ namespace Principal
             // dtpFechaInicio
             // 
             this.dtpFechaInicio.Font = new System.Drawing.Font("Calibri", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpFechaInicio.Location = new System.Drawing.Point(476, 225);
+            this.dtpFechaInicio.Location = new System.Drawing.Point(476, 222);
             this.dtpFechaInicio.Name = "dtpFechaInicio";
             this.dtpFechaInicio.Size = new System.Drawing.Size(177, 28);
             this.dtpFechaInicio.TabIndex = 17;
@@ -278,12 +279,25 @@ namespace Principal
             this.btnCamara.UseVisualStyleBackColor = false;
             this.btnCamara.Click += new System.EventHandler(this.btnCamara_Click);
             // 
+            // ckbEstado
+            // 
+            this.ckbEstado.AutoSize = true;
+            this.ckbEstado.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
+            this.ckbEstado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
+            this.ckbEstado.Location = new System.Drawing.Point(479, 265);
+            this.ckbEstado.Name = "ckbEstado";
+            this.ckbEstado.Size = new System.Drawing.Size(82, 27);
+            this.ckbEstado.TabIndex = 23;
+            this.ckbEstado.Text = "Activo";
+            this.ckbEstado.UseVisualStyleBackColor = true;
+            // 
             // FrmDatosSocio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(40)))), ((int)(((byte)(41)))));
             this.ClientSize = new System.Drawing.Size(702, 424);
+            this.Controls.Add(this.ckbEstado);
             this.Controls.Add(this.btnCamara);
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.btnCancelar);
@@ -340,5 +354,6 @@ namespace Principal
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.Button btnCamara;
+        private System.Windows.Forms.CheckBox ckbEstado;
     }
 }

@@ -24,7 +24,14 @@ namespace Principal
         private void FrmMembresias_Load(object sender, EventArgs e)
         {
             Cargar();
+            OcultarColumnas();
         }
+
+        private void OcultarColumnas()
+        {
+            dgvMembresias.Columns["id"].Visible = false;
+        }
+
         private void Cargar()
         {
             try
@@ -50,9 +57,9 @@ namespace Principal
             if(dgvMembresias.CurrentRow != null)
             {
                 Membresias seleccionada = (Membresias)dgvMembresias.CurrentRow.DataBoundItem;
-                txtTipo.Text = seleccionada.tipo;
-                txtPrecio.Text = seleccionada.precio.ToString();
-                nudDuracion.Value = seleccionada.duracion;
+                txtTipo.Text = seleccionada.Tipo;
+                txtPrecio.Text = seleccionada.Precio.ToString();
+                nudDuracion.Value = seleccionada.Duracion;
             }
         }
     }

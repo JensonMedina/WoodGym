@@ -8,17 +8,18 @@ namespace Dominio
 {
     public class Cliente
     {
-        public int dni { get; set; }
-        public string nombre { get; set; }
-        public string apellido { get; set; }
-        public DateTime fechaNacimiento { get; set; }
-        public string telefono { get; set; }
+        public int Dni { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
+        public DateTime? fechaNacimiento { get; set; }
+        public int? Edad { get; set; }
+        public string Telefono { get; set; }
         public DateTime fechaInicio { get; set; }
-        public bool estado { get; set; }
+        public bool Estado { get; set; }
         public string urlImagen { get; set; }
-        public Membresias tipo { get; set; }
-        public decimal precio { get; set; }
-        public int duracion { get; set; }
+        public Membresias Tipo { get; set; }
+        public decimal Precio { get; set; }
+        public int Duracion { get; set; }
         
     }
 }

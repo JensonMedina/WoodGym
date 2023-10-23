@@ -8,14 +8,14 @@ namespace Dominio
 {
     public class Membresias
     {
-        public int id { get; set; }
-        public string tipo { get; set; }
-        public decimal precio { get; set; }
-        public int duracion { get; set; }
+        public int Id { get; set; }
+        public string Tipo { get; set; }
+        public decimal Precio { get; set; }
+        public int Duracion { get; set; }
 
         public override string ToString()
         {
-            return tipo;
+            return Tipo;
         }
     }
 }

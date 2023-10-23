@@ -84,13 +84,17 @@ namespace Principal
 
                 if (Cliente != null)
                 {
-                    txtNombre.Text = Cliente.nombre;
-                    txtApellido.Text = Cliente.apellido;
-                    txtDni.Text = Cliente.dni.ToString();
-                    dtpFechaNacimiento.Text = Cliente.fechaNacimiento.ToString("d");
-                    txtTelefono.Text = Cliente.telefono.ToString();
+                    txtNombre.Text = Cliente.Nombre;
+                    txtApellido.Text = Cliente.Apellido;
+                    txtDni.Text = Cliente.Dni.ToString();
+                    if (Cliente.fechaNacimiento != null)
+                    {
+                        dtpFechaNacimiento.Text = Cliente.fechaNacimiento.Value.ToString("d");
+                    }
+
+                    txtTelefono.Text = Cliente.Telefono.ToString();
                     dtpFechaInicio.Text = Cliente.fechaInicio.ToString("d");
-                    cbxTipoMembresia.Text = Cliente.tipo.tipo;
+                    cbxTipoMembresia.Text = Cliente.Tipo.Tipo;
                     string rutaImagen = Cliente.urlImagen;
 
                     if (File.Exists(rutaImagen))
@@ -131,6 +135,34 @@ namespace Principal
             ClienteDatos Datos = new ClienteDatos();
             if (Cliente == null)
                 Cliente = new Cliente();
+            try
+            {
+                if (ModoOperacion == ModoOperacionEnum.Agregar)
+                {
+                    
+                    CargarCliente(Cliente);
+                    Datos.AgregarClienteConSP(Cliente);
+                    MessageBox.Show("Agregado exitosamente");
+                }
+                else if (ModoOperacion == ModoOperacionEnum.Modificar)
+                {
+                    int dniAModificar = int.Parse(txtDni.Text);
+                    CargarCliente(Cliente);
+                    Datos.ModificarClienteConSP(Cliente, dniAModificar);
+                    MessageBox.Show("Modificado exitosamente");
+                }
+
+                Close();
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+        }
+
+        private void CargarCliente(Cliente cliente)
+        {
             string nombre = txtNombre.Text;
             string apellido = txtApellido.Text;
             int dni = int.Parse(txtDni.Text);
@@ -138,25 +170,17 @@ namespace Principal
             string telefono = txtTelefono.Text;
             DateTime fechaInicio = dtpFechaInicio.Value;
             int idTipoMembresia = cbxTipoMembresia.SelectedIndex + 1;
-            Cliente.dni = dni;
-            Cliente.nombre = nombre;
-            Cliente.apellido = apellido;
-            Cliente.fechaNacimiento = fechaNacimiento;
-            Cliente.telefono = telefono;
-            Cliente.fechaInicio = fechaInicio;
-            Cliente.tipo = new Membresias();
-            Cliente.tipo.id = idTipoMembresia;
-            Cliente.urlImagen = "C:/Users/chuni/OneDrive/Escritorio/WoodAdicctionGym/Imagenes/placeholderPortrait.jpg";
-            try
-            {
-                Datos.AgregarClienteConSP(Cliente);
-                MessageBox.Show("Agregado exitosamente");
-                Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
+            bool estado = ckbEstado.Checked;
+            cliente.Dni = dni;
+            cliente.Nombre = nombre;
+            cliente.Apellido = apellido;
+            cliente.fechaNacimiento = fechaNacimiento;
+            cliente.Telefono = telefono;
+            cliente.fechaInicio = fechaInicio;
+            cliente.Estado = estado;
+            cliente.Tipo = new Membresias();
+            cliente.Tipo.Id = idTipoMembresia;
+            cliente.urlImagen = "C:/Users/chuni/OneDrive/Escritorio/WoodAdicctionGym/Imagenes/placeholderPortrait.jpg";
         }
     }
 }

@@ -20,10 +20,10 @@ namespace Datos
                 while (datos.lector.Read())
                 {
                     Membresias aux = new Membresias();
-                    aux.id = (int)datos.lector["id"];
-                    aux.tipo = (string)datos.lector["tipo"];
-                    aux.precio = (decimal)datos.lector["precio"];
-                    aux.duracion = (int)datos.lector["duracion"];
+                    aux.Id = (int)datos.lector["id"];
+                    aux.Tipo = (string)datos.lector["tipo"];
+                    aux.Precio = (decimal)datos.lector["precio"];
+                    aux.Duracion = (int)datos.lector["duracion"];
                     listaMembresias.Add(aux);
                 }
                 return listaMembresias;
