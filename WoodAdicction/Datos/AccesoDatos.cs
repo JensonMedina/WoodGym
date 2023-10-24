@@ -18,7 +18,7 @@ namespace Datos
         }
         public AccesoDatos()
         {
-            Conexion = new SqlConnection("server=.\\SQLEXPRESS; database=testGym; integrated security=true");
+            Conexion = new SqlConnection("server=.\\SQLEXPRESS; database=WoodAdicctionGym; integrated security=true");
             Comando = new SqlCommand();
         }
         public void setearConsulta(string Consulta)

@@ -38,7 +38,6 @@ namespace Principal
             this.cbxVerFr = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvClientes = new System.Windows.Forms.DataGridView();
-            this.label3 = new System.Windows.Forms.Label();
             this.btnVerCliente = new System.Windows.Forms.Button();
             this.btnAgregarCliente = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
@@ -53,9 +52,9 @@ namespace Principal
             this.pnlFr.Controls.Add(this.label2);
             this.pnlFr.Controls.Add(this.cbxVerFr);
             this.pnlFr.Controls.Add(this.label1);
-            this.pnlFr.Location = new System.Drawing.Point(0, 0);
+            this.pnlFr.Location = new System.Drawing.Point(138, 25);
             this.pnlFr.Name = "pnlFr";
-            this.pnlFr.Size = new System.Drawing.Size(774, 100);
+            this.pnlFr.Size = new System.Drawing.Size(643, 100);
             this.pnlFr.TabIndex = 0;
             // 
             // btnFr
@@ -127,26 +126,16 @@ namespace Principal
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvClientes.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvClientes.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvClientes.Location = new System.Drawing.Point(0, 173);
+            this.dgvClientes.Location = new System.Drawing.Point(0, 153);
             this.dgvClientes.Name = "dgvClientes";
-            this.dgvClientes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvClientes.Size = new System.Drawing.Size(818, 200);
+            this.dgvClientes.Size = new System.Drawing.Size(929, 200);
             this.dgvClientes.TabIndex = 1;
             this.dgvClientes.SelectionChanged += new System.EventHandler(this.dgvClientes_SelectionChanged);
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(218, 117);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "label3";
-            // 
             // btnVerCliente
             // 
-            this.btnVerCliente.Location = new System.Drawing.Point(102, 463);
+            this.btnVerCliente.Location = new System.Drawing.Point(170, 409);
             this.btnVerCliente.Name = "btnVerCliente";
             this.btnVerCliente.Size = new System.Drawing.Size(75, 48);
             this.btnVerCliente.TabIndex = 3;
@@ -156,7 +145,7 @@ namespace Principal
             // 
             // btnAgregarCliente
             // 
-            this.btnAgregarCliente.Location = new System.Drawing.Point(591, 463);
+            this.btnAgregarCliente.Location = new System.Drawing.Point(622, 409);
             this.btnAgregarCliente.Name = "btnAgregarCliente";
             this.btnAgregarCliente.Size = new System.Drawing.Size(99, 48);
             this.btnAgregarCliente.TabIndex = 4;
@@ -166,7 +155,7 @@ namespace Principal
             // 
             // btnModificar
             // 
-            this.btnModificar.Location = new System.Drawing.Point(328, 463);
+            this.btnModificar.Location = new System.Drawing.Point(398, 409);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(105, 48);
             this.btnModificar.TabIndex = 5;
@@ -178,11 +167,10 @@ namespace Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(871, 539);
+            this.ClientSize = new System.Drawing.Size(987, 539);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnAgregarCliente);
             this.Controls.Add(this.btnVerCliente);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.dgvClientes);
             this.Controls.Add(this.pnlFr);
             this.Name = "FormClientes";
@@ -193,7 +181,6 @@ namespace Principal
             this.pnlFr.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -206,7 +193,6 @@ namespace Principal
         private System.Windows.Forms.ComboBox cbxVerFr;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgvClientes;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnVerCliente;
         private System.Windows.Forms.Button btnAgregarCliente;
         private System.Windows.Forms.Button btnModificar;

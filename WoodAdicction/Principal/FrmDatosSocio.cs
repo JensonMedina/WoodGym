@@ -49,8 +49,8 @@ namespace Principal
             try
             {
                 cbxTipoMembresia.DataSource = membresiasDatos.listarMembresiasConSp();
-                cbxTipoMembresia.ValueMember = "id";
-                cbxTipoMembresia.DisplayMember = "tipo";
+                cbxTipoMembresia.ValueMember = "Id";
+                cbxTipoMembresia.DisplayMember = "Nombre";
                 if (ModoOperacion == ModoOperacionEnum.VerCliente)
                 {
                     lblTitulo.Text = "Datos del Socio";
@@ -94,7 +94,7 @@ namespace Principal
 
                     txtTelefono.Text = Cliente.Telefono.ToString();
                     dtpFechaInicio.Text = Cliente.fechaInicio.ToString("d");
-                    cbxTipoMembresia.Text = Cliente.Tipo.Tipo;
+                    cbxTipoMembresia.Text = Cliente.TipoMembresia.Nombre;
                     string rutaImagen = Cliente.urlImagen;
 
                     if (File.Exists(rutaImagen))
@@ -146,9 +146,9 @@ namespace Principal
                 }
                 else if (ModoOperacion == ModoOperacionEnum.Modificar)
                 {
-                    int dniAModificar = int.Parse(txtDni.Text);
+                    int dniAmodificar = int.Parse(txtDni.Text);
                     CargarCliente(Cliente);
-                    Datos.ModificarClienteConSP(Cliente, dniAModificar);
+                    Datos.ModificarClienteConSP(Cliente, dniAmodificar);
                     MessageBox.Show("Modificado exitosamente");
                 }
 
@@ -170,17 +170,18 @@ namespace Principal
             string telefono = txtTelefono.Text;
             DateTime fechaInicio = dtpFechaInicio.Value;
             int idTipoMembresia = cbxTipoMembresia.SelectedIndex + 1;
-            bool estado = ckbEstado.Checked;
+            bool activo = ckbEstado.Checked;
             cliente.Dni = dni;
             cliente.Nombre = nombre;
             cliente.Apellido = apellido;
             cliente.fechaNacimiento = fechaNacimiento;
             cliente.Telefono = telefono;
+            cliente.urlImagen = "C: /Users/chuni/OneDrive/Escritorio/WoodAdicctionGym/Imagenes/placeholderPortrait.jpg";
             cliente.fechaInicio = fechaInicio;
-            cliente.Estado = estado;
-            cliente.Tipo = new Membresias();
-            cliente.Tipo.Id = idTipoMembresia;
-            cliente.urlImagen = "C:/Users/chuni/OneDrive/Escritorio/WoodAdicctionGym/Imagenes/placeholderPortrait.jpg";
+            cliente.Activo = activo;
+            cliente.TipoMembresia = new Membresias();
+            cliente.TipoMembresia.Id = idTipoMembresia;
+            
         }
     }
 }

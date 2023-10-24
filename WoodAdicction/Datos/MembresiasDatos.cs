@@ -21,7 +21,8 @@ namespace Datos
                 {
                     Membresias aux = new Membresias();
                     aux.Id = (int)datos.lector["id"];
-                    aux.Tipo = (string)datos.lector["tipo"];
+                    aux.Nombre = (string)datos.lector["nombre"];
+                    aux.Descripcion = (string)datos.lector["descripcion"];
                     aux.Precio = (decimal)datos.lector["precio"];
                     aux.Duracion = (int)datos.lector["duracion"];
                     listaMembresias.Add(aux);

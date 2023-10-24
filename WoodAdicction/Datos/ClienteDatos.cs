@@ -16,13 +16,14 @@ namespace Datos
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearStoredProcedure("storedListar");
+                datos.setearStoredProcedure("storedListarClientes");
                 datos.EjecutarLectura();
 
                 while (datos.lector.Read())
                 {
                     Cliente aux = new Cliente();
                     aux.Dni = (int)datos.lector["dni"];
+                    aux.NroSocio = (int)datos.lector["nroSocio"];
                     aux.Nombre = (string)datos.lector["nombre"];
                     aux.Apellido = (string)datos.lector["apellido"];
                     aux.fechaNacimiento = (DateTime?)(datos.lector["fechaNacimiento"] is DBNull ? (object)null : (DateTime)datos.lector["fechaNacimiento"]);
@@ -44,15 +45,12 @@ namespace Datos
 
                     aux.Telefono = datos.lector["telefono"] is DBNull ? "Sin numero" : (string)datos.lector["telefono"];
                     aux.fechaInicio = (DateTime)datos.lector["fechaInicio"];
-                    aux.Estado = datos.lector["estado"] is DBNull ? false : (bool)datos.lector["estado"];
-                    aux.urlImagen = datos.lector["UrlImagen"] is DBNull ? "C:/Users/chuni/OneDrive/Escritorio/WoodAdicctionGym/Imagenes/placeholderPortrait.jpg" : (string)datos.lector["UrlImagen"];
+                    aux.Activo = datos.lector["activo"] is DBNull ? false : (bool)datos.lector["activo"];
+                    aux.urlImagen = datos.lector["imagenUrl"] is DBNull ? "C:/Users/chuni/OneDrive/Escritorio/WoodAdicctionGym/Imagenes/placeholderPortrait.jpg" : (string)datos.lector["imagenUrl"];
 
-                    aux.Tipo = new Membresias();
-                    aux.Tipo.Id = (int)datos.lector["id"];
-                    aux.Tipo.Tipo = (string)datos.lector["tipo"];
-
-                    aux.Precio = (decimal)datos.lector["precio"];
-                    aux.Duracion = (int)datos.lector["duracion"];
+                    aux.TipoMembresia = new Membresias();
+                    aux.TipoMembresia.Id = (int)datos.lector["id"];
+                    aux.TipoMembresia.Nombre = (string)datos.lector["Nombre"];
 
                     lista.Add(aux);
                 }
@@ -75,9 +73,10 @@ namespace Datos
                 Datos.setParametros("@apellido", Nuevo.Apellido);
                 Datos.setParametros("@fechaNacimiento", Nuevo.fechaNacimiento);
                 Datos.setParametros("@telefono", Nuevo.Telefono);
-                Datos.setParametros("@urlImagen", Nuevo.urlImagen);
+                Datos.setParametros("@imagenUrl", Nuevo.urlImagen);
                 Datos.setParametros("@fechaInicio", Nuevo.fechaInicio);
-                Datos.setParametros("@idTipoMembresia", Nuevo.Tipo.Id);
+                Datos.setParametros("@activo", Nuevo.Activo);
+                Datos.setParametros("@idTipoMembresia", Nuevo.TipoMembresia.Id);
                 Datos.EjecutarAccion();
             }
             catch (Exception ex)
@@ -91,7 +90,7 @@ namespace Datos
             }
 
         }
-        public void ModificarClienteConSP(Cliente selecionado, int dniAModificar)
+        public void ModificarClienteConSP(Cliente selecionado, int dniAmodificar)
         {
             AccesoDatos Datos = new AccesoDatos();
             try
@@ -102,11 +101,11 @@ namespace Datos
                 Datos.setParametros("@apellido", selecionado.Apellido);
                 Datos.setParametros("@fechaNacimiento", selecionado.fechaNacimiento);
                 Datos.setParametros("@telefono", selecionado.Telefono);
-                Datos.setParametros("@urlImagen", selecionado.urlImagen);
+                Datos.setParametros("@imagenUrl", selecionado.urlImagen);
                 Datos.setParametros("@fechaInicio", selecionado.fechaInicio);
-                Datos.setParametros("@estado", selecionado.Estado);
-                Datos.setParametros("@idTipoMembresia", selecionado.Tipo.Id);
-                Datos.setParametros("@dniAModificar", dniAModificar);
+                Datos.setParametros("@activo", selecionado.Activo);
+                Datos.setParametros("@idTipoMembresia", selecionado.TipoMembresia.Id);
+                Datos.setParametros("@socioAmodificar", dniAmodificar);
                 Datos.EjecutarAccion();
             }
             catch (Exception ex)

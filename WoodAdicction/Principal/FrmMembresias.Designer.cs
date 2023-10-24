@@ -43,6 +43,7 @@ namespace Principal
             this.txtPrecio = new System.Windows.Forms.TextBox();
             this.txtTipo = new System.Windows.Forms.TextBox();
             this.btnGuardar = new System.Windows.Forms.Button();
+            this.btnLimpiar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMembresias)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDuracion)).BeginInit();
             this.SuspendLayout();
@@ -69,11 +70,11 @@ namespace Principal
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvMembresias.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvMembresias.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvMembresias.Location = new System.Drawing.Point(184, 96);
+            this.dgvMembresias.Location = new System.Drawing.Point(44, 96);
             this.dgvMembresias.Name = "dgvMembresias";
             this.dgvMembresias.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvMembresias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvMembresias.Size = new System.Drawing.Size(416, 150);
+            this.dgvMembresias.Size = new System.Drawing.Size(712, 150);
             this.dgvMembresias.TabIndex = 0;
             this.dgvMembresias.SelectionChanged += new System.EventHandler(this.dgvMembresias_SelectionChanged);
             // 
@@ -103,7 +104,7 @@ namespace Principal
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Berlin Sans FB", 20F);
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
-            this.label2.Location = new System.Drawing.Point(39, 280);
+            this.label2.Location = new System.Drawing.Point(17, 297);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(347, 30);
             this.label2.TabIndex = 3;
@@ -114,7 +115,7 @@ namespace Principal
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
-            this.label6.Location = new System.Drawing.Point(501, 343);
+            this.label6.Location = new System.Drawing.Point(470, 354);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(85, 23);
             this.label6.TabIndex = 15;
@@ -125,7 +126,7 @@ namespace Principal
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
-            this.label7.Location = new System.Drawing.Point(297, 343);
+            this.label7.Location = new System.Drawing.Point(266, 354);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(61, 23);
             this.label7.TabIndex = 14;
@@ -136,7 +137,7 @@ namespace Principal
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
-            this.label8.Location = new System.Drawing.Point(154, 343);
+            this.label8.Location = new System.Drawing.Point(28, 354);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(45, 23);
             this.label8.TabIndex = 13;
@@ -144,28 +145,31 @@ namespace Principal
             // 
             // nudDuracion
             // 
-            this.nudDuracion.Location = new System.Drawing.Point(442, 370);
+            this.nudDuracion.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudDuracion.Location = new System.Drawing.Point(474, 397);
             this.nudDuracion.Maximum = new decimal(new int[] {
             1825,
             0,
             0,
             0});
             this.nudDuracion.Name = "nudDuracion";
-            this.nudDuracion.Size = new System.Drawing.Size(120, 20);
+            this.nudDuracion.Size = new System.Drawing.Size(210, 33);
             this.nudDuracion.TabIndex = 12;
             // 
             // txtPrecio
             // 
-            this.txtPrecio.Location = new System.Drawing.Point(291, 369);
+            this.txtPrecio.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPrecio.Location = new System.Drawing.Point(246, 396);
             this.txtPrecio.Name = "txtPrecio";
-            this.txtPrecio.Size = new System.Drawing.Size(100, 20);
+            this.txtPrecio.Size = new System.Drawing.Size(159, 33);
             this.txtPrecio.TabIndex = 11;
             // 
             // txtTipo
             // 
-            this.txtTipo.Location = new System.Drawing.Point(126, 369);
+            this.txtTipo.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTipo.Location = new System.Drawing.Point(22, 397);
             this.txtTipo.Name = "txtTipo";
-            this.txtTipo.Size = new System.Drawing.Size(100, 20);
+            this.txtTipo.Size = new System.Drawing.Size(167, 33);
             this.txtTipo.TabIndex = 10;
             // 
             // btnGuardar
@@ -182,10 +186,22 @@ namespace Principal
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = false;
             // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnLimpiar.BackgroundImage")));
+            this.btnLimpiar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLimpiar.Location = new System.Drawing.Point(732, 401);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(24, 26);
+            this.btnLimpiar.TabIndex = 20;
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
             // FrmMembresias
             // 
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(40)))), ((int)(((byte)(41)))));
-            this.ClientSize = new System.Drawing.Size(768, 620);
+            this.ClientSize = new System.Drawing.Size(835, 620);
+            this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label7);
@@ -223,6 +239,7 @@ namespace Principal
         private System.Windows.Forms.TextBox txtPrecio;
         private System.Windows.Forms.TextBox txtTipo;
         private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.Button btnLimpiar;
     }
 }
 

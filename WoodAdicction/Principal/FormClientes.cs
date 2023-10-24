@@ -43,25 +43,17 @@ namespace Principal
         }
         private void OcultarYModificarColumnas()
         {
-            CultureInfo Culture = new CultureInfo("es-AR");
-            Culture.NumberFormat.CurrencySymbol = "ARS";
             dgvClientes.Columns["dni"].Visible = false;
             dgvClientes.Columns["urlImagen"].Visible = false;
             dgvClientes.Columns["fechaNacimiento"].Visible = false;
-            dgvClientes.Columns["precio"].Visible = false;
-            dgvClientes.Columns["duracion"].Visible = false;
             dgvClientes.Columns["fechaInicio"].HeaderText = "Fecha de inicio";
-            dgvClientes.Columns["estado"].HeaderText = "Activo";
-            dgvClientes.Columns["tipo"].HeaderText = "Tipo de membresia";
-            dgvClientes.Columns["precio"].DefaultCellStyle.Format = "C2";
-            dgvClientes.Columns["precio"].DefaultCellStyle.FormatProvider = Culture;
+            dgvClientes.Columns["TipoMembresia"].HeaderText = "Tipo de membresia";
         }
         private void dgvClientes_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvClientes.CurrentRow != null)
             {
                 Cliente Seleccionado = (Cliente)dgvClientes.CurrentRow.DataBoundItem;
-                label3.Text = Seleccionado.Tipo.Id.ToString();
             }
         }
 

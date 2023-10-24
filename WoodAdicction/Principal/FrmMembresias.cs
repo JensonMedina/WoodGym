@@ -57,10 +57,17 @@ namespace Principal
             if(dgvMembresias.CurrentRow != null)
             {
                 Membresias seleccionada = (Membresias)dgvMembresias.CurrentRow.DataBoundItem;
-                txtTipo.Text = seleccionada.Tipo;
+                txtTipo.Text = seleccionada.Nombre;
                 txtPrecio.Text = seleccionada.Precio.ToString();
                 nudDuracion.Value = seleccionada.Duracion;
             }
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            txtTipo.Text = "";
+            txtPrecio.Text = "";
+            nudDuracion.Value = 0;
         }
     }
 }
