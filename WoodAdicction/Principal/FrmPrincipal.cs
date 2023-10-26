@@ -19,7 +19,8 @@ namespace Principal
 
         private void btnCaja_Click(object sender, EventArgs e)
         {
-
+            FrmCaja caja = new FrmCaja();
+            caja.ShowDialog();
         }
 
         private void btn_MouseEnter(object sender, EventArgs e)
