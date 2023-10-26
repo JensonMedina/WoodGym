@@ -52,6 +52,12 @@
     <Compile Include="FrmCaja.Designer.cs">
       <DependentUpon>FrmCaja.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmCierreCaja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCierreCaja.Designer.cs">
+      <DependentUpon>FrmCierreCaja.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmMembresias.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +92,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FrmCaja.resx">
       <DependentUpon>FrmCaja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCierreCaja.resx">
+      <DependentUpon>FrmCierreCaja.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMembresias.resx">
       <DependentUpon>FrmMembresias.cs</DependentUpon>
