@@ -96,7 +96,35 @@ namespace Datos
             }
         }
 
-
+        public List<MovimientosCaja> Filtrar(DateTime fecha, int idMetodoPago)
+        {
+            AccesoDatos Datos = new AccesoDatos();
+            List<MovimientosCaja> Lista = new List<MovimientosCaja>();
+            try
+            {
+                Datos.setearStoredProcedure("storedListarMovimientosFiltro");
+                Datos.setParametros("@fecha", fecha);
+                Datos.setParametros("@idMetodoPago", idMetodoPago);
+                Datos.EjecutarLectura();
+                while (Datos.lector.Read())
+                {
+                    MovimientosCaja aux = new MovimientosCaja();
+                    aux.TransaccionId = (int)Datos.lector["transaccionId"];
+                    aux.Fecha = (DateTime)Datos.lector["fecha"];
+                    aux.Descripcion = (string)Datos.lector["descripcion"];
+                    aux.Monto = (decimal)Datos.lector["monto"];
+                    aux.MetodoPago = new MetodosPago();
+                    aux.MetodoPago.IdMetodoPago = (int)Datos.lector["idMetodoPago"];
+                    aux.MetodoPago.NombreMetodoPago = (string)Datos.lector["nombreMetodoPago"];
+                    Lista.Add(aux);
+                }
+                return Lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 
 }

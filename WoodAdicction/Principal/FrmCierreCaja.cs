@@ -21,22 +21,37 @@ namespace Principal
 
         private void btnCierreCaja_Click(object sender, EventArgs e)
         {
-            DateTime fecha = dtpCierreCaja.Value;
-            bool cierreSemanal = cbxTipoCierre.SelectedIndex == 1; // Si es 1, es cierre semanal
+            if (ValidarBusqueda())
+            {
+                DateTime fecha = dtpCierreCaja.Value;
+                bool cierreSemanal = cbxTipoCierre.SelectedIndex == 1; // Si es 1, es cierre semanal
 
-            try
-            {
-                MovimientosCajaDatos datos = new MovimientosCajaDatos();
-                decimal montoFinal = datos.RealizarCierreCaja(fecha, cierreSemanal);
-                txtCierreCaja.Text = montoFinal.ToString();
+                try
+                {
+                    MovimientosCajaDatos datos = new MovimientosCajaDatos();
+                    decimal montoFinal = datos.RealizarCierreCaja(fecha, cierreSemanal);
+                    txtCierreCaja.Text = montoFinal.ToString();
+                }
+                catch (Exception ex)
+                {
+                    // Manejar la excepción de manera adecuada, por ejemplo, mostrar un mensaje de error
+                    MessageBox.Show("Ocurrió un error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                // Manejar la excepción de manera adecuada, por ejemplo, mostrar un mensaje de error
-                MessageBox.Show("Ocurrió un error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Debe seleccionar un tipo de cierre");
             }
+            
         }
-
+        private bool ValidarBusqueda()
+        {
+            if(cbxTipoCierre.SelectedIndex < 0)
+            {
+                return false;
+            }
+            return true;
+        }
 
         private void FrmCierreCaja_Load(object sender, EventArgs e)
         {

@@ -46,5 +46,11 @@ namespace Principal
             FrmMembresias verMembresias = new FrmMembresias();
             verMembresias.ShowDialog();
         }
+
+        private void btnCierreCaja_Click(object sender, EventArgs e)
+        {
+            FrmCierreCaja cerrarCaja = new FrmCierreCaja();
+            cerrarCaja.ShowDialog();
+        }
     }
 }

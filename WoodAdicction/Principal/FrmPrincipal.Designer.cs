@@ -38,6 +38,7 @@ namespace Principal
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnCierreCaja = new System.Windows.Forms.Button();
             this.pnlMenu.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -157,11 +158,28 @@ namespace Principal
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // btnCierreCaja
+            // 
+            this.btnCierreCaja.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(118)))), ((int)(((byte)(191)))));
+            this.btnCierreCaja.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCierreCaja.FlatAppearance.BorderSize = 0;
+            this.btnCierreCaja.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCierreCaja.Font = new System.Drawing.Font("Berlin Sans FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCierreCaja.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnCierreCaja.Location = new System.Drawing.Point(331, 205);
+            this.btnCierreCaja.Name = "btnCierreCaja";
+            this.btnCierreCaja.Size = new System.Drawing.Size(138, 41);
+            this.btnCierreCaja.TabIndex = 36;
+            this.btnCierreCaja.Text = "Cerrar caja";
+            this.btnCierreCaja.UseVisualStyleBackColor = false;
+            this.btnCierreCaja.Click += new System.EventHandler(this.btnCierreCaja_Click);
+            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnCierreCaja);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnlMenu);
             this.Name = "FrmPrincipal";
@@ -185,5 +203,6 @@ namespace Principal
         private System.Windows.Forms.Button btnClientes;
         private System.Windows.Forms.Button btnAcceso;
         private System.Windows.Forms.Button btnMembresias;
+        private System.Windows.Forms.Button btnCierreCaja;
     }
 }
