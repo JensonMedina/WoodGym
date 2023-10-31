@@ -35,5 +35,70 @@ namespace Datos
                 throw ex;
             }
         }
+
+
+        public void AgregarMembresia(Membresias nuevaMembresia)
+        {
+            AccesoDatos Datos = new AccesoDatos();
+            try
+            {
+                Datos.setearStoredProcedure("storedAgregarMembresia");
+                Datos.setParametros("@nombre", nuevaMembresia.Nombre);
+                Datos.setParametros("@precio", nuevaMembresia.Precio);
+                Datos.setParametros("@descripcion", nuevaMembresia.Descripcion);
+                Datos.setParametros("@duracion", nuevaMembresia.Duracion);
+                Datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Error al agregar la membresía. Por favor, inténtelo de nuevo más tarde.", ex);
+            }
+            finally
+            {
+                Datos.CerrarConexion();
+            }
+        }
+
+
+        public void ModificarMembresia(Membresias selecionada)
+        {
+            AccesoDatos Datos = new AccesoDatos();
+            try
+            {
+                Datos.setearStoredProcedure("storedModificarMembresia");
+                Datos.setParametros("@nombre", selecionada.Nombre);
+                Datos.setParametros("@precio", selecionada.Precio);
+                Datos.setParametros("@descripcion", selecionada.Descripcion);
+                Datos.setParametros("@duracion", selecionada.Duracion);
+                Datos.setParametros("@id", selecionada.Id);
+                Datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Error al modificar la membresía. Por favor, inténtelo de nuevo más tarde.", ex);
+            }
+            finally
+            {
+                Datos.CerrarConexion();
+            }
+        }
+        public void EliminarMembresia (int id)
+        {
+            AccesoDatos Datos = new AccesoDatos();
+            try
+            {
+                Datos.setearStoredProcedure("storedEliminarMembresia");
+                Datos.setParametros("@id", id);
+                Datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Error al eliminar la membresía. Por favor, inténtelo de nuevo más tarde.", ex);
+            }
+            finally
+            {
+                Datos.CerrarConexion();
+            }
+        }
     }
 }

@@ -61,7 +61,6 @@ namespace Datos
             {
                 Datos.CerrarConexion();
             }
-
         }
         public decimal RealizarCierreCaja(DateTime fecha, bool cierreSemanal)
         {

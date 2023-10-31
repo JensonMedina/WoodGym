@@ -176,25 +176,12 @@ namespace Principal
         }
         private bool ValidacionAgregarNuevoMovimiento()
         {
-            
-            if(cbxTipoMovimiento.SelectedIndex < 0)
-            {
-                return false;
-            }
-            if(cbxMetodoPago.SelectedIndex < 0)
-            {
-                return false;
-            }
-            if(txtDescripcion.Text == "")
-            {
-                return false;
-            }
-            if(txtMonto.Text == "")
-            {
-                return false;
-            }
-            return true;
+            return cbxTipoMovimiento.SelectedIndex >= 0 &&
+                   cbxMetodoPago.SelectedIndex >= 0 &&
+                   !string.IsNullOrWhiteSpace(txtDescripcion.Text) &&
+                   !string.IsNullOrWhiteSpace(txtMonto.Text);
         }
+
         private void txtMonto_KeyPress(object sender, KeyPressEventArgs e)
         {
             int maxLength = 12;
