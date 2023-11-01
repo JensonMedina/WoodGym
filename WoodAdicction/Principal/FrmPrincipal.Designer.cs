@@ -124,7 +124,7 @@ namespace Principal
             this.btnAcceso.Name = "btnAcceso";
             this.btnAcceso.Size = new System.Drawing.Size(177, 50);
             this.btnAcceso.TabIndex = 0;
-            this.btnAcceso.Text = "Acceso";
+            this.btnAcceso.Text = "Accesos";
             this.btnAcceso.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAcceso.UseVisualStyleBackColor = false;
             this.btnAcceso.MouseEnter += new System.EventHandler(this.btn_MouseEnter);
