@@ -57,9 +57,9 @@ namespace Principal
             this.cbxMetodoPagoFiltrar = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.btnReiniciar = new System.Windows.Forms.Button();
-            this.btnCerrar = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnCerrar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMovimientos)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -353,21 +353,6 @@ namespace Principal
             this.btnReiniciar.UseVisualStyleBackColor = true;
             this.btnReiniciar.Click += new System.EventHandler(this.btnReiniciar_Click);
             // 
-            // btnCerrar
-            // 
-            this.btnCerrar.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnCerrar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnCerrar.BackgroundImage")));
-            this.btnCerrar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCerrar.FlatAppearance.BorderSize = 0;
-            this.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCerrar.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnCerrar.Location = new System.Drawing.Point(1184, 12);
-            this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(24, 24);
-            this.btnCerrar.TabIndex = 37;
-            this.btnCerrar.UseVisualStyleBackColor = false;
-            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
-            // 
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -407,6 +392,19 @@ namespace Principal
             this.panel2.Size = new System.Drawing.Size(690, 510);
             this.panel2.TabIndex = 39;
             // 
+            // btnCerrar
+            // 
+            this.btnCerrar.BackgroundImage = global::Principal.Properties.Resources.iconoCerrar;
+            this.btnCerrar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCerrar.FlatAppearance.BorderSize = 0;
+            this.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCerrar.Location = new System.Drawing.Point(1166, 5);
+            this.btnCerrar.Name = "btnCerrar";
+            this.btnCerrar.Size = new System.Drawing.Size(27, 27);
+            this.btnCerrar.TabIndex = 40;
+            this.btnCerrar.UseVisualStyleBackColor = true;
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
+            // 
             // FrmCaja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -414,9 +412,9 @@ namespace Principal
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(40)))), ((int)(((byte)(41)))));
             this.ClientSize = new System.Drawing.Size(1210, 604);
+            this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.btnCerrar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -459,8 +457,8 @@ namespace Principal
         private System.Windows.Forms.ComboBox cbxMetodoPagoFiltrar;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button btnReiniciar;
-        private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button btnCerrar;
     }
 }

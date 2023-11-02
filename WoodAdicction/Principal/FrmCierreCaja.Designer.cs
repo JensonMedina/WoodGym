@@ -47,10 +47,10 @@ namespace Principal
             // 
             // dtpCierreCaja
             // 
-            this.dtpCierreCaja.Font = new System.Drawing.Font("Berlin Sans FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpCierreCaja.Location = new System.Drawing.Point(128, 154);
+            this.dtpCierreCaja.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpCierreCaja.Location = new System.Drawing.Point(126, 154);
             this.dtpCierreCaja.Name = "dtpCierreCaja";
-            this.dtpCierreCaja.Size = new System.Drawing.Size(200, 31);
+            this.dtpCierreCaja.Size = new System.Drawing.Size(211, 33);
             this.dtpCierreCaja.TabIndex = 36;
             // 
             // label12
@@ -66,7 +66,7 @@ namespace Principal
             // btnCierreCaja
             // 
             this.btnCierreCaja.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCierreCaja.Font = new System.Drawing.Font("Berlin Sans FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCierreCaja.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCierreCaja.Location = new System.Drawing.Point(159, 206);
             this.btnCierreCaja.Name = "btnCierreCaja";
             this.btnCierreCaja.Size = new System.Drawing.Size(138, 41);
@@ -77,11 +77,11 @@ namespace Principal
             // 
             // cbxTipoCierre
             // 
-            this.cbxTipoCierre.Font = new System.Drawing.Font("Berlin Sans FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxTipoCierre.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxTipoCierre.FormattingEnabled = true;
-            this.cbxTipoCierre.Location = new System.Drawing.Point(128, 106);
+            this.cbxTipoCierre.Location = new System.Drawing.Point(126, 106);
             this.cbxTipoCierre.Name = "cbxTipoCierre";
-            this.cbxTipoCierre.Size = new System.Drawing.Size(200, 31);
+            this.cbxTipoCierre.Size = new System.Drawing.Size(211, 34);
             this.cbxTipoCierre.TabIndex = 38;
             // 
             // FrmCierreCaja

@@ -17,9 +17,6 @@ namespace Principal
     public partial class FormClientes : Form
     {
         private List<Cliente> listaClientes;
-        int yOriginal;
-        private Point coordenadasEnPantalla;
-
         public FormClientes()
         {
             InitializeComponent();
@@ -29,7 +26,7 @@ namespace Principal
         {
             Cargar();
             RedondearBordes(panelAviso, 20);
-            yOriginal = panelContainerSocios.Location.Y;
+
         }
         // Método para redondear los bordes de un Panel.
         private void RedondearBordes(Panel panel, int radius)
@@ -123,28 +120,76 @@ namespace Principal
 
         private void btnVerMas_Click(object sender, EventArgs e)
         {
-            int nuevaX = 270;
-            int nuevaY = 470;
-            panelFiltroAvanzado.Height += 160;
+            panelFiltroAvanzado.Height += 354;
             label8.Visible = false;
             btnVerMas.Visible = false;
             label7.Visible = true;
             btnOcultar.Visible = true;
-            panelContainerFiltro.Height += 160;
-            panelContainerSocios.Location = new Point(nuevaX, nuevaY);
+            panelContainerFiltro.Height += 354;
+            CargarCombosBox();
+
+        }
+
+        private void CargarCombosBox()
+        {
+            MembresiasDatos datos = new MembresiasDatos();
+            List<Membresias> listaMembresias = new List<Membresias>();
+            try
+            {
+                for (int i = 3; i < 23; i++)
+                {
+                    if(i <= 9)
+                    {
+                        cbxAñoInicio.Items.Add("202" + i);
+                    }
+                    else
+                    {
+                        if(i <= 19)
+                        {
+                            cbxAñoInicio.Items.Add("203" + (i - 10));
+                        }
+                        else
+                        {
+                            cbxAñoInicio.Items.Add("204" + (i - 20));
+                        }
+                    }
+                    
+                }
+                cbxMesInicio.Items.Add("Enero");
+                cbxMesInicio.Items.Add("Febrero");
+                cbxMesInicio.Items.Add("Marzo");
+                cbxMesInicio.Items.Add("Abril");
+                cbxMesInicio.Items.Add("Mayo");
+                cbxMesInicio.Items.Add("Junio");
+                cbxMesInicio.Items.Add("Julio");
+                cbxMesInicio.Items.Add("Agosto");
+                cbxMesInicio.Items.Add("Septiembre");
+                cbxMesInicio.Items.Add("Octubre");
+                cbxMesInicio.Items.Add("Noviembre");
+                cbxMesInicio.Items.Add("Diciembre");
+
+                cbxEstado.Items.Add("Activo");
+                cbxEstado.Items.Add("Inactivo");
+
+                listaMembresias = datos.listarMembresiasConSp();
+                cbxTipoMembresia.DataSource = listaMembresias;
+                cbxTipoMembresia.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error al tratar de cargar los campos del filtro avanzado." + ex.ToString());
+            }
+            
         }
 
         private void btnOcultar_Click(object sender, EventArgs e)
         {
-            int nuevaX = 270;
-            int nuevaY = coordenadasEnPantalla.Y + panelContainerFiltro.Size.Height + 20;
-            panelFiltroAvanzado.Height -= 160;
+            panelFiltroAvanzado.Height -= 354;
             label8.Visible = true;
             btnVerMas.Visible = true;
             label7.Visible = false;
             btnOcultar.Visible = false;
-            panelContainerFiltro.Height -= 160;
-            panelContainerSocios.Location = new Point(nuevaX, nuevaY);
+            panelContainerFiltro.Height -= 354;
         }
 
         private void btnRestablecer_MouseEnter(object sender, EventArgs e)
@@ -165,6 +210,115 @@ namespace Principal
         private void btnBuscar_MouseLeave(object sender, EventArgs e)
         {
             btnBuscar.BackColor = Color.FromArgb(230, 105, 45);
+        }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void txtNombre_TextChanged(object sender, EventArgs e)
+        {
+            FiltroRapido();
+        }
+
+        public void FiltroRapido()
+        {
+            List<Cliente> ListaFiltrada;
+            string filtro = txtNombre.Text;
+            if (filtro.Length >= 3)
+                ListaFiltrada = listaClientes.FindAll(x => x.Nombre.ToUpper().Contains(filtro.ToUpper()));
+            else
+                ListaFiltrada = listaClientes;
+            dgvClientes.DataSource = null;
+            dgvClientes.DataSource = ListaFiltrada;
+            OcultarYModificarColumnas();
+        }
+
+        private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Verificar si la tecla presionada es una letra o la tecla de retroceso
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true; // Si no es una letra o retroceso, se ignora la tecla
+            }
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            ClienteDatos Datos = new ClienteDatos();
+            try
+            {
+                if (ValidarFiltro())
+                    return;
+                int dni = string.IsNullOrEmpty(txtDni.Text) ? -1 : int.Parse(txtDni.Text);
+                string añoInicio;
+                if (cbxAñoInicio.SelectedIndex >= 0)
+                {
+                    añoInicio = cbxAñoInicio.SelectedItem.ToString();
+                }
+                else
+                {
+                    añoInicio = null;
+                }
+                string mesInicio;
+                if (cbxMesInicio.SelectedIndex >= 0)
+                {
+                    mesInicio = cbxMesInicio.SelectedItem.ToString();
+                }
+                else
+                {
+                    mesInicio = null;
+                }
+                string tipoMembresia;
+                if(cbxTipoMembresia.SelectedIndex >= 0)
+                {
+                    tipoMembresia = cbxTipoMembresia.SelectedItem.ToString();
+                }
+                else
+                {
+                    tipoMembresia = null;
+                }
+                int edad;
+                if (!string.IsNullOrEmpty(txtEdad.Text))
+                {
+                    edad = int.Parse(txtEdad.Text);
+                }
+                else
+                {
+                    edad = -1;
+                }
+                string estado;
+                if(cbxEstado.SelectedIndex >= 0)
+                {
+                    estado = cbxEstado.SelectedItem.ToString();
+                }
+                else
+                {
+                    estado = null;
+                }
+
+                dgvClientes.DataSource = Datos.Filtrar(dni, añoInicio, mesInicio, tipoMembresia, edad, estado);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private bool ValidarFiltro()
+        {
+            if(string.IsNullOrEmpty(txtDni.Text) &&
+                cbxAñoInicio.SelectedIndex < 0 &&
+                cbxMesInicio.SelectedIndex < 0 &&
+                cbxTipoMembresia.SelectedIndex < 0 &&
+                string.IsNullOrEmpty(txtEdad.Text) &&
+                cbxEstado.SelectedIndex < 0)
+            {
+                MessageBox.Show("Debes completar al menos uno de los campos");
+                return true;
+            }
+            return false;
         }
     }
 }

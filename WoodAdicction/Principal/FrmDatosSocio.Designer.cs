@@ -48,9 +48,9 @@ namespace Principal
             this.cbxTipoMembresia = new System.Windows.Forms.ComboBox();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnCerrar = new System.Windows.Forms.Button();
             this.btnCamara = new System.Windows.Forms.Button();
             this.ckbEstado = new System.Windows.Forms.CheckBox();
+            this.btnCerrar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbxCliente)).BeginInit();
             this.SuspendLayout();
             // 
@@ -250,21 +250,6 @@ namespace Principal
             this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
-            // btnCerrar
-            // 
-            this.btnCerrar.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnCerrar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnCerrar.BackgroundImage")));
-            this.btnCerrar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCerrar.FlatAppearance.BorderSize = 0;
-            this.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCerrar.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnCerrar.Location = new System.Drawing.Point(666, 12);
-            this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(24, 24);
-            this.btnCerrar.TabIndex = 21;
-            this.btnCerrar.UseVisualStyleBackColor = false;
-            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
-            // 
             // btnCamara
             // 
             this.btnCamara.BackColor = System.Drawing.SystemColors.ButtonFace;
@@ -291,15 +276,28 @@ namespace Principal
             this.ckbEstado.Text = "Activo";
             this.ckbEstado.UseVisualStyleBackColor = true;
             // 
+            // btnCerrar
+            // 
+            this.btnCerrar.BackgroundImage = global::Principal.Properties.Resources.iconoCerrar;
+            this.btnCerrar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCerrar.FlatAppearance.BorderSize = 0;
+            this.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCerrar.Location = new System.Drawing.Point(663, 12);
+            this.btnCerrar.Name = "btnCerrar";
+            this.btnCerrar.Size = new System.Drawing.Size(27, 27);
+            this.btnCerrar.TabIndex = 24;
+            this.btnCerrar.UseVisualStyleBackColor = true;
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
+            // 
             // FrmDatosSocio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(40)))), ((int)(((byte)(41)))));
             this.ClientSize = new System.Drawing.Size(702, 424);
+            this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.ckbEstado);
             this.Controls.Add(this.btnCamara);
-            this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.cbxTipoMembresia);
@@ -352,8 +350,8 @@ namespace Principal
         private System.Windows.Forms.ComboBox cbxTipoMembresia;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.Button btnCamara;
         private System.Windows.Forms.CheckBox ckbEstado;
+        private System.Windows.Forms.Button btnCerrar;
     }
 }
