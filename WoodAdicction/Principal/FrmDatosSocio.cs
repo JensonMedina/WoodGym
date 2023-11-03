@@ -51,6 +51,7 @@ namespace Principal
                 cbxTipoMembresia.DataSource = membresiasDatos.listarMembresiasConSp();
                 cbxTipoMembresia.ValueMember = "Id";
                 cbxTipoMembresia.DisplayMember = "Nombre";
+                cbxTipoMembresia.SelectedIndex = -1;
                 if (ModoOperacion == ModoOperacionEnum.VerCliente)
                 {
                     lblTitulo.Text = "Datos del Socio";
@@ -61,16 +62,11 @@ namespace Principal
                     dtpFechaNacimiento.Enabled = false;
                     dtpFechaInicio.Enabled = false;
                     cbxTipoMembresia.Enabled = false;
+                    btnGuardar.Visible = false;
+                    btnCancelar.Visible = false;
                 }
                 else
                 {
-                    txtNombre.ReadOnly = false;
-                    txtApellido.ReadOnly = false;
-                    txtDni.ReadOnly = false;
-                    txtTelefono.ReadOnly = false;
-                    dtpFechaNacimiento.Enabled = true;
-                    dtpFechaInicio.Enabled = true;
-                    cbxTipoMembresia.Enabled = true;
                     if (ModoOperacion == ModoOperacionEnum.Agregar)
                     {
                         lblTitulo.Text = "Agregar Socio";
@@ -79,6 +75,14 @@ namespace Principal
                     {
                         lblTitulo.Text = "Modificar Datos";
                     }
+                    txtNombre.ReadOnly = false;
+                    txtApellido.ReadOnly = false;
+                    txtDni.ReadOnly = false;
+                    txtTelefono.ReadOnly = false;
+                    dtpFechaNacimiento.Enabled = true;
+                    dtpFechaInicio.Enabled = true;
+                    cbxTipoMembresia.Enabled = true;
+                    
                 }
 
 
@@ -95,8 +99,10 @@ namespace Principal
                     txtTelefono.Text = Cliente.Telefono.ToString();
                     dtpFechaInicio.Text = Cliente.fechaInicio.ToString("d");
                     cbxTipoMembresia.Text = Cliente.TipoMembresia.Nombre;
+                    ckbEstado.Checked = Cliente.Activo;
                     string rutaImagen = Cliente.urlImagen;
 
+                    pbxCliente.SizeMode = PictureBoxSizeMode.CenterImage;
                     if (File.Exists(rutaImagen))
                     {
                         pbxCliente.Load(rutaImagen);
@@ -139,13 +145,16 @@ namespace Principal
             {
                 if (ModoOperacion == ModoOperacionEnum.Agregar)
                 {
-                    
+                    if (ValidarCliente())
+                        return;
                     CargarCliente(Cliente);
                     Datos.AgregarClienteConSP(Cliente);
                     MessageBox.Show("Agregado exitosamente");
                 }
                 else if (ModoOperacion == ModoOperacionEnum.Modificar)
                 {
+                    if (ValidarCliente())
+                        return;
                     int dniAmodificar = int.Parse(txtDni.Text);
                     CargarCliente(Cliente);
                     Datos.ModificarClienteConSP(Cliente, dniAmodificar);
@@ -159,6 +168,28 @@ namespace Principal
                 //MessageBox.Show(ex.ToString());
                 throw ex;
             }
+        }
+
+        private bool ValidarCliente()
+        {
+            if(string.IsNullOrEmpty(txtDni.Text) ||
+                string.IsNullOrEmpty(txtNombre.Text) ||
+                string.IsNullOrEmpty(txtApellido.Text) ||
+                cbxTipoMembresia.SelectedIndex < 0)
+            {
+                MessageBox.Show("Debes completar todos los campos con * ");
+                return true;
+            }
+            ClienteDatos datos = new ClienteDatos();
+            List<Cliente> listaClientes = datos.listarClientesConSP();
+            Cliente cliente = null;
+            cliente = listaClientes.Find(x => x.Dni.ToString() == txtDni.Text);
+            if(cliente != null)
+            {
+                MessageBox.Show("No puede tener mas de un cliente con el mismo DNI");
+                return true;
+            }
+            return false;
         }
 
         private void CargarCliente(Cliente cliente)
@@ -182,6 +213,15 @@ namespace Principal
             cliente.TipoMembresia = new Membresias();
             cliente.TipoMembresia.Id = idTipoMembresia;
             
+        }
+
+        private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Verificar si la tecla presionada es una letra o la tecla de retroceso
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true; // Si no es una letra o retroceso, se ignora la tecla
+            }
         }
     }
 }

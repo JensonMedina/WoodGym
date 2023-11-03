@@ -58,7 +58,7 @@ namespace Principal
             // 
             this.pbxCliente.Location = new System.Drawing.Point(12, 53);
             this.pbxCliente.Name = "pbxCliente";
-            this.pbxCliente.Size = new System.Drawing.Size(163, 170);
+            this.pbxCliente.Size = new System.Drawing.Size(179, 256);
             this.pbxCliente.TabIndex = 0;
             this.pbxCliente.TabStop = false;
             // 
@@ -93,6 +93,7 @@ namespace Principal
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(175, 32);
             this.txtNombre.TabIndex = 3;
+            this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
             // 
             // txtApellido
             // 
@@ -102,6 +103,7 @@ namespace Principal
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(177, 32);
             this.txtApellido.TabIndex = 5;
+            this.txtApellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
             // 
             // label3
             // 
@@ -257,7 +259,7 @@ namespace Principal
             this.btnCamara.FlatAppearance.BorderSize = 0;
             this.btnCamara.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCamara.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnCamara.Location = new System.Drawing.Point(181, 39);
+            this.btnCamara.Location = new System.Drawing.Point(197, 53);
             this.btnCamara.Name = "btnCamara";
             this.btnCamara.Size = new System.Drawing.Size(30, 30);
             this.btnCamara.TabIndex = 22;

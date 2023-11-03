@@ -126,7 +126,7 @@ namespace Datos
             List<Cliente> Lista = new List<Cliente>();
             try
             {
-                string Consulta = "select C.dni, C.nroSocio, C.nombre, C.apellido, C.fechaNacimiento, C.telefono, C.imagenUrl, C.fechaInicio, C.activo, M.id, M.nombre from Clientes C, Membresias M where C.idTipoMembresia = M.id ";
+                string Consulta = "select C.dni, C.nroSocio, C.nombre, C.apellido, C.fechaNacimiento, C.telefono, C.imagenUrl, C.fechaInicio, C.activo, M.id, M.Nombre from Clientes C, Membresias M where C.idTipoMembresia = M.id ";
                 if (dni != -1)
                 {
                     Consulta += "And C.dni = " + dni;
@@ -136,7 +136,15 @@ namespace Datos
                     string fechaInicio;
                     fechaInicio = añoInicio+ "-" + mesInicio + "-01";
                     string fechaFin;
-                    fechaFin = añoInicio + "-" + mesInicio + "-30";
+                    if(mesInicio != "02")
+                    {
+                        fechaFin = añoInicio + "-" + mesInicio + "-30";
+                    }
+                    else
+                    {
+                        fechaFin = añoInicio + "-" + mesInicio + "-28";
+                    }
+                    
                     Consulta += " And C.fechaInicio >= '" + fechaInicio + "'" + " And C.fechaInicio <= '" + fechaFin + "'";
                 }
                 else
@@ -157,7 +165,15 @@ namespace Datos
                             string fechaInicio;
                             fechaInicio = añoActual + "-" + mesInicio + "-01";
                             string fechaFin;
-                            fechaFin = añoActual + "-" + mesInicio + "-30";
+                            if(mesInicio != "02")
+                            {
+                                fechaFin = añoActual + "-" + mesInicio + "-30";
+                            }
+                            else
+                            {
+                                fechaFin = añoActual + "-" + mesInicio + "-28";
+                            }
+                            
                             Consulta += " And C.fechaInicio >= '" + fechaInicio + "'" + " And C.fechaInicio <= '" + fechaFin + "'";
                         }
                     }
@@ -210,7 +226,7 @@ namespace Datos
 
                     aux.TipoMembresia = new Membresias();
                     aux.TipoMembresia.Id = (int)Datos.lector["id"];
-                    aux.TipoMembresia.Nombre = (string)Datos.lector["nombre"];
+                    aux.TipoMembresia.Nombre = (string)Datos.lector["Nombre"];
                     if(Edad != -1)
                     {
                         if(aux.Edad == Edad)

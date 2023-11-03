@@ -134,6 +134,9 @@ namespace Principal
         {
             MembresiasDatos datos = new MembresiasDatos();
             List<Membresias> listaMembresias = new List<Membresias>();
+            cbxAñoInicio.Items.Clear();
+            cbxMesInicio.Items.Clear();
+            cbxEstado.Items.Clear();
             try
             {
                 for (int i = 3; i < 23; i++)
@@ -190,6 +193,7 @@ namespace Principal
             label7.Visible = false;
             btnOcultar.Visible = false;
             panelContainerFiltro.Height -= 354;
+            Cargar();
         }
 
         private void btnRestablecer_MouseEnter(object sender, EventArgs e)
@@ -264,7 +268,16 @@ namespace Principal
                 string mesInicio;
                 if (cbxMesInicio.SelectedIndex >= 0)
                 {
-                    mesInicio = cbxMesInicio.SelectedItem.ToString();
+                    int mes = cbxMesInicio.SelectedIndex + 1;
+                    if(mes < 10)
+                    {
+                        mesInicio = "0" + mes.ToString();
+                    }
+                    else
+                    {
+                        mesInicio = mes.ToString();
+                    }
+                    
                 }
                 else
                 {
@@ -319,6 +332,35 @@ namespace Principal
                 return true;
             }
             return false;
+        }
+
+        private void btnRestablecer_Click(object sender, EventArgs e)
+        {
+            txtDni.Text = "";
+            cbxAñoInicio.SelectedIndex = -1;
+            cbxMesInicio.SelectedIndex = -1;
+            cbxTipoMembresia.SelectedIndex = -1;
+            txtEdad.Text = "";
+            cbxEstado.SelectedIndex = -1;
+            Cargar();
+        }
+
+        private void txtDni_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            int maxLength = 10;
+            if(!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) || (txtDni.Text.Length >= maxLength && e.KeyChar != (char)Keys.Back))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtEdad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            int maxLength = 3;
+            if(!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) || (txtEdad.Text.Length >= maxLength && e.KeyChar != (char)Keys.Back))
+            {
+                e.Handled = true;
+            }
         }
     }
 }
