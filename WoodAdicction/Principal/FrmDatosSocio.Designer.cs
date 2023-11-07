@@ -49,16 +49,21 @@ namespace Principal
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnCamara = new System.Windows.Forms.Button();
-            this.ckbEstado = new System.Windows.Forms.CheckBox();
             this.btnCerrar = new System.Windows.Forms.Button();
+            this.lblEdad = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblVencimiento = new System.Windows.Forms.Label();
+            this.lblEstado = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbxCliente)).BeginInit();
             this.SuspendLayout();
             // 
             // pbxCliente
             // 
-            this.pbxCliente.Location = new System.Drawing.Point(12, 53);
+            this.pbxCliente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbxCliente.Location = new System.Drawing.Point(12, 47);
             this.pbxCliente.Name = "pbxCliente";
-            this.pbxCliente.Size = new System.Drawing.Size(179, 256);
+            this.pbxCliente.Size = new System.Drawing.Size(188, 222);
+            this.pbxCliente.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbxCliente.TabIndex = 0;
             this.pbxCliente.TabStop = false;
             // 
@@ -256,27 +261,16 @@ namespace Principal
             // 
             this.btnCamara.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnCamara.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnCamara.BackgroundImage")));
+            this.btnCamara.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCamara.FlatAppearance.BorderSize = 0;
             this.btnCamara.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCamara.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnCamara.Location = new System.Drawing.Point(197, 53);
+            this.btnCamara.Location = new System.Drawing.Point(206, 47);
             this.btnCamara.Name = "btnCamara";
             this.btnCamara.Size = new System.Drawing.Size(30, 30);
             this.btnCamara.TabIndex = 22;
             this.btnCamara.UseVisualStyleBackColor = false;
             this.btnCamara.Click += new System.EventHandler(this.btnCamara_Click);
-            // 
-            // ckbEstado
-            // 
-            this.ckbEstado.AutoSize = true;
-            this.ckbEstado.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
-            this.ckbEstado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
-            this.ckbEstado.Location = new System.Drawing.Point(479, 265);
-            this.ckbEstado.Name = "ckbEstado";
-            this.ckbEstado.Size = new System.Drawing.Size(82, 27);
-            this.ckbEstado.TabIndex = 23;
-            this.ckbEstado.Text = "Activo";
-            this.ckbEstado.UseVisualStyleBackColor = true;
             // 
             // btnCerrar
             // 
@@ -291,14 +285,61 @@ namespace Principal
             this.btnCerrar.UseVisualStyleBackColor = true;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
+            // lblEdad
+            // 
+            this.lblEdad.AutoSize = true;
+            this.lblEdad.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
+            this.lblEdad.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
+            this.lblEdad.Location = new System.Drawing.Point(8, 274);
+            this.lblEdad.Name = "lblEdad";
+            this.lblEdad.Size = new System.Drawing.Size(53, 23);
+            this.lblEdad.TabIndex = 25;
+            this.lblEdad.Text = "edad";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
+            this.label1.Location = new System.Drawing.Point(8, 298);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(116, 23);
+            this.label1.TabIndex = 26;
+            this.label1.Text = "Vencimiento:";
+            // 
+            // lblVencimiento
+            // 
+            this.lblVencimiento.AutoSize = true;
+            this.lblVencimiento.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
+            this.lblVencimiento.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblVencimiento.Location = new System.Drawing.Point(120, 298);
+            this.lblVencimiento.Name = "lblVencimiento";
+            this.lblVencimiento.Size = new System.Drawing.Size(116, 23);
+            this.lblVencimiento.TabIndex = 27;
+            this.lblVencimiento.Text = "Vencimiento:";
+            // 
+            // lblEstado
+            // 
+            this.lblEstado.AutoSize = true;
+            this.lblEstado.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
+            this.lblEstado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
+            this.lblEstado.Location = new System.Drawing.Point(8, 321);
+            this.lblEstado.Name = "lblEstado";
+            this.lblEstado.Size = new System.Drawing.Size(66, 23);
+            this.lblEstado.TabIndex = 28;
+            this.lblEstado.Text = "Estado";
+            // 
             // FrmDatosSocio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(40)))), ((int)(((byte)(41)))));
             this.ClientSize = new System.Drawing.Size(702, 424);
+            this.Controls.Add(this.lblEstado);
+            this.Controls.Add(this.lblVencimiento);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblEdad);
             this.Controls.Add(this.btnCerrar);
-            this.Controls.Add(this.ckbEstado);
             this.Controls.Add(this.btnCamara);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGuardar);
@@ -353,7 +394,10 @@ namespace Principal
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnCamara;
-        private System.Windows.Forms.CheckBox ckbEstado;
         private System.Windows.Forms.Button btnCerrar;
+        private System.Windows.Forms.Label lblEdad;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblVencimiento;
+        private System.Windows.Forms.Label lblEstado;
     }
 }

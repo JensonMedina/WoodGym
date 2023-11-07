@@ -15,7 +15,7 @@ namespace Principal
     public partial class FrmCaja : Form
     {
         private List<MovimientosCaja> listaMovimientosCaja;
-        private MovimientosCaja movimientosCaja = null;
+        public MovimientosCaja movimientosCaja = null;
         public FrmCaja()
         {
             InitializeComponent();

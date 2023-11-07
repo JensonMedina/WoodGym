@@ -51,6 +51,9 @@ namespace Datos
                     aux.TipoMembresia = new Membresias();
                     aux.TipoMembresia.Id = (int)datos.lector["id"];
                     aux.TipoMembresia.Nombre = (string)datos.lector["Nombre"];
+                    aux.TipoMembresia.Precio = (decimal)datos.lector["precio"];
+                    aux.TipoMembresia.Descripcion = (string)datos.lector["descripcion"];
+                    aux.TipoMembresia.Duracion = (int)datos.lector["duracion"];
 
                     lista.Add(aux);
                 }

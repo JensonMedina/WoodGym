@@ -57,19 +57,19 @@ namespace Datos
                 throw ex;
             }
         }
-        //public int EjecutarAccionScalar()
-        //{
-        //    Comando.Connection = Conexion;
-        //    try
-        //    {
-        //        Conexion.Open();
-        //        return int.Parse(Comando.ExecuteScalar().ToString());
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-        //}
+        public int EjecutarAccionScalar()
+        {
+            Comando.Connection = Conexion;
+            try
+            {
+                Conexion.Open();
+                return int.Parse(Comando.ExecuteScalar().ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         public void setParametros(string nombre, object valor)
         {

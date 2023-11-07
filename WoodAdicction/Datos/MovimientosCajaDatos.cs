@@ -95,6 +95,21 @@ namespace Datos
             }
         }
 
+        public bool ExistenMovimientosParaFecha(DateTime fecha, bool cierreSemanal)
+        {
+            // Consulta SQL para verificar si existen movimientos para la fecha y tipo de cierre
+            AccesoDatos Datos = new AccesoDatos();
+            {
+                Datos.setearStoredProcedure("ExistenMovimientosParaFecha");
+                Datos.setParametros("@fecha", fecha);
+                Datos.setParametros("@esCierreSemanal", cierreSemanal);
+                int cantidadRegistros = (int)Datos.EjecutarAccionScalar();
+
+                    // Si cantidadRegistros es mayor que cero, existen movimientos para la fecha
+                    return cantidadRegistros > 0;
+            }
+        }
+
         public List<MovimientosCaja> Filtrar(DateTime fecha, int idMetodoPago)
         {
             AccesoDatos Datos = new AccesoDatos();

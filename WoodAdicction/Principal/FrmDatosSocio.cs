@@ -16,6 +16,9 @@ namespace Principal
     public partial class FrmDatosSocio : Form
     {
         private Cliente Cliente = null;
+        private string rutaFoto = null;
+        private string dniAmodificar = null;
+
         public FrmDatosSocio()
         {
             InitializeComponent();
@@ -35,7 +38,26 @@ namespace Principal
 
         private void btnCamara_Click(object sender, EventArgs e)
         {
+            FrmCapturarImagen capturarImagen = new FrmCapturarImagen();
 
+            capturarImagen.ShowDialog();
+
+            // Verifica si se guardó una imagen y la carga en el PictureBox
+            if (!string.IsNullOrEmpty(capturarImagen.RutaImagenGuardada))
+            {
+                rutaFoto = capturarImagen.RutaImagenGuardada;
+                CargarImagen();
+            }
+        }
+
+
+        private void CargarImagen()
+        {
+            if (!string.IsNullOrEmpty(rutaFoto))
+            {
+                pbxCliente.Image = Image.FromFile(rutaFoto);
+                //pbxCliente.SizeMode = PictureBoxSizeMode.Zoom;
+            }
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -64,12 +86,17 @@ namespace Principal
                     cbxTipoMembresia.Enabled = false;
                     btnGuardar.Visible = false;
                     btnCancelar.Visible = false;
+                    btnCamara.Visible = false;
                 }
                 else
                 {
                     if (ModoOperacion == ModoOperacionEnum.Agregar)
                     {
                         lblTitulo.Text = "Agregar Socio";
+                        lblEdad.Visible = false;
+                        label1.Visible = false;
+                        lblVencimiento.Visible = false;
+                        lblEstado.Visible = false;
                     }
                     if (ModoOperacion == ModoOperacionEnum.Modificar)
                     {
@@ -82,7 +109,7 @@ namespace Principal
                     dtpFechaNacimiento.Enabled = true;
                     dtpFechaInicio.Enabled = true;
                     cbxTipoMembresia.Enabled = true;
-                    
+                    btnCamara.Visible = true;
                 }
 
 
@@ -99,20 +126,47 @@ namespace Principal
                     txtTelefono.Text = Cliente.Telefono.ToString();
                     dtpFechaInicio.Text = Cliente.fechaInicio.ToString("d");
                     cbxTipoMembresia.Text = Cliente.TipoMembresia.Nombre;
-                    ckbEstado.Checked = Cliente.Activo;
-                    string rutaImagen = Cliente.urlImagen;
 
-                    pbxCliente.SizeMode = PictureBoxSizeMode.CenterImage;
+                    if (Cliente.Activo)
+                    {
+                        lblEstado.Text = "Activo";
+                    }
+                    else
+                    {
+                        lblEstado.Text = "Inactivo";
+                    }
+                    lblEdad.Text = Cliente.Edad.ToString();
+                    DateTime fechaInicioMembresia = Cliente.fechaInicio;
+                    int duracionMembresiaEnDias = Cliente.TipoMembresia.Duracion;
+
+                    // Calcula la fecha de vencimiento en función de la duración de la membresía
+                    DateTime fechaVencimientoMembresia = fechaInicioMembresia.AddDays(duracionMembresiaEnDias);
+                    int diasRestantes;
+                    // Verifica si la fecha de vencimiento ha pasado
+                    if (fechaVencimientoMembresia < DateTime.Now)
+                    {
+                        // La membresía ya ha vencido, muestra un mensaje o establece los días restantes en 0
+                        lblVencimiento.Text = "Vencido";
+                        diasRestantes = 0;
+                    }
+                    else
+                    {
+                        TimeSpan tiempoRestante = fechaVencimientoMembresia - DateTime.Now;
+                        diasRestantes = (int)tiempoRestante.TotalDays;
+                        lblVencimiento.Text = diasRestantes.ToString() + " dias";
+                    }
+
+                    string rutaImagen = Cliente.urlImagen;
                     if (File.Exists(rutaImagen))
                     {
                         pbxCliente.Load(rutaImagen);
                     }
                     else
                     {
-                        pbxCliente.Load("C:/Users/chuni/OneDrive/Escritorio/WoodAdicctionGym/Imagenes/placeholderPortrait.jpg");
+                        pbxCliente.Load(@"C:/Users/chuni/OneDrive/Escritorio/WoodAdicctionGym/Imagenes/placeholderPortrait.jpg");
                     }
-
-
+                    //pbxCliente.SizeMode = PictureBoxSizeMode.Zoom;
+                    dniAmodificar = Cliente.Dni.ToString();
                 }
             }
             catch (Exception ex)
@@ -155,9 +209,8 @@ namespace Principal
                 {
                     if (ValidarCliente())
                         return;
-                    int dniAmodificar = int.Parse(txtDni.Text);
                     CargarCliente(Cliente);
-                    Datos.ModificarClienteConSP(Cliente, dniAmodificar);
+                    Datos.ModificarClienteConSP(Cliente, int.Parse(dniAmodificar));
                     MessageBox.Show("Modificado exitosamente");
                 }
 
@@ -172,25 +225,46 @@ namespace Principal
 
         private bool ValidarCliente()
         {
-            if(string.IsNullOrEmpty(txtDni.Text) ||
-                string.IsNullOrEmpty(txtNombre.Text) ||
-                string.IsNullOrEmpty(txtApellido.Text) ||
-                cbxTipoMembresia.SelectedIndex < 0)
+            try
             {
-                MessageBox.Show("Debes completar todos los campos con * ");
-                return true;
+                if (string.IsNullOrEmpty(txtDni.Text)
+                    || string.IsNullOrEmpty(txtNombre.Text)
+                    || string.IsNullOrEmpty(txtApellido.Text)
+                    || cbxTipoMembresia.SelectedIndex < 0)
+                {
+                    MessageBox.Show("Debes completar todos los campos con * ");
+                    return true; // Indica que la validación ha fallado
+                }
+                if (int.Parse(txtDni.Text) < 10000000 || int.Parse(txtDni.Text) > 99999999)
+                {
+                    MessageBox.Show("DNI no válido");
+                    return true;
+                }
+                if (txtDni.Text != dniAmodificar || ModoOperacion == ModoOperacionEnum.Agregar)
+                {
+                    ClienteDatos datos = new ClienteDatos();
+                    List<Cliente> listaClientes = datos.listarClientesConSP();
+                    Cliente cliente = listaClientes.Find(x => x.Dni.ToString() == txtDni.Text);
+
+                    if (cliente != null)
+                    {
+                        MessageBox.Show("El DNI ya está en uso por otro cliente.");
+                        return true; // Indica que la validación ha fallado
+                    }
+                }
+
+
+
+                return false; // Indica que la validación ha tenido éxito
             }
-            ClienteDatos datos = new ClienteDatos();
-            List<Cliente> listaClientes = datos.listarClientesConSP();
-            Cliente cliente = null;
-            cliente = listaClientes.Find(x => x.Dni.ToString() == txtDni.Text);
-            if(cliente != null)
+            catch (Exception ex)
             {
-                MessageBox.Show("No puede tener mas de un cliente con el mismo DNI");
-                return true;
+                // Manejar la excepción de manera adecuada, como mostrar un mensaje de error.
+                MessageBox.Show("Error en la validación: " + ex.Message);
+                return true; // Indica que la validación ha fallado debido a una excepción
             }
-            return false;
         }
+
 
         private void CargarCliente(Cliente cliente)
         {
@@ -201,18 +275,24 @@ namespace Principal
             string telefono = txtTelefono.Text;
             DateTime fechaInicio = dtpFechaInicio.Value;
             int idTipoMembresia = cbxTipoMembresia.SelectedIndex + 1;
-            bool activo = ckbEstado.Checked;
             cliente.Dni = dni;
             cliente.Nombre = nombre;
             cliente.Apellido = apellido;
             cliente.fechaNacimiento = fechaNacimiento;
             cliente.Telefono = telefono;
-            cliente.urlImagen = "C: /Users/chuni/OneDrive/Escritorio/WoodAdicctionGym/Imagenes/placeholderPortrait.jpg";
+            if (!string.IsNullOrEmpty(rutaFoto))
+            {
+                cliente.urlImagen = rutaFoto;
+            }
+            else
+            {
+                cliente.urlImagen = "C: /Users/chuni/OneDrive/Escritorio/WoodAdicctionGym/Imagenes/placeholderPortrait.jpg";
+            }
+
             cliente.fechaInicio = fechaInicio;
-            cliente.Activo = activo;
             cliente.TipoMembresia = new Membresias();
             cliente.TipoMembresia.Id = idTipoMembresia;
-            
+
         }
 
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)

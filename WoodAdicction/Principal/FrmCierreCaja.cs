@@ -29,8 +29,21 @@ namespace Principal
                 try
                 {
                     MovimientosCajaDatos datos = new MovimientosCajaDatos();
-                    decimal montoFinal = datos.RealizarCierreCaja(fecha, cierreSemanal);
-                    txtCierreCaja.Text = montoFinal.ToString();
+
+                    // Realizar una verificación de movimientos para la fecha seleccionada
+                    bool existenMovimientos = datos.ExistenMovimientosParaFecha(fecha, cierreSemanal);
+
+                    if (existenMovimientos)
+                    {
+                        // Si existen movimientos, realizar el cierre de caja normalmente
+                        decimal montoFinal = datos.RealizarCierreCaja(fecha, cierreSemanal);
+                        txtCierreCaja.Text = montoFinal.ToString();
+                    }
+                    else
+                    {
+                        txtCierreCaja.Text = "";
+                        MessageBox.Show("No se registraron movimientos en la fecha seleccionada.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -38,25 +51,28 @@ namespace Principal
                     MessageBox.Show("Ocurrió un error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            else
-            {
-                MessageBox.Show("Debe seleccionar un tipo de cierre");
-            }
-            
         }
+
         private bool ValidarBusqueda()
         {
-            if(cbxTipoCierre.SelectedIndex < 0)
+            if (cbxTipoCierre.SelectedIndex < 0)
             {
+                MessageBox.Show("Debe seleccionar un tipo de cierre");
                 return false;
             }
             return true;
         }
 
+
         private void FrmCierreCaja_Load(object sender, EventArgs e)
         {
             cbxTipoCierre.Items.Add("Diario");
             cbxTipoCierre.Items.Add("Semanal");
+        }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
