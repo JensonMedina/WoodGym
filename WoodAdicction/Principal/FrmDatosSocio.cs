@@ -97,10 +97,12 @@ namespace Principal
                         label1.Visible = false;
                         lblVencimiento.Visible = false;
                         lblEstado.Visible = false;
+                        cbxTipoMembresia.Enabled = true;
                     }
                     if (ModoOperacion == ModoOperacionEnum.Modificar)
                     {
                         lblTitulo.Text = "Modificar Datos";
+                        cbxTipoMembresia.Enabled = false;
                     }
                     txtNombre.ReadOnly = false;
                     txtApellido.ReadOnly = false;
@@ -108,7 +110,6 @@ namespace Principal
                     txtTelefono.ReadOnly = false;
                     dtpFechaNacimiento.Enabled = true;
                     dtpFechaInicio.Enabled = true;
-                    cbxTipoMembresia.Enabled = true;
                     btnCamara.Visible = true;
                 }
 
@@ -204,6 +205,26 @@ namespace Principal
                     CargarCliente(Cliente);
                     Datos.AgregarClienteConSP(Cliente);
                     MessageBox.Show("Agregado exitosamente");
+                    // Después de agregar al cliente
+                    MovimientosCaja movimiento = new MovimientosCaja();
+                    movimiento.Fecha = Cliente.fechaInicio;
+                    movimiento.Descripcion = "Registro de nuevo cliente " + txtNombre.Text;
+                    MembresiasDatos datos = new MembresiasDatos();
+                    decimal precio = datos.ObtenerPrecioMembresia(Cliente.TipoMembresia.Id);
+                    if (precio > 0)
+                    {
+                        movimiento.Monto = precio;
+                        movimiento.MetodoPago = new MetodosPago();
+                        movimiento.MetodoPago.IdMetodoPago = 1;
+                        MovimientosCajaDatos movimientosCajaDatos = new MovimientosCajaDatos();
+                        movimientosCajaDatos.AgregarMovimientoCaja(movimiento);
+                        MessageBox.Show("Movimiento de caja registrado exitosamente");
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo obtener automáticamente el precio de la membresía. Registra el movimiento de caja manualmente.");
+                    }
+
                 }
                 else if (ModoOperacion == ModoOperacionEnum.Modificar)
                 {
@@ -218,8 +239,7 @@ namespace Principal
             }
             catch (Exception ex)
             {
-                //MessageBox.Show(ex.ToString());
-                throw ex;
+                MessageBox.Show("Ocurrió un error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -274,12 +294,13 @@ namespace Principal
             DateTime fechaNacimiento = dtpFechaNacimiento.Value;
             string telefono = txtTelefono.Text;
             DateTime fechaInicio = dtpFechaInicio.Value;
-            int idTipoMembresia = cbxTipoMembresia.SelectedIndex + 1;
+            int tipoMembresiaId = (int)cbxTipoMembresia.SelectedValue;
             cliente.Dni = dni;
             cliente.Nombre = nombre;
             cliente.Apellido = apellido;
             cliente.fechaNacimiento = fechaNacimiento;
             cliente.Telefono = telefono;
+            
             if (!string.IsNullOrEmpty(rutaFoto))
             {
                 cliente.urlImagen = rutaFoto;
@@ -291,7 +312,7 @@ namespace Principal
 
             cliente.fechaInicio = fechaInicio;
             cliente.TipoMembresia = new Membresias();
-            cliente.TipoMembresia.Id = idTipoMembresia;
+            cliente.TipoMembresia.Id = tipoMembresiaId;
 
         }
 

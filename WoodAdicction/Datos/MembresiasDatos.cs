@@ -59,7 +59,31 @@ namespace Datos
             }
         }
 
+        public decimal ObtenerPrecioMembresia(int id)
+        {
+            AccesoDatos Datos = new AccesoDatos();
+            decimal precio = 0;
+            try
+            {
+                Datos.setearStoredProcedure("ObtenerPrecioMembresia");
+                Datos.setParametros("@id", id);
+                Datos.EjecutarLectura();
+                while (Datos.lector.Read())
+                {
+                    precio = (decimal)Datos.lector["precio"];
+                }
+                return precio;
+            }
+            catch (Exception)
+            {
 
+                throw;
+            }
+            finally
+            {
+                Datos.CerrarConexion();
+            }
+        }
         public void ModificarMembresia(Membresias selecionada)
         {
             AccesoDatos Datos = new AccesoDatos();

@@ -362,5 +362,20 @@ namespace Principal
                 e.Handled = true;
             }
         }
+
+        private void btnCobrarCuota_Click(object sender, EventArgs e)
+        {
+            if (dgvClientes.CurrentRow != null && dgvClientes.CurrentRow.DataBoundItem != null)
+            {
+                Cliente Seleccionado = (Cliente)dgvClientes.CurrentRow.DataBoundItem;
+                FrmCobrarCuota cobrarCuota = new FrmCobrarCuota(Seleccionado);
+                cobrarCuota.ShowDialog();
+                Cargar();
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una socio", "Error de seleccion", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
     }
 }
