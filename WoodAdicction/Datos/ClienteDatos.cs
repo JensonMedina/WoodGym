@@ -65,6 +65,59 @@ namespace Datos
                 throw ex;
             }
         }
+        public Cliente BuscarCliente(int dni)
+        {
+            AccesoDatos Datos = new AccesoDatos();
+            Cliente cliente = new Cliente();
+            try
+            {
+                Datos.setearStoredProcedure("BuscarCliente");
+                Datos.setParametros("@dni", dni);
+                Datos.EjecutarLectura();
+                while (Datos.lector.Read())
+                {
+                    cliente.Dni = (int)Datos.lector["dni"];
+                    cliente.NroSocio = (int)Datos.lector["nroSocio"];
+                    cliente.Nombre = (string)Datos.lector["nombre"];
+                    cliente.Apellido = (string)Datos.lector["apellido"];
+                    cliente.fechaNacimiento = (DateTime?)(Datos.lector["fechaNacimiento"] is DBNull ? (object)null : (DateTime)Datos.lector["fechaNacimiento"]);
+                    if (cliente.fechaNacimiento != null)
+                    {
+                        DateTime hoy = DateTime.Today;
+                        int edad = hoy.Year - cliente.fechaNacimiento.Value.Year;
+
+                        if (cliente.fechaNacimiento.Value.Date > hoy.AddYears(-edad))
+                        {
+                            edad--;
+                        }
+                        cliente.Edad = edad;
+                    }
+                    else
+                    {
+                        cliente.Edad = null;
+                    }
+
+                    cliente.Telefono = Datos.lector["telefono"] is DBNull ? "Sin numero" : (string)Datos.lector["telefono"];
+                    cliente.fechaInicio = (DateTime)Datos.lector["fechaInicio"];
+                    cliente.Activo = Datos.lector["activo"] is DBNull ? false : (bool)Datos.lector["activo"];
+                    cliente.urlImagen = Datos.lector["imagenUrl"] is DBNull ? "C:/Users/chuni/OneDrive/Escritorio/WoodAdicctionGym/Imagenes/placeholderPortrait.jpg" : (string)Datos.lector["imagenUrl"];
+
+                    cliente.TipoMembresia = new Membresias();
+                    cliente.TipoMembresia.Id = (int)Datos.lector["id"];
+                    cliente.TipoMembresia.Nombre = (string)Datos.lector["Nombre"];
+                    cliente.TipoMembresia.Precio = (decimal)Datos.lector["precio"];
+                    cliente.TipoMembresia.Descripcion = (string)Datos.lector["descripcion"];
+                    cliente.TipoMembresia.Duracion = (int)Datos.lector["duracion"];
+                }
+
+                return cliente;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Error en el método Buscar Cliente: " + ex.Message);
+            }
+        }
         public void AgregarClienteConSP(Cliente Nuevo)
         {
             AccesoDatos Datos = new AccesoDatos();
@@ -85,7 +138,7 @@ namespace Datos
             catch (Exception ex)
             {
 
-                throw ex;
+                throw new Exception("Error en el método Agregar Cliente: " + ex.Message);
             }
             finally
             {
@@ -114,7 +167,7 @@ namespace Datos
             catch (Exception ex)
             {
 
-                throw ex;
+                throw new Exception("Error en el método Modificar cliente: " + ex.Message);
             }
             finally
             {

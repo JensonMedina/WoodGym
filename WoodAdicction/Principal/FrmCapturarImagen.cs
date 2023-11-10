@@ -50,6 +50,7 @@ namespace Principal
         {
             CargarDispositivos();
 
+
         }
         private void Capturando(object sender, NewFrameEventArgs eventArgs)
         {
@@ -66,6 +67,7 @@ namespace Principal
             miWebCam = new VideoCaptureDevice(nombreVideo);
             miWebCam.NewFrame += new NewFrameEventHandler(Capturando);
             miWebCam.Start();
+            btnCapturar.Visible = true;
         }
         private void CerrarWebCam()
         {
@@ -87,6 +89,7 @@ namespace Principal
             {
                 pbxCapturar.Image = pbxGrabar.Image;
                 pbxCapturar.SizeMode = PictureBoxSizeMode.Zoom;
+                btnGuardar.Visible = true;
             }
         }
 
@@ -94,6 +97,8 @@ namespace Principal
         {
             try
             {
+                if (ValidarImagen())
+                    return;
                 string nombreArchivo = "Cliente" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".jpg";
                 string rutaCompleta = Path.Combine(path, nombreArchivo);
 
@@ -108,6 +113,16 @@ namespace Principal
             {
                 MessageBox.Show("Error al guardar la imagen: " + ex.Message);
             }
+        }
+
+        private bool ValidarImagen()
+        {
+            if(pbxCapturar.Image is null)
+            {
+                MessageBox.Show("Debes capturar una imagen antes de poder guardarla");
+                return true;
+            }
+            return false;
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)

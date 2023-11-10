@@ -347,7 +347,7 @@ namespace Principal
 
         private void txtDni_KeyPress(object sender, KeyPressEventArgs e)
         {
-            int maxLength = 10;
+            int maxLength = 9;
             if(!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) || (txtDni.Text.Length >= maxLength && e.KeyChar != (char)Keys.Back))
             {
                 e.Handled = true;

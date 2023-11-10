@@ -183,10 +183,10 @@ namespace Principal
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
             this.label7.Location = new System.Drawing.Point(472, 198);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(139, 23);
+            this.label7.Size = new System.Drawing.Size(143, 23);
             this.label7.TabIndex = 12;
             this.label7.Tag = "";
-            this.label7.Text = "Fecha de incio *";
+            this.label7.Text = "Fecha de inicio *";
             // 
             // label8
             // 

@@ -179,7 +179,7 @@ namespace Principal
 
         private void txtDni_KeyPress(object sender, KeyPressEventArgs e)
         {
-            int maxLength = 10;
+            int maxLength = 9;
             // Verificar si la tecla presionada es un número o la tecla de retroceso
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) || (txtDni.Text.Length >= maxLength && e.KeyChar != (char)Keys.Back))
             {
@@ -255,7 +255,7 @@ namespace Principal
                     MessageBox.Show("Debes completar todos los campos con * ");
                     return true; // Indica que la validación ha fallado
                 }
-                if (int.Parse(txtDni.Text) < 10000000 || int.Parse(txtDni.Text) > 99999999)
+                if (int.Parse(txtDni.Text) < 1000000 || int.Parse(txtDni.Text) > 999999999)
                 {
                     MessageBox.Show("DNI no válido");
                     return true;
@@ -272,7 +272,14 @@ namespace Principal
                         return true; // Indica que la validación ha fallado
                     }
                 }
+                if (dtpFechaInicio.Value < DateTime.Now)
+                {
+                    DialogResult result = MessageBox.Show("Estás intentando registrar un cliente en una fecha anterior a la de hoy. ¿Estás de acuerdo?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
+                    if (result == DialogResult.Yes)
+                        return false;
+                }
+                
 
 
                 return false; // Indica que la validación ha tenido éxito

@@ -52,5 +52,11 @@ namespace Principal
             FrmCierreCaja cerrarCaja = new FrmCierreCaja();
             cerrarCaja.ShowDialog();
         }
+
+        private void btnAcceso_Click(object sender, EventArgs e)
+        {
+            FrmAccesos accesos = new FrmAccesos();
+            accesos.ShowDialog();
+        }
     }
 }

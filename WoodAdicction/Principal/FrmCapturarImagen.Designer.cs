@@ -95,6 +95,7 @@ namespace Principal
             this.btnCapturar.TabIndex = 4;
             this.btnCapturar.Text = "Capturar";
             this.btnCapturar.UseVisualStyleBackColor = false;
+            this.btnCapturar.Visible = false;
             this.btnCapturar.Click += new System.EventHandler(this.btnCapturar_Click);
             // 
             // btnGuardar
@@ -110,6 +111,7 @@ namespace Principal
             this.btnGuardar.TabIndex = 5;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = false;
+            this.btnGuardar.Visible = false;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // panel1

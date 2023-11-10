@@ -127,6 +127,7 @@ namespace Principal
             this.btnAcceso.Text = "Accesos";
             this.btnAcceso.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAcceso.UseVisualStyleBackColor = false;
+            this.btnAcceso.Click += new System.EventHandler(this.btnAcceso_Click);
             this.btnAcceso.MouseEnter += new System.EventHandler(this.btn_MouseEnter);
             this.btnAcceso.MouseLeave += new System.EventHandler(this.btn_MouseLeave);
             // 
