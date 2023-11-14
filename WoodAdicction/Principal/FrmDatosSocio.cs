@@ -86,6 +86,8 @@ namespace Principal
                     cbxTipoMembresia.Enabled = false;
                     btnGuardar.Visible = false;
                     btnCancelar.Visible = false;
+                    //label9.Visible = false;
+                    //txtMonto.Visible = false;
                     btnCamara.Visible = false;
                 }
                 else
@@ -98,11 +100,15 @@ namespace Principal
                         lblVencimiento.Visible = false;
                         lblEstado.Visible = false;
                         cbxTipoMembresia.Enabled = true;
+                        lblDebe.Visible = false;
+                        label10.Visible = false;
                     }
                     if (ModoOperacion == ModoOperacionEnum.Modificar)
                     {
                         lblTitulo.Text = "Modificar Datos";
                         cbxTipoMembresia.Enabled = false;
+                        //label9.Visible = false;
+                        //txtMonto.Visible = false;
                     }
                     txtNombre.ReadOnly = false;
                     txtApellido.ReadOnly = false;
@@ -111,6 +117,7 @@ namespace Principal
                     dtpFechaNacimiento.Enabled = true;
                     dtpFechaInicio.Enabled = true;
                     btnCamara.Visible = true;
+                    
                 }
 
 
@@ -168,6 +175,23 @@ namespace Principal
                     }
                     //pbxCliente.SizeMode = PictureBoxSizeMode.Zoom;
                     dniAmodificar = Cliente.Dni.ToString();
+                    if(Cliente.Saldo > 0)
+                    {
+                        label10.Text = "Debe";
+                        lblDebe.Text = "$" + Cliente.Saldo.ToString();
+                    }
+                    else
+                    {
+                        if(Cliente.Saldo < 0)
+                        {
+                            label10.Text = "A favor";
+                            lblDebe.Text = "$" + (Cliente.Saldo * (-1)).ToString();
+                        }
+                        else
+                        {
+                            label10.Text = "No debe";
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -185,15 +209,12 @@ namespace Principal
             {
                 e.Handled = true; // Si no es un número o retroceso, se ignora la tecla
             }
-            //if (txtDni.Text.Length >= maxLength && e.KeyChar != (char)Keys.Back)
-            //{
-            //    e.Handled = true; // Bloquear la entrada adicional si se alcanza el límite
-            //}
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             ClienteDatos Datos = new ClienteDatos();
+            MembresiasDatos membresiasDatos = new MembresiasDatos();
             if (Cliente == null)
                 Cliente = new Cliente();
             try
@@ -203,27 +224,31 @@ namespace Principal
                     if (ValidarCliente())
                         return;
                     CargarCliente(Cliente);
+                    
+                    decimal precio = membresiasDatos.ObtenerPrecioMembresia(Cliente.TipoMembresia.Id);
+                    Cliente.Saldo = precio;
                     Datos.AgregarClienteConSP(Cliente);
                     MessageBox.Show("Agregado exitosamente");
                     // Después de agregar al cliente
-                    MovimientosCaja movimiento = new MovimientosCaja();
-                    movimiento.Fecha = Cliente.fechaInicio;
-                    movimiento.Descripcion = "Registro de nuevo cliente " + txtNombre.Text;
-                    MembresiasDatos datos = new MembresiasDatos();
-                    decimal precio = datos.ObtenerPrecioMembresia(Cliente.TipoMembresia.Id);
-                    if (precio > 0)
-                    {
-                        movimiento.Monto = precio;
-                        movimiento.MetodoPago = new MetodosPago();
-                        movimiento.MetodoPago.IdMetodoPago = 1;
-                        MovimientosCajaDatos movimientosCajaDatos = new MovimientosCajaDatos();
-                        movimientosCajaDatos.AgregarMovimientoCaja(movimiento);
-                        MessageBox.Show("Movimiento de caja registrado exitosamente");
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se pudo obtener automáticamente el precio de la membresía. Registra el movimiento de caja manualmente.");
-                    }
+                    //MovimientosCaja movimiento = new MovimientosCaja();
+                    //movimiento.Fecha = Cliente.fechaInicio;
+                    //movimiento.Descripcion = "Registro de nuevo cliente " + txtNombre.Text;
+                    //movimiento.Monto = decimal.Parse(txtMonto.Text);
+                    //MembresiasDatos datos = new MembresiasDatos();
+                    //decimal precio = datos.ObtenerPrecioMembresia(Cliente.TipoMembresia.Id);
+                    //if (precio > 0)
+                    //{
+                    //    movimiento.Monto = precio;
+                    //movimiento.MetodoPago = new MetodosPago();
+                    //movimiento.MetodoPago.IdMetodoPago = ;
+                    //MovimientosCajaDatos movimientosCajaDatos = new MovimientosCajaDatos();
+                    //movimientosCajaDatos.AgregarMovimientoCaja(movimiento);
+                    //MessageBox.Show("Movimiento de caja registrado exitosamente");
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("No se pudo obtener automáticamente el precio de la membresía. Registra el movimiento de caja manualmente.");
+                    //}
 
                 }
                 else if (ModoOperacion == ModoOperacionEnum.Modificar)
@@ -272,7 +297,7 @@ namespace Principal
                         return true; // Indica que la validación ha fallado
                     }
                 }
-                if (dtpFechaInicio.Value < DateTime.Now)
+                if (dtpFechaInicio.Value < DateTime.Now.AddDays(-1))
                 {
                     DialogResult result = MessageBox.Show("Estás intentando registrar un cliente en una fecha anterior a la de hoy. ¿Estás de acuerdo?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -307,6 +332,7 @@ namespace Principal
             cliente.Apellido = apellido;
             cliente.fechaNacimiento = fechaNacimiento;
             cliente.Telefono = telefono;
+            cliente.Activo = false;
             
             if (!string.IsNullOrEmpty(rutaFoto))
             {

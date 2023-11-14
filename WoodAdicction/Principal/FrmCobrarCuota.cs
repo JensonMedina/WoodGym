@@ -44,11 +44,15 @@ namespace Principal
         private void CargarComboBox()
         {
             MembresiasDatos datos = new MembresiasDatos();
+            MetodosPagoDatos metodosPagoDatos = new MetodosPagoDatos();
             try
             {
                 cbxTipoMembresia.DataSource = datos.listarMembresiasConSp();
                 cbxTipoMembresia.ValueMember = "Id";
                 cbxTipoMembresia.DisplayMember = "Nombre";
+                cbxMetodoPago.DataSource = metodosPagoDatos.listarMetodosPagoConSp();
+                cbxMetodoPago.ValueMember = "IdMetodoPago";
+                cbxMetodoPago.DisplayMember = "NombreMetodoPago";
             }
             catch (Exception)
             {
@@ -73,31 +77,31 @@ namespace Principal
                 if (ValidarDatos())
                 {
                     cliente.fechaInicio = dtpFechaInicio.Value;
+                    decimal monto = decimal.Parse(txtMonto.Text);
+                    MembresiasDatos Datos = new MembresiasDatos();
+                    decimal precio = Datos.ObtenerPrecioMembresia(cliente.TipoMembresia.Id);
+                    cliente.Saldo = monto - precio;
                     int tipoMembresiaId = (int)cbxTipoMembresia.SelectedValue;
                     cliente.TipoMembresia = new Membresias();
                     cliente.TipoMembresia.Id = tipoMembresiaId;
-                    //cliente.TipoMembresia = cbxTipoMembresia.SelectedItem;
                     datos.ModificarClienteConSP(cliente, cliente.Dni);
                     MessageBox.Show("Cuota cobrada con éxito");
                     //despues de cobrar la cuota
                     MovimientosCaja movimiento = new MovimientosCaja();
                     movimiento.Fecha = cliente.fechaInicio;
                     movimiento.Descripcion = "Cuota de membresía de " + txtNombre.Text;
-                    MembresiasDatos Datos = new MembresiasDatos();
-                    decimal precio = Datos.ObtenerPrecioMembresia(cliente.TipoMembresia.Id);
-                    if (precio > 0)
-                    {
-                        movimiento.Monto = precio;
-                        movimiento.MetodoPago = new MetodosPago();
-                        movimiento.MetodoPago.IdMetodoPago = 1;
-                        MovimientosCajaDatos movimientosCajaDatos = new MovimientosCajaDatos();
-                        movimientosCajaDatos.AgregarMovimientoCaja(movimiento);
-                        MessageBox.Show("Movimiento de caja registrado exitosamente");
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se pudo obtener automáticamente el precio de la membresía. Registra el movimiento de caja manualmente.");
-                    }
+                    movimiento.Monto = monto;
+                    
+                    
+                    //if (precio > 0)
+                    //{
+
+                    movimiento.MetodoPago = new MetodosPago();
+                    int metodoPagoId = (int)cbxMetodoPago.SelectedValue;
+                    movimiento.MetodoPago.IdMetodoPago = metodoPagoId;
+                    MovimientosCajaDatos movimientosCajaDatos = new MovimientosCajaDatos();
+                    movimientosCajaDatos.AgregarMovimientoCaja(movimiento);
+                    MessageBox.Show("Movimiento de caja registrado exitosamente");
                     this.Close();
                 }
             }
@@ -119,8 +123,33 @@ namespace Principal
                 MessageBox.Show("La fecha de inicio no puede ser anterior a la fecha actual.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
+            if (cbxTipoMembresia.SelectedIndex < 0)
+            {
+                MessageBox.Show("Debe seleccionar una membresia");
+                return false;
+            }
+            if (cbxMetodoPago.SelectedIndex < 0)
+            {
+                MessageBox.Show("Debe seleccionar un medio de pago");
+                return false;
+            }
+            if (string.IsNullOrEmpty(txtMonto.Text))
+            {
+                MessageBox.Show("Debe ingresar un monto");
+                return false;
+            }
 
             return true;
+        }
+
+        private void txtMonto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            int maxLength = 9;
+            // Verificar si la tecla presionada es un número o la tecla de retroceso
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) || (txtDni.Text.Length >= maxLength && e.KeyChar != (char)Keys.Back))
+            {
+                e.Handled = true; // Si no es un número o retroceso, se ignora la tecla
+            }
         }
     }
 }

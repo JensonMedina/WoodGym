@@ -54,6 +54,8 @@ namespace Principal
             this.label1 = new System.Windows.Forms.Label();
             this.lblVencimiento = new System.Windows.Forms.Label();
             this.lblEstado = new System.Windows.Forms.Label();
+            this.lblDebe = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbxCliente)).BeginInit();
             this.SuspendLayout();
             // 
@@ -233,7 +235,7 @@ namespace Principal
             this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardar.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
             this.btnGuardar.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnGuardar.Location = new System.Drawing.Point(334, 351);
+            this.btnGuardar.Location = new System.Drawing.Point(342, 336);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(98, 30);
             this.btnGuardar.TabIndex = 19;
@@ -249,7 +251,7 @@ namespace Principal
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelar.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
             this.btnCancelar.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnCancelar.Location = new System.Drawing.Point(455, 351);
+            this.btnCancelar.Location = new System.Drawing.Point(463, 336);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(98, 31);
             this.btnCancelar.TabIndex = 20;
@@ -329,12 +331,36 @@ namespace Principal
             this.lblEstado.TabIndex = 28;
             this.lblEstado.Text = "Estado";
             // 
+            // lblDebe
+            // 
+            this.lblDebe.AutoSize = true;
+            this.lblDebe.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
+            this.lblDebe.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblDebe.Location = new System.Drawing.Point(90, 344);
+            this.lblDebe.Name = "lblDebe";
+            this.lblDebe.Size = new System.Drawing.Size(19, 23);
+            this.lblDebe.TabIndex = 30;
+            this.lblDebe.Text = "$";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
+            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
+            this.label10.Location = new System.Drawing.Point(8, 344);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(60, 23);
+            this.label10.TabIndex = 29;
+            this.label10.Text = "Debe:";
+            // 
             // FrmDatosSocio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(40)))), ((int)(((byte)(41)))));
-            this.ClientSize = new System.Drawing.Size(702, 424);
+            this.ClientSize = new System.Drawing.Size(702, 405);
+            this.Controls.Add(this.lblDebe);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.lblEstado);
             this.Controls.Add(this.lblVencimiento);
             this.Controls.Add(this.label1);
@@ -399,5 +425,7 @@ namespace Principal
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblVencimiento;
         private System.Windows.Forms.Label lblEstado;
+        private System.Windows.Forms.Label lblDebe;
+        private System.Windows.Forms.Label label10;
     }
 }

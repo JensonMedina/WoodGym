@@ -41,6 +41,8 @@ namespace Principal
             this.panel1 = new System.Windows.Forms.Panel();
             this.pbxImagenCliente = new System.Windows.Forms.PictureBox();
             this.btnCerrar = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lblDebe = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxImagenCliente)).BeginInit();
             this.SuspendLayout();
@@ -78,7 +80,7 @@ namespace Principal
             // 
             this.lblVencimiento.AutoSize = true;
             this.lblVencimiento.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
-            this.lblVencimiento.Location = new System.Drawing.Point(458, 186);
+            this.lblVencimiento.Location = new System.Drawing.Point(458, 226);
             this.lblVencimiento.Name = "lblVencimiento";
             this.lblVencimiento.Size = new System.Drawing.Size(60, 23);
             this.lblVencimiento.TabIndex = 5;
@@ -88,7 +90,7 @@ namespace Principal
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
-            this.label2.Location = new System.Drawing.Point(256, 186);
+            this.label2.Location = new System.Drawing.Point(256, 226);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(196, 23);
             this.label2.TabIndex = 6;
@@ -137,6 +139,8 @@ namespace Principal
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.lblDebe);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.pbxImagenCliente);
             this.panel1.Controls.Add(this.lblVencimiento);
@@ -147,7 +151,7 @@ namespace Principal
             this.panel1.Controls.Add(this.lblNroSocio);
             this.panel1.Location = new System.Drawing.Point(75, 121);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(650, 240);
+            this.panel1.Size = new System.Drawing.Size(650, 272);
             this.panel1.TabIndex = 12;
             this.panel1.Visible = false;
             // 
@@ -172,6 +176,27 @@ namespace Principal
             this.btnCerrar.TabIndex = 13;
             this.btnCerrar.UseVisualStyleBackColor = true;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
+            this.label5.Location = new System.Drawing.Point(343, 186);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(60, 23);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Debe:";
+            // 
+            // lblDebe
+            // 
+            this.lblDebe.AutoSize = true;
+            this.lblDebe.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
+            this.lblDebe.ForeColor = System.Drawing.Color.GreenYellow;
+            this.lblDebe.Location = new System.Drawing.Point(433, 186);
+            this.lblDebe.Name = "lblDebe";
+            this.lblDebe.Size = new System.Drawing.Size(19, 23);
+            this.lblDebe.TabIndex = 12;
+            this.lblDebe.Text = "$";
             // 
             // FrmAccesos
             // 
@@ -208,5 +233,7 @@ namespace Principal
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnCerrar;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblDebe;
     }
 }

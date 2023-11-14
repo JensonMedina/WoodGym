@@ -54,6 +54,7 @@ namespace Datos
                     aux.TipoMembresia.Precio = (decimal)datos.lector["precio"];
                     aux.TipoMembresia.Descripcion = (string)datos.lector["descripcion"];
                     aux.TipoMembresia.Duracion = (int)datos.lector["duracion"];
+                    aux.Saldo = datos.lector["Saldo"] is DBNull ? 0 : (decimal)datos.lector["Saldo"];
 
                     lista.Add(aux);
                 }
@@ -108,6 +109,7 @@ namespace Datos
                     cliente.TipoMembresia.Precio = (decimal)Datos.lector["precio"];
                     cliente.TipoMembresia.Descripcion = (string)Datos.lector["descripcion"];
                     cliente.TipoMembresia.Duracion = (int)Datos.lector["duracion"];
+                    cliente.Saldo = Datos.lector["Saldo"] is DBNull ? 0 : (decimal)Datos.lector["Saldo"];
                 }
 
                 return cliente;
@@ -132,7 +134,9 @@ namespace Datos
                 Datos.setParametros("@imagenUrl", Nuevo.urlImagen);
                 Datos.setParametros("@fechaInicio", Nuevo.fechaInicio);
                 Datos.setParametros("@activo", Nuevo.Activo);
+                Datos.setParametros("@saldo", Nuevo.Saldo);
                 Datos.setParametros("@idTipoMembresia", Nuevo.TipoMembresia.Id);
+
                 Datos.EjecutarAccion();
             }
             catch (Exception ex)

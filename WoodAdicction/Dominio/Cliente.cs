@@ -19,5 +19,6 @@ namespace Dominio
         public bool Activo { get; set; }
         public string urlImagen { get; set; }
         public Membresias TipoMembresia { get; set; }
+        public decimal Saldo { get; set; }
     }
 }

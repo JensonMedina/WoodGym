@@ -88,6 +88,27 @@ namespace Principal
             {
                 lblEstado.Text = "Acceso Permitido";
             }
+            lblDebe.Visible = true;
+            if (cliente.Saldo > 0)
+            {
+                label5.Text = "Debe";
+                lblDebe.Text = "$" + cliente.Saldo.ToString();
+                lblDebe.ForeColor = System.Drawing.Color.Red;
+            }
+            else
+            {
+                if (cliente.Saldo < 0)
+                {
+                    label5.Text = "A favor";
+                    lblDebe.Text = "$" + (cliente.Saldo * (-1)).ToString();
+                    lblDebe.ForeColor = System.Drawing.Color.Green;
+                }
+                else
+                {
+                    label5.Text = "No debe";
+                    lblDebe.Visible = false;
+                }
+            }
 
             lblVencimiento.Text = fechaVencimientoMembresia.ToString("dd/MM/yyyy");
             panel1.Visible = true;
