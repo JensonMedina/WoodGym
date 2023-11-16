@@ -35,6 +35,7 @@ namespace Principal
         private void FormCarga_Load(object sender, EventArgs e)
         {
             timer1.Start();
+            this.BackgroundImageLayout = ImageLayout.Stretch;
         }
     }
 }

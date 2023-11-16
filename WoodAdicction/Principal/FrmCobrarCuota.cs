@@ -15,6 +15,7 @@ namespace Principal
     public partial class FrmCobrarCuota : Form
     {
         private Cliente cliente = null;
+        private bool nuevaCuota = false;
         public FrmCobrarCuota()
         {
             InitializeComponent();
@@ -24,6 +25,12 @@ namespace Principal
             InitializeComponent();
             this.cliente = cliente;
         }
+        public enum ModoOperacionEnum
+        {
+            Agregar,
+            Modificar
+        }
+        public ModoOperacionEnum ModoOperacion { get; set; }
 
         private void btnCerrar_Click(object sender, EventArgs e)
         {
@@ -39,6 +46,38 @@ namespace Principal
         {
             CargarComboBox();
             CargarDatosCliente();
+            if(ModoOperacion == ModoOperacionEnum.Modificar)
+            {
+                cbxTipoMembresia.Text = cliente.TipoMembresia.Nombre;
+                //DialogResult resultado = MessageBox.Show("¿Va a cobrar una cuota nueva o el saldo pendiente?", "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult resultado = CustomMessageBox.Show("¿Va a cobrar una cuota nueva o el saldo pendiente?", "Pregunta", "Cobrar Cuota Nueva", "Cobrar Saldo");
+
+                if (resultado == DialogResult.Yes)
+                {
+                    nuevaCuota = true;
+                }
+                else
+                {
+                    if(cliente.Saldo < 0)
+                    {
+                        cbxTipoMembresia.Enabled = false;
+                        txtMonto.Text = (cliente.Saldo * -1).ToString();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No hay un saldo pendiente");
+                        this.Close();
+                    }
+                    
+                }
+            }
+            else
+            {
+                dtpFechaInicio.Value = cliente.fechaInicio;
+                btnCancelar.Visible = false;
+                btnCerrar.Visible = false;
+            }
+            
         }
 
         private void CargarComboBox()
@@ -65,7 +104,7 @@ namespace Principal
         {
             txtDni.Text = cliente.Dni.ToString();
             txtNombre.Text = cliente.Nombre;
-            cbxTipoMembresia.Text = cliente.TipoMembresia.Nombre;
+            
         }
 
         private void btnCobrar_Click(object sender, EventArgs e)
@@ -76,25 +115,110 @@ namespace Principal
                 // Validar la fecha seleccionada u otros datos si es necesario
                 if (ValidarDatos())
                 {
-                    cliente.fechaInicio = dtpFechaInicio.Value;
-                    decimal monto = decimal.Parse(txtMonto.Text);
-                    MembresiasDatos Datos = new MembresiasDatos();
-                    decimal precio = Datos.ObtenerPrecioMembresia(cliente.TipoMembresia.Id);
-                    cliente.Saldo = monto - precio;
-                    int tipoMembresiaId = (int)cbxTipoMembresia.SelectedValue;
-                    cliente.TipoMembresia = new Membresias();
-                    cliente.TipoMembresia.Id = tipoMembresiaId;
-                    datos.ModificarClienteConSP(cliente, cliente.Dni);
-                    MessageBox.Show("Cuota cobrada con éxito");
-                    //despues de cobrar la cuota
                     MovimientosCaja movimiento = new MovimientosCaja();
+                    if (ModoOperacion == ModoOperacionEnum.Agregar)
+                    {
+                        //le estoy cobrando por primera vez la cuota al cliente
+                        //no lo puedo dejar salir sin asignarle un tipo de membresia al cliente
+ 
+                        if(cbxTipoMembresia.SelectedIndex >= 0)
+                        {
+                            cliente.fechaInicio = dtpFechaInicio.Value;
+                            int tipoMembresiaId = (int)cbxTipoMembresia.SelectedValue;
+                            cliente.TipoMembresia = new Membresias();
+                            cliente.TipoMembresia.Id = tipoMembresiaId;
+                            decimal monto3 = decimal.Parse(txtMonto.Text);
+                            MembresiasDatos Datos = new MembresiasDatos();
+                            decimal precio = Datos.ObtenerPrecioMembresia(tipoMembresiaId);
+                            decimal resto = monto3 - precio;
+                            if (resto < 0)
+                            {
+                                //si resto es menor que cero signfica que el cliente queda debiendo
+                                //como estamos agregando un cliente por primera vez no vamos a preguntar sobre el saldo, ya que el saldo va a ser cero
+                                cliente.Saldo += resto; 
+                            }
+                            else if(resto > 0)
+                            {
+                                //si el resto es mayor que cero significa que el cliente queda a favor
+                                cliente.Saldo += resto;
+                            }
+                            movimiento.Descripcion = "Registro de membresía de " + txtNombre.Text;
+                            MessageBox.Show("Registro de membresia cobrada con éxito");
+                        }
+                        else
+                        {
+                            //no ha seleccionado un tipo de membresia
+                            MessageBox.Show("Debe seleccionar un tipo de membresia");
+                        }
+                    }
+                    else if(ModoOperacion == ModoOperacionEnum.Modificar)
+                    {
+                        //si es modificar significa que el cliente ya existe
+                        //el cliente puede venir con un saldo
+                        //hay que verificar si se va a cobrar una cuota nueva o se va a cobrar un saldo
+                        if (nuevaCuota)
+                        {
+                            cliente.fechaInicio = dtpFechaInicio.Value;
+                            int tipoMembresiaId = (int)cbxTipoMembresia.SelectedValue;
+                            cliente.TipoMembresia = new Membresias();
+                            cliente.TipoMembresia.Id = tipoMembresiaId;
+                            decimal monto1 = decimal.Parse(txtMonto.Text);
+                            MembresiasDatos Datos = new MembresiasDatos();
+                            decimal precio = Datos.ObtenerPrecioMembresia(tipoMembresiaId);
+                            decimal resto = monto1 - precio;
+                            if (resto < 0)
+                            {
+                                //si resto es menor que cero signfica que el cliente queda debiendo
+                                //como estamos cobrando una nueva cuota no nos molestamos en preguntar por el saldo del cliente
+                                cliente.Saldo += resto;
+                            }
+                            else if (resto > 0)
+                            {
+                                //si el resto es mayor que cero significa que el cliente queda a favor
+                                cliente.Saldo += resto;
+                            }
+                            movimiento.Descripcion = "Cuota de membresía de " + txtNombre.Text;
+                            MessageBox.Show("Cuota cobrada con éxito");
+                        }
+                        else
+                        {
+                            //si me pone que no entonces vamos a cobrar un saldo pendiente
+                            //primero que todo vamos a verificar que haya un saldo pendiente
+                            if (cliente.Saldo < 0)
+                            {
+                                //hay saldo pendiente
+
+                                decimal monto2 = decimal.Parse(txtMonto.Text);
+                                decimal resto = cliente.Saldo + monto2;
+                                if (resto < 0)
+                                {
+                                    //el cliente queda debiendo
+                                    cliente.Saldo = resto;
+                                }
+                                else if (resto > 0)
+                                {
+                                    //el cliente queda a favor
+                                    cliente.Saldo = resto;
+                                }
+                                else
+                                {
+                                    cliente.Saldo = resto;
+                                }
+                                movimiento.Descripcion = "Cobro de saldo de " + txtNombre.Text;
+                                MessageBox.Show("Saldo cobrado con éxito");
+                            }
+                        }
+                    }
+                    
+                    
+                    datos.ModificarClienteConSP(cliente, cliente.Dni);
+                    
+                    //despues de cobrar la cuota
+                    
                     movimiento.Fecha = cliente.fechaInicio;
-                    movimiento.Descripcion = "Cuota de membresía de " + txtNombre.Text;
+                    
+                    decimal monto = decimal.Parse(txtMonto.Text);
                     movimiento.Monto = monto;
-                    
-                    
-                    //if (precio > 0)
-                    //{
 
                     movimiento.MetodoPago = new MetodosPago();
                     int metodoPagoId = (int)cbxMetodoPago.SelectedValue;
@@ -118,11 +242,11 @@ namespace Principal
             // Si los datos son válidos, devuelve true; de lo contrario, devuelve false
 
             // Ejemplo de validación simple de la fecha
-            if (dtpFechaInicio.Value < DateTime.Now.AddDays(-1))
-            {
-                MessageBox.Show("La fecha de inicio no puede ser anterior a la fecha actual.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
+            //if (dtpFechaInicio.Value < DateTime.Now.AddDays(-1))
+            //{
+            //    MessageBox.Show("La fecha de inicio no puede ser anterior a la fecha actual.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return false;
+            //}
             if (cbxTipoMembresia.SelectedIndex < 0)
             {
                 MessageBox.Show("Debe seleccionar una membresia");
@@ -151,5 +275,47 @@ namespace Principal
                 e.Handled = true; // Si no es un número o retroceso, se ignora la tecla
             }
         }
+        public class CustomMessageBox
+        {
+            public static DialogResult Show(string text, string caption, string button1Text, string button2Text)
+            {
+                Form form = new Form();
+                Label label = new Label();
+                Button button1 = new Button();
+                Button button2 = new Button();
+
+                form.Text = caption;
+                label.Text = text;
+                button1.Text = button1Text;
+                button2.Text = button2Text;
+
+                button1.DialogResult = DialogResult.Yes;
+                button2.DialogResult = DialogResult.No;
+
+                label.SetBounds(9, 20, 372, 13);
+                button1.SetBounds(12, 50, 180, 23); // Ajusta el ancho del botón 1
+                button2.SetBounds(198, 50, 180, 23); // Ajusta el ancho del botón 2
+
+                label.AutoSize = true;
+                button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+                button2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+
+                form.ClientSize = new System.Drawing.Size(396, 107);
+                form.Controls.AddRange(new Control[] { label, button1, button2 });
+                form.FormBorderStyle = FormBorderStyle.FixedDialog;
+                form.MaximizeBox = false; // Impide la maximización
+                form.MinimizeBox = false; // Impide la minimización
+                form.StartPosition = FormStartPosition.CenterScreen;
+                form.AcceptButton = button1;
+                form.CancelButton = button2;
+
+                DialogResult dialogResult = form.ShowDialog();
+                form.Dispose();
+                return dialogResult;
+            }
+        }
+
+
+
     }
 }

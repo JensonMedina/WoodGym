@@ -25,7 +25,11 @@ namespace Principal
         {
             try
             {
-                cbxMetodoPagoFiltrar.SelectedIndex = -1;
+                // Desasociar los controladores de eventos
+                dtpBuscar.ValueChanged -= dtpBuscar_ValueChanged;
+                cbxTipoMovimientoFiltrar.SelectedIndexChanged -= cbxTipoMovimientoFiltrar_SelectedIndexChanged;
+                cbxMetodoPagoFiltrar.SelectedIndexChanged -= cbxMetodoPagoFiltrar_SelectedIndexChanged;
+
                 CargarGrilla();
                 CargarComboBox();
             }
@@ -33,8 +37,15 @@ namespace Principal
             {
                 throw;
             }
-
+            finally
+            {
+                // Volver a asociar los controladores de eventos después de la carga inicial
+                dtpBuscar.ValueChanged += dtpBuscar_ValueChanged;
+                cbxTipoMovimientoFiltrar.SelectedIndexChanged += cbxTipoMovimientoFiltrar_SelectedIndexChanged;
+                cbxMetodoPagoFiltrar.SelectedIndexChanged += cbxMetodoPagoFiltrar_SelectedIndexChanged;
+            }
         }
+
         private void LimpiarComboBox()
         {
             cbxMetodoPago.Items.Clear();
@@ -51,23 +62,28 @@ namespace Principal
                 cbxMetodoPago.DataSource = datosMetodosPago.listarMetodosPagoConSp();
                 cbxMetodoPago.ValueMember = "IdMetodoPago";
                 cbxMetodoPago.DisplayMember = "NombreMetodoPago";
+                cbxMetodoPago.SelectedIndex = -1;
+
 
                 cbxMetodoPagoFiltrar.DataSource = datosMetodosPago.listarMetodosPagoConSp();
                 cbxMetodoPagoFiltrar.ValueMember = "IdMetodoPago";
                 cbxMetodoPagoFiltrar.DisplayMember = "NombreMetodoPago";
+                cbxMetodoPagoFiltrar.SelectedIndex = -1;
 
                 cbxTipoMovimiento.Items.Add("Ingreso");
                 cbxTipoMovimiento.Items.Add("Gasto");
 
+
                 cbxTipoMovimientoFiltrar.Items.Add("Ingreso");
                 cbxTipoMovimientoFiltrar.Items.Add("Gasto");
+                cbxTipoMovimientoFiltrar.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
 
                 throw ex;
             }
-            
+
         }
         private void CargarGrilla()
         {
@@ -100,17 +116,17 @@ namespace Principal
                     MessageBox.Show("Agregado exitosamente");
                     CargarGrilla();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
 
-                    throw;
+                    throw ex;
                 }
             }
             else
             {
                 MessageBox.Show("Todos los campos con * son obligatorios");
             }
-            
+
         }
 
         private void CargarNuevoMovimiento(MovimientosCaja movimientosCaja)
@@ -119,7 +135,7 @@ namespace Principal
             int tipoMovimiento = cbxTipoMovimiento.SelectedIndex;
             string descripcion = txtDescripcion.Text;
             decimal monto = decimal.Parse(txtMonto.Text);
-            int metodoPago = cbxMetodoPago.SelectedIndex + 1;
+            int metodoPagoId = (int)cbxMetodoPago.SelectedValue;
             //0 ingreso
             //1 gasto
             if (tipoMovimiento == 1)
@@ -130,7 +146,7 @@ namespace Principal
             movimientosCaja.Descripcion = descripcion;
             movimientosCaja.Monto = monto;
             movimientosCaja.MetodoPago = new MetodosPago();
-            movimientosCaja.MetodoPago.IdMetodoPago = metodoPago;
+            movimientosCaja.MetodoPago.IdMetodoPago = metodoPagoId;
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
@@ -140,6 +156,8 @@ namespace Principal
             txtMonto.Text = "";
             cbxMetodoPago.SelectedIndex = -1;
             cbxTipoMovimiento.SelectedIndex = -1;
+            cbxMetodoPagoFiltrar.SelectedIndex = -1;
+            cbxTipoMovimientoFiltrar.SelectedIndex = -1;
         }
 
         private void dgvMovimientos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -197,36 +215,88 @@ namespace Principal
             try
             {
                 DateTime fecha = dtpBuscar.Value;
-                int idMetodoPago = 1;
-                //tipoMovimiento 0 ingreso
-                //1 gasto
                 int tipoMovimiento = cbxTipoMovimientoFiltrar.SelectedIndex;
-                listaMovimientosCaja = datosMovimientosCaja.Filtrar(fecha, idMetodoPago);
-                if (tipoMovimiento == 0)
+                int idMetodoPago = cbxMetodoPagoFiltrar.SelectedIndex;
+                if(tipoMovimiento < 0 && idMetodoPago == -1)
                 {
-                    // Filtra y muestra los valores positivos en la columna "Monto".
-                    dgvMovimientos.DataSource = listaMovimientosCaja.Where(mc => mc.Monto >= 0).ToList();
-                }
-                else if (tipoMovimiento == 1)
-                {
-                    // Filtra y muestra los valores negativos en la columna "Monto".
-                    dgvMovimientos.DataSource = listaMovimientosCaja.Where(mc => mc.Monto < 0).ToList();
-                }
-                else
-                {
-                    listaMovimientosCaja = datosMovimientosCaja.Filtrar(fecha, idMetodoPago);
+                    listaMovimientosCaja = datosMovimientosCaja.Filtrar(fecha, -1);
                     dgvMovimientos.DataSource = listaMovimientosCaja;
                 }
-            }
-            catch (Exception)
-            {
+                //en tipo de movimiento: 0 es ingreso y 1 es gasto.
+                //si tipo de movimiento es cero significa que estamos frente a un ingreso y
+                //si ademas el metodo de pago es -1 significa que no se ha seleccionado un metodo de pago
+                //por lo que invocamos al metodo filtrando por tipo de movimiento y trayendo los dos metodos de pago
+                if (tipoMovimiento == 0 && idMetodoPago == -1)
+                {
+                    //como tipo de movimiento es ingreso entonces cargo la grilla con los montos mayores a cero que son los que representan ingresos
+                    listaMovimientosCaja = datosMovimientosCaja.Filtrar(fecha, -1);
+                    dgvMovimientos.DataSource = listaMovimientosCaja.Where(mc => mc.Monto >= 0).ToList();
 
-                throw;
+                }
+                else if (tipoMovimiento == 1 && idMetodoPago == -1)
+                {
+                    //como tipo de movimiento es gasto entonces cargo la grilla con los montos menores a cero que son los que representan los gastos
+                    listaMovimientosCaja = datosMovimientosCaja.Filtrar(fecha, -1);
+                    dgvMovimientos.DataSource = listaMovimientosCaja.Where(mc => mc.Monto < 0).ToList();
+                }
+                //si el tipo de movimiento es -1 significa que no se ha seleccionado un tipo de movimiento
+                // y ademas si el metodo de pago es 0 significa que se ha seleccionado el metodo de pago "efectivo"
+                if (tipoMovimiento == -1 && idMetodoPago == 0)
+                {
+                    listaMovimientosCaja = datosMovimientosCaja.Filtrar(fecha, 1);
+                    dgvMovimientos.DataSource = listaMovimientosCaja;
+                }
+                else if (tipoMovimiento == -1 && idMetodoPago == 1)
+                {
+                    listaMovimientosCaja = datosMovimientosCaja.Filtrar(fecha, 2);
+                    dgvMovimientos.DataSource = listaMovimientosCaja;
+                }
+                //si el tipo de movimiento es cero estoy frente a un ingreso
+                //si ademas el metodo de pago es 0 estoy frente a un movimiento en efectivo
+                //por lo que tengo filtrar movimientos de ingreso y en efectivo
+                if (tipoMovimiento == 0 && idMetodoPago == 0)
+                {
+                    listaMovimientosCaja = datosMovimientosCaja.Filtrar(fecha, 1);
+                    dgvMovimientos.DataSource = listaMovimientosCaja.Where(mc => mc.Monto >= 0).ToList();
+                }
+                //si el tipo de movimiento es 1 estoy frente a un gasto
+                //y si ademas el metodo de pago es 0 esoty frente a un movimiento en efectivo
+                //por lo que tengo que filtrar movimientos de gasto en efectivo
+                else if (tipoMovimiento == 1 && idMetodoPago == 0)
+                {
+                    listaMovimientosCaja = datosMovimientosCaja.Filtrar(fecha, 1);
+                    dgvMovimientos.DataSource = listaMovimientosCaja.Where(mc => mc.Monto < 0).ToList();
+                }
+                //si el tipo de movimiento es 0 estoy frente a un ingreso
+                //y si ademas el metodo de pago es 1 estoy frente a un movimiento en transferencia
+                //por lo que tengo que filtrar movimientos de ingreso en transferencia
+                else if (tipoMovimiento == 0 && idMetodoPago == 1)
+                {
+                    listaMovimientosCaja = datosMovimientosCaja.Filtrar(fecha, 2);
+                    dgvMovimientos.DataSource = listaMovimientosCaja.Where(mc => mc.Monto >= 0).ToList();
+                }
+                //si el tipo de movimiento es 1 estoy frente a un gasto
+                //y si el metodo de pago es 1 estoy frente a un movimiento es transferencia
+                //por lo que tengo que filtrar movimientos de gasto es transferencia
+                else if (tipoMovimiento == 1 && idMetodoPago == 1)
+                {
+                    listaMovimientosCaja = datosMovimientosCaja.Filtrar(fecha, 2);
+                    dgvMovimientos.DataSource = listaMovimientosCaja.Where(mc => mc.Monto < 0).ToList();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error al filtrar movimientos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void cbxTipoMovimientoFiltrar_SelectedIndexChanged(object sender, EventArgs e)
         {
-            invocarElMetodoFiltrar();
+            if (cbxTipoMovimientoFiltrar.SelectedIndex >= 0)
+            {
+                invocarElMetodoFiltrar();
+            }
         }
 
         private void btnReiniciar_Click(object sender, EventArgs e)
@@ -234,6 +304,7 @@ namespace Principal
             // Antes de reiniciar, desasocia el controlador de eventos del DatePicker.
             dtpBuscar.ValueChanged -= dtpBuscar_ValueChanged;
             cbxTipoMovimientoFiltrar.SelectedIndexChanged -= cbxTipoMovimientoFiltrar_SelectedIndexChanged;
+            cbxMetodoPagoFiltrar.SelectedIndexChanged -= cbxMetodoPagoFiltrar_SelectedIndexChanged;
 
             // Realiza el proceso de reinicio
             CargarGrilla();
@@ -244,12 +315,22 @@ namespace Principal
             // Vuelve a asociar el controlador de eventos después de reiniciar.
             dtpBuscar.ValueChanged += dtpBuscar_ValueChanged;
             cbxTipoMovimientoFiltrar.SelectedIndexChanged += cbxTipoMovimientoFiltrar_SelectedIndexChanged;
+            cbxMetodoPagoFiltrar.SelectedIndexChanged += cbxMetodoPagoFiltrar_SelectedIndexChanged;
 
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void cbxMetodoPagoFiltrar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxMetodoPagoFiltrar.SelectedIndex != -1)
+            {
+                invocarElMetodoFiltrar();
+            }
+
         }
     }
 }

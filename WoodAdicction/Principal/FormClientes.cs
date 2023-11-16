@@ -26,6 +26,7 @@ namespace Principal
         {
             Cargar();
             RedondearBordes(panelAviso, 20);
+            panel1.BackgroundImageLayout = ImageLayout.Center;
 
         }
         // Método para redondear los bordes de un Panel.
@@ -370,12 +371,13 @@ namespace Principal
             {
                 Cliente Seleccionado = (Cliente)dgvClientes.CurrentRow.DataBoundItem;
                 FrmCobrarCuota cobrarCuota = new FrmCobrarCuota(Seleccionado);
+                cobrarCuota.ModoOperacion = FrmCobrarCuota.ModoOperacionEnum.Modificar;
                 cobrarCuota.ShowDialog();
                 Cargar();
             }
             else
             {
-                MessageBox.Show("Debe seleccionar una socio", "Error de seleccion", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Debe seleccionar un socio", "Error de seleccion", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }

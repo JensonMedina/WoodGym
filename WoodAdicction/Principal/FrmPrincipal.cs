@@ -26,7 +26,7 @@ namespace Principal
         private void btn_MouseEnter(object sender, EventArgs e)
         {
             Button boton = (Button)sender;
-            boton.BackColor = Color.FromArgb(255, 176, 0);
+            boton.BackColor = Color.FromArgb(255, 96, 0);
         }
 
         private void btn_MouseLeave(object sender, EventArgs e)
@@ -57,6 +57,21 @@ namespace Principal
         {
             FrmAccesos accesos = new FrmAccesos();
             accesos.ShowDialog();
+        }
+
+        private void FrmPrincipal_Load(object sender, EventArgs e)
+        {
+            panel1.BackgroundImageLayout = ImageLayout.Center;
+        }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnMinimizar_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 }

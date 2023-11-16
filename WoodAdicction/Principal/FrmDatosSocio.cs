@@ -70,10 +70,6 @@ namespace Principal
             MembresiasDatos membresiasDatos = new MembresiasDatos();
             try
             {
-                cbxTipoMembresia.DataSource = membresiasDatos.listarMembresiasConSp();
-                cbxTipoMembresia.ValueMember = "Id";
-                cbxTipoMembresia.DisplayMember = "Nombre";
-                cbxTipoMembresia.SelectedIndex = -1;
                 if (ModoOperacion == ModoOperacionEnum.VerCliente)
                 {
                     lblTitulo.Text = "Datos del Socio";
@@ -83,7 +79,7 @@ namespace Principal
                     txtTelefono.ReadOnly = true;
                     dtpFechaNacimiento.Enabled = false;
                     dtpFechaInicio.Enabled = false;
-                    cbxTipoMembresia.Enabled = false;
+                    
                     btnGuardar.Visible = false;
                     btnCancelar.Visible = false;
                     //label9.Visible = false;
@@ -99,14 +95,16 @@ namespace Principal
                         label1.Visible = false;
                         lblVencimiento.Visible = false;
                         lblEstado.Visible = false;
-                        cbxTipoMembresia.Enabled = true;
+                        
                         lblDebe.Visible = false;
                         label10.Visible = false;
+                        label8.Visible = false;
+                        label9.Visible = false;
                     }
                     if (ModoOperacion == ModoOperacionEnum.Modificar)
                     {
                         lblTitulo.Text = "Modificar Datos";
-                        cbxTipoMembresia.Enabled = false;
+                        
                         //label9.Visible = false;
                         //txtMonto.Visible = false;
                     }
@@ -133,7 +131,7 @@ namespace Principal
 
                     txtTelefono.Text = Cliente.Telefono.ToString();
                     dtpFechaInicio.Text = Cliente.fechaInicio.ToString("d");
-                    cbxTipoMembresia.Text = Cliente.TipoMembresia.Nombre;
+                    
 
                     if (Cliente.Activo)
                     {
@@ -177,14 +175,14 @@ namespace Principal
                     dniAmodificar = Cliente.Dni.ToString();
                     if(Cliente.Saldo > 0)
                     {
-                        label10.Text = "Debe";
+                        label10.Text = "A favor";
                         lblDebe.Text = "$" + Cliente.Saldo.ToString();
                     }
                     else
                     {
                         if(Cliente.Saldo < 0)
                         {
-                            label10.Text = "A favor";
+                            label10.Text = "Debe";
                             lblDebe.Text = "$" + (Cliente.Saldo * (-1)).ToString();
                         }
                         else
@@ -224,9 +222,13 @@ namespace Principal
                     if (ValidarCliente())
                         return;
                     CargarCliente(Cliente);
-                    
-                    decimal precio = membresiasDatos.ObtenerPrecioMembresia(Cliente.TipoMembresia.Id);
-                    Cliente.Saldo = precio;
+
+                    //decimal precio = membresiasDatos.ObtenerPrecioMembresia(Cliente.TipoMembresia.Id);
+                    //Cliente.Saldo = precio * (-1);
+                    Cliente.Saldo = 0;
+                    FrmCobrarCuota cobrarCuota = new FrmCobrarCuota(Cliente);
+                    cobrarCuota.ModoOperacion = FrmCobrarCuota.ModoOperacionEnum.Agregar;
+                    cobrarCuota.ShowDialog();
                     Datos.AgregarClienteConSP(Cliente);
                     MessageBox.Show("Agregado exitosamente");
                     // Después de agregar al cliente
@@ -274,8 +276,7 @@ namespace Principal
             {
                 if (string.IsNullOrEmpty(txtDni.Text)
                     || string.IsNullOrEmpty(txtNombre.Text)
-                    || string.IsNullOrEmpty(txtApellido.Text)
-                    || cbxTipoMembresia.SelectedIndex < 0)
+                    || string.IsNullOrEmpty(txtApellido.Text))
                 {
                     MessageBox.Show("Debes completar todos los campos con * ");
                     return true; // Indica que la validación ha fallado
@@ -326,13 +327,11 @@ namespace Principal
             DateTime fechaNacimiento = dtpFechaNacimiento.Value;
             string telefono = txtTelefono.Text;
             DateTime fechaInicio = dtpFechaInicio.Value;
-            int tipoMembresiaId = (int)cbxTipoMembresia.SelectedValue;
             cliente.Dni = dni;
             cliente.Nombre = nombre;
             cliente.Apellido = apellido;
             cliente.fechaNacimiento = fechaNacimiento;
             cliente.Telefono = telefono;
-            cliente.Activo = false;
             
             if (!string.IsNullOrEmpty(rutaFoto))
             {
@@ -344,8 +343,6 @@ namespace Principal
             }
 
             cliente.fechaInicio = fechaInicio;
-            cliente.TipoMembresia = new Membresias();
-            cliente.TipoMembresia.Id = tipoMembresiaId;
 
         }
 

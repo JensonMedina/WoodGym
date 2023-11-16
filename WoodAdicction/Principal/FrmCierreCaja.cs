@@ -36,12 +36,23 @@ namespace Principal
                     if (existenMovimientos)
                     {
                         // Si existen movimientos, realizar el cierre de caja normalmente
-                        decimal montoFinal = datos.RealizarCierreCaja(fecha, cierreSemanal);
-                        txtCierreCaja.Text = montoFinal.ToString();
+                        decimal[] resultados = datos.RealizarCierreCaja(fecha, cierreSemanal);
+
+                        // Mostrar totales en los TextBox correspondientes
+                        txtIngresosEfectivo.Text = resultados[0].ToString();
+                        txtGastosEfectivo.Text = resultados[1].ToString();
+                        txtIngresosTransferencia.Text = resultados[2].ToString();
+                        txtGastosTransferencias.Text = resultados[3].ToString();
+                        txtTotalIngresos.Text = resultados[4].ToString();
+                        txtTotalGastos.Text = resultados[5].ToString();
+                        txtCajaFinalEfectivo.Text = resultados[6].ToString();
+                        txtCajaFinalTransferencias.Text = resultados[7].ToString();
                     }
                     else
                     {
-                        txtCierreCaja.Text = "";
+                        // Si no hay movimientos, limpiar los TextBox y mostrar un mensaje
+                        txtCajaFinalEfectivo.Text = "";
+                        txtCajaFinalTransferencias.Text = "";
                         MessageBox.Show("No se registraron movimientos en la fecha seleccionada.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
@@ -52,6 +63,7 @@ namespace Principal
                 }
             }
         }
+
 
         private bool ValidarBusqueda()
         {

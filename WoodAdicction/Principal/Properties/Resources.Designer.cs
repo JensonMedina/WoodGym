@@ -63,6 +63,16 @@ namespace Principal.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap FondoWoodGym {
+            get {
+                object obj = ResourceManager.GetObject("FondoWoodGym", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap iconoCerrar {
             get {
                 object obj = ResourceManager.GetObject("iconoCerrar", resourceCulture);
@@ -86,6 +96,16 @@ namespace Principal.Properties {
         internal static System.Drawing.Bitmap iconoEliminar {
             get {
                 object obj = ResourceManager.GetObject("iconoEliminar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iconoMinimizar {
+            get {
+                object obj = ResourceManager.GetObject("iconoMinimizar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

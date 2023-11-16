@@ -62,10 +62,14 @@ namespace Datos
                 Datos.CerrarConexion();
             }
         }
-        public decimal RealizarCierreCaja(DateTime fecha, bool cierreSemanal)
+        public decimal[] RealizarCierreCaja(DateTime fecha, bool cierreSemanal)
         {
             AccesoDatos Datos = new AccesoDatos();
-            decimal montoFinal = 0;
+            decimal[] montos = new decimal[8];
+            for(int i = 0; i < 8; i++)
+            {
+                montos[i] = 0;
+            }
 
             try
             {
@@ -74,12 +78,19 @@ namespace Datos
                 Datos.setParametros("@esCierreSemanal", cierreSemanal);
                 Datos.EjecutarLectura();
 
-                if (Datos.lector.Read())
+                while(Datos.lector.Read())
                 {
-                    montoFinal = (decimal)Datos.lector["TotalMonto"];
+                    montos[0] = (decimal)Datos.lector["IngresosEfectivo"];
+                    montos[1] = (decimal)Datos.lector["GastosEfectivo"];
+                    montos[2] = (decimal)Datos.lector["IngresosTransferencias"];
+                    montos[3] = (decimal)Datos.lector["GastosTransferencias"];
+                    montos[4] = (decimal)Datos.lector["IngresosGenerales"];
+                    montos[5] = (decimal)Datos.lector["GastosGenerales"];
+                    montos[6] = (decimal)Datos.lector["TotalEfectivo"];
+                    montos[7] = (decimal)Datos.lector["TotalTransferencia"];
                 }
 
-                return montoFinal;
+                return montos;
             }
             catch (SqlException ex)
             {
@@ -119,6 +130,7 @@ namespace Datos
                 Datos.setearStoredProcedure("storedListarMovimientosFiltro");
                 Datos.setParametros("@fecha", fecha);
                 Datos.setParametros("@idMetodoPago", idMetodoPago);
+
                 Datos.EjecutarLectura();
                 while (Datos.lector.Read())
                 {

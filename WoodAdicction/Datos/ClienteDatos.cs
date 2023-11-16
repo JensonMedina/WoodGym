@@ -165,6 +165,7 @@ namespace Datos
                 Datos.setParametros("@fechaInicio", selecionado.fechaInicio);
                 Datos.setParametros("@activo", selecionado.Activo);
                 Datos.setParametros("@idTipoMembresia", selecionado.TipoMembresia.Id);
+                Datos.setParametros("@Saldo", selecionado.Saldo);
                 Datos.setParametros("@socioAmodificar", dniAmodificar);
                 Datos.EjecutarAccion();
             }

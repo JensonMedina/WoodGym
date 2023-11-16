@@ -51,7 +51,7 @@ namespace Principal
                 catch (Exception)
                 {
 
-                    throw;
+                    return;
                 }
             }
             
@@ -89,7 +89,7 @@ namespace Principal
                 lblEstado.Text = "Acceso Permitido";
             }
             lblDebe.Visible = true;
-            if (cliente.Saldo > 0)
+            if (cliente.Saldo < 0)
             {
                 label5.Text = "Debe";
                 lblDebe.Text = "$" + cliente.Saldo.ToString();
@@ -97,10 +97,10 @@ namespace Principal
             }
             else
             {
-                if (cliente.Saldo < 0)
+                if (cliente.Saldo > 0)
                 {
                     label5.Text = "A favor";
-                    lblDebe.Text = "$" + (cliente.Saldo * (-1)).ToString();
+                    lblDebe.Text = "$" + cliente.Saldo.ToString();
                     lblDebe.ForeColor = System.Drawing.Color.Green;
                 }
                 else

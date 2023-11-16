@@ -29,32 +29,86 @@ namespace Principal
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPrincipal));
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnMinimizar = new System.Windows.Forms.Button();
+            this.btnCerrar = new System.Windows.Forms.Button();
             this.pnlMenu = new System.Windows.Forms.Panel();
+            this.btnCierreCaja = new System.Windows.Forms.Button();
             this.btnMembresias = new System.Windows.Forms.Button();
             this.btnCaja = new System.Windows.Forms.Button();
             this.btnClientes = new System.Windows.Forms.Button();
             this.btnAcceso = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnCierreCaja = new System.Windows.Forms.Button();
-            this.pnlMenu.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.pnlMenu.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // panel1
+            // 
+            this.panel1.BackgroundImage = global::Principal.Properties.Resources.FondoWoodGym;
+            this.panel1.Controls.Add(this.btnMinimizar);
+            this.panel1.Controls.Add(this.btnCerrar);
+            this.panel1.Controls.Add(this.pnlMenu);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1386, 788);
+            this.panel1.TabIndex = 1;
+            // 
+            // btnMinimizar
+            // 
+            this.btnMinimizar.BackgroundImage = global::Principal.Properties.Resources.iconoMinimizar;
+            this.btnMinimizar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMinimizar.FlatAppearance.BorderSize = 0;
+            this.btnMinimizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMinimizar.Location = new System.Drawing.Point(1284, 13);
+            this.btnMinimizar.Name = "btnMinimizar";
+            this.btnMinimizar.Size = new System.Drawing.Size(27, 27);
+            this.btnMinimizar.TabIndex = 26;
+            this.btnMinimizar.UseVisualStyleBackColor = true;
+            this.btnMinimizar.Click += new System.EventHandler(this.btnMinimizar_Click);
+            // 
+            // btnCerrar
+            // 
+            this.btnCerrar.BackgroundImage = global::Principal.Properties.Resources.iconoCerrar;
+            this.btnCerrar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCerrar.FlatAppearance.BorderSize = 0;
+            this.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCerrar.Location = new System.Drawing.Point(1331, 12);
+            this.btnCerrar.Name = "btnCerrar";
+            this.btnCerrar.Size = new System.Drawing.Size(27, 27);
+            this.btnCerrar.TabIndex = 25;
+            this.btnCerrar.UseVisualStyleBackColor = true;
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
             // pnlMenu
             // 
             this.pnlMenu.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.pnlMenu.Controls.Add(this.btnCierreCaja);
             this.pnlMenu.Controls.Add(this.btnMembresias);
             this.pnlMenu.Controls.Add(this.btnCaja);
             this.pnlMenu.Controls.Add(this.btnClientes);
             this.pnlMenu.Controls.Add(this.btnAcceso);
-            this.pnlMenu.Location = new System.Drawing.Point(2, 97);
+            this.pnlMenu.Location = new System.Drawing.Point(0, 0);
             this.pnlMenu.Name = "pnlMenu";
             this.pnlMenu.Size = new System.Drawing.Size(177, 355);
-            this.pnlMenu.TabIndex = 0;
+            this.pnlMenu.TabIndex = 1;
+            // 
+            // btnCierreCaja
+            // 
+            this.btnCierreCaja.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCierreCaja.FlatAppearance.BorderSize = 0;
+            this.btnCierreCaja.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCierreCaja.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
+            this.btnCierreCaja.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnCierreCaja.Location = new System.Drawing.Point(0, 200);
+            this.btnCierreCaja.Name = "btnCierreCaja";
+            this.btnCierreCaja.Size = new System.Drawing.Size(177, 50);
+            this.btnCierreCaja.TabIndex = 37;
+            this.btnCierreCaja.Text = "Cerrar caja";
+            this.btnCierreCaja.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCierreCaja.UseVisualStyleBackColor = true;
+            this.btnCierreCaja.Click += new System.EventHandler(this.btnCierreCaja_Click);
+            this.btnCierreCaja.MouseEnter += new System.EventHandler(this.btn_MouseEnter);
+            this.btnCierreCaja.MouseLeave += new System.EventHandler(this.btn_MouseLeave);
             // 
             // btnMembresias
             // 
@@ -64,7 +118,7 @@ namespace Principal
             this.btnMembresias.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMembresias.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
             this.btnMembresias.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnMembresias.Location = new System.Drawing.Point(3, 100);
+            this.btnMembresias.Location = new System.Drawing.Point(0, 100);
             this.btnMembresias.Name = "btnMembresias";
             this.btnMembresias.Size = new System.Drawing.Size(177, 50);
             this.btnMembresias.TabIndex = 3;
@@ -131,79 +185,34 @@ namespace Principal
             this.btnAcceso.MouseEnter += new System.EventHandler(this.btn_MouseEnter);
             this.btnAcceso.MouseLeave += new System.EventHandler(this.btn_MouseLeave);
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Location = new System.Drawing.Point(2, 1);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(177, 90);
-            this.panel1.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Berlin Sans FB", 13F);
-            this.label1.Location = new System.Drawing.Point(75, 29);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(95, 20);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Wood Gym";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(10, 11);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(59, 51);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
-            // btnCierreCaja
-            // 
-            this.btnCierreCaja.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(118)))), ((int)(((byte)(191)))));
-            this.btnCierreCaja.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCierreCaja.FlatAppearance.BorderSize = 0;
-            this.btnCierreCaja.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCierreCaja.Font = new System.Drawing.Font("Berlin Sans FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCierreCaja.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnCierreCaja.Location = new System.Drawing.Point(331, 205);
-            this.btnCierreCaja.Name = "btnCierreCaja";
-            this.btnCierreCaja.Size = new System.Drawing.Size(138, 41);
-            this.btnCierreCaja.TabIndex = 36;
-            this.btnCierreCaja.Text = "Cerrar caja";
-            this.btnCierreCaja.UseVisualStyleBackColor = false;
-            this.btnCierreCaja.Click += new System.EventHandler(this.btnCierreCaja_Click);
-            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.btnCierreCaja);
+            this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.ClientSize = new System.Drawing.Size(1370, 788);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.pnlMenu);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form2";
-            this.pnlMenu.ResumeLayout(false);
+            this.Load += new System.EventHandler(this.FrmPrincipal_Load);
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.pnlMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel pnlMenu;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel pnlMenu;
+        private System.Windows.Forms.Button btnMembresias;
         private System.Windows.Forms.Button btnCaja;
         private System.Windows.Forms.Button btnClientes;
         private System.Windows.Forms.Button btnAcceso;
-        private System.Windows.Forms.Button btnMembresias;
+        private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.Button btnCierreCaja;
+        private System.Windows.Forms.Button btnMinimizar;
     }
 }

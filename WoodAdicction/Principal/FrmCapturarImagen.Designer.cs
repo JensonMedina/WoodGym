@@ -44,7 +44,7 @@ namespace Principal
             // 
             // btnGrabar
             // 
-            this.btnGrabar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(180)))), ((int)(((byte)(53)))));
+            this.btnGrabar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
             this.btnGrabar.FlatAppearance.BorderSize = 0;
             this.btnGrabar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGrabar.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
@@ -84,7 +84,7 @@ namespace Principal
             // 
             // btnCapturar
             // 
-            this.btnCapturar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(180)))), ((int)(((byte)(53)))));
+            this.btnCapturar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
             this.btnCapturar.FlatAppearance.BorderSize = 0;
             this.btnCapturar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCapturar.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
@@ -100,12 +100,12 @@ namespace Principal
             // 
             // btnGuardar
             // 
-            this.btnGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(180)))), ((int)(((byte)(53)))));
+            this.btnGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
             this.btnGuardar.FlatAppearance.BorderSize = 0;
             this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardar.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
             this.btnGuardar.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnGuardar.Location = new System.Drawing.Point(358, 292);
+            this.btnGuardar.Location = new System.Drawing.Point(358, 293);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(150, 31);
             this.btnGuardar.TabIndex = 5;

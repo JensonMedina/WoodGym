@@ -195,5 +195,11 @@
   <ItemGroup>
     <None Include="Resources\iconoCerrar2.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FondoWoodGym.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconoMinimizar.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
