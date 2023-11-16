@@ -58,6 +58,11 @@ namespace Principal
                 pbxCliente.Image = Image.FromFile(rutaFoto);
                 //pbxCliente.SizeMode = PictureBoxSizeMode.Zoom;
             }
+            else
+            {
+                pbxCliente.Image = Image.FromFile(@"C:/Users/chuni/OneDrive/Escritorio/WoodAdicctionGym/Imagenes/placeholderPortrait.jpg");
+            }
+            //pbxCliente.Tag = pbxCliente.ImageLocation;
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -79,7 +84,7 @@ namespace Principal
                     txtTelefono.ReadOnly = true;
                     dtpFechaNacimiento.Enabled = false;
                     dtpFechaInicio.Enabled = false;
-                    
+
                     btnGuardar.Visible = false;
                     btnCancelar.Visible = false;
                     //label9.Visible = false;
@@ -95,7 +100,7 @@ namespace Principal
                         label1.Visible = false;
                         lblVencimiento.Visible = false;
                         lblEstado.Visible = false;
-                        
+
                         lblDebe.Visible = false;
                         label10.Visible = false;
                         label8.Visible = false;
@@ -104,7 +109,7 @@ namespace Principal
                     if (ModoOperacion == ModoOperacionEnum.Modificar)
                     {
                         lblTitulo.Text = "Modificar Datos";
-                        
+
                         //label9.Visible = false;
                         //txtMonto.Visible = false;
                     }
@@ -115,7 +120,7 @@ namespace Principal
                     dtpFechaNacimiento.Enabled = true;
                     dtpFechaInicio.Enabled = true;
                     btnCamara.Visible = true;
-                    
+
                 }
 
 
@@ -131,7 +136,7 @@ namespace Principal
 
                     txtTelefono.Text = Cliente.Telefono.ToString();
                     dtpFechaInicio.Text = Cliente.fechaInicio.ToString("d");
-                    
+
 
                     if (Cliente.Activo)
                     {
@@ -162,25 +167,28 @@ namespace Principal
                         lblVencimiento.Text = diasRestantes.ToString() + " dias";
                     }
 
-                    string rutaImagen = Cliente.urlImagen;
-                    if (File.Exists(rutaImagen))
+                    rutaFoto = Cliente.urlImagen;
+
+                    if (File.Exists(rutaFoto))
                     {
-                        pbxCliente.Load(rutaImagen);
+                        pbxCliente.Load(rutaFoto);
+
                     }
                     else
                     {
                         pbxCliente.Load(@"C:/Users/chuni/OneDrive/Escritorio/WoodAdicctionGym/Imagenes/placeholderPortrait.jpg");
                     }
+                    //pbxCliente.Tag = rutaFoto;
                     //pbxCliente.SizeMode = PictureBoxSizeMode.Zoom;
                     dniAmodificar = Cliente.Dni.ToString();
-                    if(Cliente.Saldo > 0)
+                    if (Cliente.Saldo > 0)
                     {
                         label10.Text = "A favor";
                         lblDebe.Text = "$" + Cliente.Saldo.ToString();
                     }
                     else
                     {
-                        if(Cliente.Saldo < 0)
+                        if (Cliente.Saldo < 0)
                         {
                             label10.Text = "Debe";
                             lblDebe.Text = "$" + (Cliente.Saldo * (-1)).ToString();
@@ -229,28 +237,15 @@ namespace Principal
                     FrmCobrarCuota cobrarCuota = new FrmCobrarCuota(Cliente);
                     cobrarCuota.ModoOperacion = FrmCobrarCuota.ModoOperacionEnum.Agregar;
                     cobrarCuota.ShowDialog();
-                    Datos.AgregarClienteConSP(Cliente);
-                    MessageBox.Show("Agregado exitosamente");
-                    // Después de agregar al cliente
-                    //MovimientosCaja movimiento = new MovimientosCaja();
-                    //movimiento.Fecha = Cliente.fechaInicio;
-                    //movimiento.Descripcion = "Registro de nuevo cliente " + txtNombre.Text;
-                    //movimiento.Monto = decimal.Parse(txtMonto.Text);
-                    //MembresiasDatos datos = new MembresiasDatos();
-                    //decimal precio = datos.ObtenerPrecioMembresia(Cliente.TipoMembresia.Id);
-                    //if (precio > 0)
-                    //{
-                    //    movimiento.Monto = precio;
-                    //movimiento.MetodoPago = new MetodosPago();
-                    //movimiento.MetodoPago.IdMetodoPago = ;
-                    //MovimientosCajaDatos movimientosCajaDatos = new MovimientosCajaDatos();
-                    //movimientosCajaDatos.AgregarMovimientoCaja(movimiento);
-                    //MessageBox.Show("Movimiento de caja registrado exitosamente");
-                    //}
-                    //else
-                    //{
-                    //    MessageBox.Show("No se pudo obtener automáticamente el precio de la membresía. Registra el movimiento de caja manualmente.");
-                    //}
+                    if(Cliente.TipoMembresia != null)
+                    {
+                        Datos.AgregarClienteConSP(Cliente);
+                        MessageBox.Show("Agregado exitosamente");
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se agrego el cliente");
+                    }
 
                 }
                 else if (ModoOperacion == ModoOperacionEnum.Modificar)
@@ -305,7 +300,7 @@ namespace Principal
                     if (result == DialogResult.Yes)
                         return false;
                 }
-                
+
 
 
                 return false; // Indica que la validación ha tenido éxito
@@ -332,7 +327,8 @@ namespace Principal
             cliente.Apellido = apellido;
             cliente.fechaNacimiento = fechaNacimiento;
             cliente.Telefono = telefono;
-            
+            //string rutaDeFoto = pbxCliente.Tag as string;
+
             if (!string.IsNullOrEmpty(rutaFoto))
             {
                 cliente.urlImagen = rutaFoto;
@@ -348,11 +344,12 @@ namespace Principal
 
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Verificar si la tecla presionada es una letra o la tecla de retroceso
-            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            // Verificar si la tecla presionada es una letra, la tecla de retroceso o el espacio
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && e.KeyChar != ' ')
             {
-                e.Handled = true; // Si no es una letra o retroceso, se ignora la tecla
+                e.Handled = true; // Si no es una letra, retroceso o espacio, se ignora la tecla
             }
         }
+
     }
 }

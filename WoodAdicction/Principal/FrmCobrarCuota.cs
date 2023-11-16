@@ -39,7 +39,19 @@ namespace Principal
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if(ModoOperacion == ModoOperacionEnum.Agregar)
+            {
+                DialogResult resultado = MessageBox.Show("Si cancela la operacion, no se va a agregar correctamente el cliente, esta de acuerdo ?", "Pregunta", MessageBoxButtons.YesNo);
+                if(resultado == DialogResult.Yes)
+                {
+                    this.Close();
+                }
+            }
+            else
+            {
+                this.Close();
+            }
+            
         }
 
         private void FrmCobrarCuota_Load(object sender, EventArgs e)
@@ -74,7 +86,6 @@ namespace Principal
             else
             {
                 dtpFechaInicio.Value = cliente.fechaInicio;
-                btnCancelar.Visible = false;
                 btnCerrar.Visible = false;
             }
             
