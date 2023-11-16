@@ -33,9 +33,9 @@ namespace Principal
                 CargarGrilla();
                 CargarComboBox();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                MessageBox.Show("Hubo un error. Intente de nuevo mas tarde.", ex.ToString());
             }
             finally
             {
@@ -80,8 +80,7 @@ namespace Principal
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                MessageBox.Show("Hubo un error. Intente de nuevo mas tarde.", ex.ToString());
             }
 
         }
@@ -91,14 +90,18 @@ namespace Principal
             try
             {
                 listaMovimientosCaja = datosMovimientosCaja.listarMovimientosConSp();
+                // Ordenar la lista por fecha de forma descendente
+                listaMovimientosCaja = listaMovimientosCaja.OrderByDescending(m => m.Fecha).ToList();
+
                 dgvMovimientos.DataSource = listaMovimientosCaja;
                 dgvMovimientos.Columns["TransaccionId"].Visible = false;
                 dgvMovimientos.Columns["MetodoPago"].HeaderText = "Metodo de pago";
+                
+
             }
             catch (Exception ex)
             {
-                throw ex;
-                //MessageBox.Show(ex.ToString());
+                MessageBox.Show("Hubo un error. Intente de nuevo mas tarde.", ex.ToString());
             }
         }
 
@@ -118,8 +121,7 @@ namespace Principal
                 }
                 catch (Exception ex)
                 {
-
-                    throw ex;
+                    MessageBox.Show("Hubo un error. Intente de nuevo mas tarde.", ex.ToString());
                 }
             }
             else
@@ -131,22 +133,29 @@ namespace Principal
 
         private void CargarNuevoMovimiento(MovimientosCaja movimientosCaja)
         {
-            DateTime fecha = dtpFecha.Value;
-            int tipoMovimiento = cbxTipoMovimiento.SelectedIndex;
-            string descripcion = txtDescripcion.Text;
-            decimal monto = decimal.Parse(txtMonto.Text);
-            int metodoPagoId = (int)cbxMetodoPago.SelectedValue;
-            //0 ingreso
-            //1 gasto
-            if (tipoMovimiento == 1)
+            try
             {
-                monto *= (-1);
+                DateTime fecha = dtpFecha.Value;
+                int tipoMovimiento = cbxTipoMovimiento.SelectedIndex;
+                string descripcion = txtDescripcion.Text;
+                decimal monto = decimal.Parse(txtMonto.Text);
+                int metodoPagoId = (int)cbxMetodoPago.SelectedValue;
+                //0 ingreso
+                //1 gasto
+                if (tipoMovimiento == 1)
+                {
+                    monto *= (-1);
+                }
+                movimientosCaja.Fecha = fecha;
+                movimientosCaja.Descripcion = descripcion;
+                movimientosCaja.Monto = monto;
+                movimientosCaja.MetodoPago = new MetodosPago();
+                movimientosCaja.MetodoPago.IdMetodoPago = metodoPagoId;
             }
-            movimientosCaja.Fecha = fecha;
-            movimientosCaja.Descripcion = descripcion;
-            movimientosCaja.Monto = monto;
-            movimientosCaja.MetodoPago = new MetodosPago();
-            movimientosCaja.MetodoPago.IdMetodoPago = metodoPagoId;
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error. Intente de nuevo mas tarde.", ex.ToString());
+            }
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)

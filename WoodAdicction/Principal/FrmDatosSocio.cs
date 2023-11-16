@@ -53,16 +53,23 @@ namespace Principal
 
         private void CargarImagen()
         {
-            if (!string.IsNullOrEmpty(rutaFoto))
+            try
             {
-                pbxCliente.Image = Image.FromFile(rutaFoto);
-                //pbxCliente.SizeMode = PictureBoxSizeMode.Zoom;
+
+                if (!string.IsNullOrEmpty(rutaFoto))
+                {
+                    pbxCliente.Image = Image.FromFile(rutaFoto);
+                    //pbxCliente.SizeMode = PictureBoxSizeMode.Zoom;
+                }
+                else
+                {
+                    pbxCliente.Image = Image.FromFile(@"C:/Users/chuni/OneDrive/Escritorio/WoodAdicctionGym/Imagenes/placeholderPortrait.jpg");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                pbxCliente.Image = Image.FromFile(@"C:/Users/chuni/OneDrive/Escritorio/WoodAdicctionGym/Imagenes/placeholderPortrait.jpg");
+                MessageBox.Show("Hubo un error. Intente de nuevo mas tarde.", ex.ToString());
             }
-            //pbxCliente.Tag = pbxCliente.ImageLocation;
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -126,87 +133,95 @@ namespace Principal
 
                 if (Cliente != null)
                 {
-                    txtNombre.Text = Cliente.Nombre;
-                    txtApellido.Text = Cliente.Apellido;
-                    txtDni.Text = Cliente.Dni.ToString();
-                    if (Cliente.fechaNacimiento != null)
+                    CargarDatosClienteExistente();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error. Intente de nuevo mas tarde.", ex.ToString());
+            }
+        }
+
+        private void CargarDatosClienteExistente()
+        {
+            try
+            {
+                txtNombre.Text = Cliente.Nombre;
+                txtApellido.Text = Cliente.Apellido;
+                txtDni.Text = Cliente.Dni.ToString();
+                if (Cliente.fechaNacimiento != null)
+                {
+                    dtpFechaNacimiento.Text = Cliente.fechaNacimiento.Value.ToString("d");
+                }
+
+                txtTelefono.Text = Cliente.Telefono.ToString();
+                dtpFechaInicio.Text = Cliente.fechaInicio.ToString("d");
+
+
+                if (Cliente.Activo)
+                {
+                    lblEstado.Text = "Activo";
+                }
+                else
+                {
+                    lblEstado.Text = "Inactivo";
+                }
+                lblEdad.Text = Cliente.Edad.ToString();
+                DateTime fechaInicioMembresia = Cliente.fechaInicio;
+                int duracionMembresiaEnDias = Cliente.TipoMembresia.Duracion;
+
+                // Calcula la fecha de vencimiento en función de la duración de la membresía
+                DateTime fechaVencimientoMembresia = fechaInicioMembresia.AddDays(duracionMembresiaEnDias);
+                int diasRestantes;
+                // Verifica si la fecha de vencimiento ha pasado
+                if (fechaVencimientoMembresia < DateTime.Now)
+                {
+                    // La membresía ya ha vencido, muestra un mensaje o establece los días restantes en 0
+                    lblVencimiento.Text = "Vencido";
+                    diasRestantes = 0;
+                }
+                else
+                {
+                    TimeSpan tiempoRestante = fechaVencimientoMembresia - DateTime.Now;
+                    diasRestantes = (int)tiempoRestante.TotalDays;
+                    lblVencimiento.Text = diasRestantes.ToString() + " dias";
+                }
+
+                rutaFoto = Cliente.urlImagen;
+
+                if (File.Exists(rutaFoto))
+                {
+                    pbxCliente.Load(rutaFoto);
+
+                }
+                else
+                {
+                    pbxCliente.Load(@"C:/Users/chuni/OneDrive/Escritorio/WoodAdicctionGym/Imagenes/placeholderPortrait.jpg");
+                }
+                dniAmodificar = Cliente.Dni.ToString();
+                if (Cliente.Saldo > 0)
+                {
+                    label10.Text = "A favor";
+                    lblDebe.Text = "$" + Cliente.Saldo.ToString();
+                }
+                else
+                {
+                    if (Cliente.Saldo < 0)
                     {
-                        dtpFechaNacimiento.Text = Cliente.fechaNacimiento.Value.ToString("d");
-                    }
-
-                    txtTelefono.Text = Cliente.Telefono.ToString();
-                    dtpFechaInicio.Text = Cliente.fechaInicio.ToString("d");
-
-
-                    if (Cliente.Activo)
-                    {
-                        lblEstado.Text = "Activo";
+                        label10.Text = "Debe";
+                        lblDebe.Text = "$" + (Cliente.Saldo * (-1)).ToString();
                     }
                     else
                     {
-                        lblEstado.Text = "Inactivo";
-                    }
-                    lblEdad.Text = Cliente.Edad.ToString();
-                    DateTime fechaInicioMembresia = Cliente.fechaInicio;
-                    int duracionMembresiaEnDias = Cliente.TipoMembresia.Duracion;
-
-                    // Calcula la fecha de vencimiento en función de la duración de la membresía
-                    DateTime fechaVencimientoMembresia = fechaInicioMembresia.AddDays(duracionMembresiaEnDias);
-                    int diasRestantes;
-                    // Verifica si la fecha de vencimiento ha pasado
-                    if (fechaVencimientoMembresia < DateTime.Now)
-                    {
-                        // La membresía ya ha vencido, muestra un mensaje o establece los días restantes en 0
-                        lblVencimiento.Text = "Vencido";
-                        diasRestantes = 0;
-                    }
-                    else
-                    {
-                        TimeSpan tiempoRestante = fechaVencimientoMembresia - DateTime.Now;
-                        diasRestantes = (int)tiempoRestante.TotalDays;
-                        lblVencimiento.Text = diasRestantes.ToString() + " dias";
-                    }
-
-                    rutaFoto = Cliente.urlImagen;
-
-                    if (File.Exists(rutaFoto))
-                    {
-                        pbxCliente.Load(rutaFoto);
-
-                    }
-                    else
-                    {
-                        pbxCliente.Load(@"C:/Users/chuni/OneDrive/Escritorio/WoodAdicctionGym/Imagenes/placeholderPortrait.jpg");
-                    }
-                    //pbxCliente.Tag = rutaFoto;
-                    //pbxCliente.SizeMode = PictureBoxSizeMode.Zoom;
-                    dniAmodificar = Cliente.Dni.ToString();
-                    if (Cliente.Saldo > 0)
-                    {
-                        label10.Text = "A favor";
-                        lblDebe.Text = "$" + Cliente.Saldo.ToString();
-                    }
-                    else
-                    {
-                        if (Cliente.Saldo < 0)
-                        {
-                            label10.Text = "Debe";
-                            lblDebe.Text = "$" + (Cliente.Saldo * (-1)).ToString();
-                        }
-                        else
-                        {
-                            label10.Text = "No debe";
-                        }
+                        label10.Text = "No debe";
                     }
                 }
             }
             catch (Exception ex)
             {
-
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("Hubo un error. Intente de nuevo mas tarde.", ex.ToString());
             }
         }
-
         private void txtDni_KeyPress(object sender, KeyPressEventArgs e)
         {
             int maxLength = 9;
@@ -316,29 +331,36 @@ namespace Principal
 
         private void CargarCliente(Cliente cliente)
         {
-            string nombre = txtNombre.Text;
-            string apellido = txtApellido.Text;
-            int dni = int.Parse(txtDni.Text);
-            DateTime fechaNacimiento = dtpFechaNacimiento.Value;
-            string telefono = txtTelefono.Text;
-            DateTime fechaInicio = dtpFechaInicio.Value;
-            cliente.Dni = dni;
-            cliente.Nombre = nombre;
-            cliente.Apellido = apellido;
-            cliente.fechaNacimiento = fechaNacimiento;
-            cliente.Telefono = telefono;
-            //string rutaDeFoto = pbxCliente.Tag as string;
-
-            if (!string.IsNullOrEmpty(rutaFoto))
+            try
             {
-                cliente.urlImagen = rutaFoto;
-            }
-            else
-            {
-                cliente.urlImagen = "C: /Users/chuni/OneDrive/Escritorio/WoodAdicctionGym/Imagenes/placeholderPortrait.jpg";
-            }
+                string nombre = txtNombre.Text;
+                string apellido = txtApellido.Text;
+                int dni = int.Parse(txtDni.Text);
+                DateTime fechaNacimiento = dtpFechaNacimiento.Value;
+                string telefono = txtTelefono.Text;
+                DateTime fechaInicio = dtpFechaInicio.Value;
+                cliente.Dni = dni;
+                cliente.Nombre = nombre;
+                cliente.Apellido = apellido;
+                cliente.fechaNacimiento = fechaNacimiento;
+                cliente.Telefono = telefono;
+                //string rutaDeFoto = pbxCliente.Tag as string;
 
-            cliente.fechaInicio = fechaInicio;
+                if (!string.IsNullOrEmpty(rutaFoto))
+                {
+                    cliente.urlImagen = rutaFoto;
+                }
+                else
+                {
+                    cliente.urlImagen = "C: /Users/chuni/OneDrive/Escritorio/WoodAdicctionGym/Imagenes/placeholderPortrait.jpg";
+                }
+
+                cliente.fechaInicio = fechaInicio;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error. Intente de nuevo mas tarde.", ex.ToString());
+            }
 
         }
 

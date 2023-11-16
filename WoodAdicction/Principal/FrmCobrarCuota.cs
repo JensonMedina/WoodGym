@@ -56,39 +56,46 @@ namespace Principal
 
         private void FrmCobrarCuota_Load(object sender, EventArgs e)
         {
-            CargarComboBox();
-            CargarDatosCliente();
-            if(ModoOperacion == ModoOperacionEnum.Modificar)
+            try
             {
-                cbxTipoMembresia.Text = cliente.TipoMembresia.Nombre;
-                //DialogResult resultado = MessageBox.Show("¿Va a cobrar una cuota nueva o el saldo pendiente?", "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                DialogResult resultado = CustomMessageBox.Show("¿Va a cobrar una cuota nueva o el saldo pendiente?", "Pregunta", "Cobrar Cuota Nueva", "Cobrar Saldo");
 
-                if (resultado == DialogResult.Yes)
+                CargarComboBox();
+                CargarDatosCliente();
+                if (ModoOperacion == ModoOperacionEnum.Modificar)
                 {
-                    nuevaCuota = true;
-                }
-                else
-                {
-                    if(cliente.Saldo < 0)
+                    cbxTipoMembresia.Text = cliente.TipoMembresia.Nombre;
+                    //DialogResult resultado = MessageBox.Show("¿Va a cobrar una cuota nueva o el saldo pendiente?", "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult resultado = CustomMessageBox.Show("¿Va a cobrar una cuota nueva o el saldo pendiente?", "Pregunta", "Cobrar Cuota Nueva", "Cobrar Saldo");
+
+                    if (resultado == DialogResult.Yes)
                     {
-                        cbxTipoMembresia.Enabled = false;
-                        txtMonto.Text = (cliente.Saldo * -1).ToString();
+                        nuevaCuota = true;
                     }
                     else
                     {
-                        MessageBox.Show("No hay un saldo pendiente");
-                        this.Close();
+                        if (cliente.Saldo < 0)
+                        {
+                            cbxTipoMembresia.Enabled = false;
+                            txtMonto.Text = (cliente.Saldo * -1).ToString();
+                        }
+                        else
+                        {
+                            MessageBox.Show("No hay un saldo pendiente");
+                            this.Close();
+                        }
+
                     }
-                    
+                }
+                else
+                {
+                    dtpFechaInicio.Value = cliente.fechaInicio;
+                    btnCerrar.Visible = false;
                 }
             }
-            else
+            catch (Exception ex)
             {
-                dtpFechaInicio.Value = cliente.fechaInicio;
-                btnCerrar.Visible = false;
-            }
-            
+                MessageBox.Show("Hubo un error. Intente de nuevo mas tarde.", ex.ToString());
+            }   
         }
 
         private void CargarComboBox()
@@ -104,10 +111,9 @@ namespace Principal
                 cbxMetodoPago.ValueMember = "IdMetodoPago";
                 cbxMetodoPago.DisplayMember = "NombreMetodoPago";
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                MessageBox.Show("Hubo un error. Intente de nuevo mas tarde.", ex.ToString());
             }
         }
 
@@ -248,16 +254,6 @@ namespace Principal
         }
         private bool ValidarDatos()
         {
-            // Realiza la validación de datos aquí
-            // Puedes verificar que la fecha sea válida y cumpla con las reglas de negocio
-            // Si los datos son válidos, devuelve true; de lo contrario, devuelve false
-
-            // Ejemplo de validación simple de la fecha
-            //if (dtpFechaInicio.Value < DateTime.Now.AddDays(-1))
-            //{
-            //    MessageBox.Show("La fecha de inicio no puede ser anterior a la fecha actual.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    return false;
-            //}
             if (cbxTipoMembresia.SelectedIndex < 0)
             {
                 MessageBox.Show("Debe seleccionar una membresia");
@@ -325,8 +321,5 @@ namespace Principal
                 return dialogResult;
             }
         }
-
-
-
     }
 }

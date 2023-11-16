@@ -52,13 +52,13 @@ namespace Principal
                 
                 ClienteDatos datos = new ClienteDatos();
                 listaClientes = datos.listarClientesConSP();
+                listaClientes = listaClientes.OrderByDescending(c => c.fechaInicio).ToList();
                 dgvClientes.DataSource = listaClientes;
                 OcultarYModificarColumnas();
             }
             catch (Exception ex)
             {
-                throw ex;
-                //MessageBox.Show(ex.ToString());
+                MessageBox.Show("Hubo un error. Intente de nuevo mas tarde.", ex.ToString());
             }
         }
         private void OcultarYModificarColumnas()
@@ -317,7 +317,7 @@ namespace Principal
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("Hubo un error. Intente de nuevo mas tarde.", ex.ToString());
             }
         }
 

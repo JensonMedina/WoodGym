@@ -47,8 +47,7 @@ namespace Principal
             }
             catch (Exception ex)
             {
-                throw ex;
-                //MessageBox.Show(ex.ToString());
+                MessageBox.Show("Hubo un error al cargar la grilla, intentelo de nuevo mas tarde.", ex.ToString());
             }
         }
 
@@ -106,7 +105,7 @@ namespace Principal
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error: " + ex.Message);
+                    MessageBox.Show("Hubo un error. Intentelo de nuevo mas tarde" + ex.Message);
                 }
             }
             else
@@ -117,14 +116,28 @@ namespace Principal
 
         private void ModificarMembresia(MembresiasDatos Datos)
         {
-            CargarMembresia(membresia);
-            Datos.ModificarMembresia(membresia);
+            try
+            {
+                CargarMembresia(membresia);
+                Datos.ModificarMembresia(membresia);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error. Intentelo de nuevo mas tarde", ex.ToString());
+            }
         }
 
         private void AgregarMembresia(MembresiasDatos Datos)
         {
-            CargarMembresia(membresia);
-            Datos.AgregarMembresia(membresia);
+            try
+            {
+                CargarMembresia(membresia);
+                Datos.AgregarMembresia(membresia);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error. Intente de nuevo mas tarde.", ex.ToString());
+            }
         }
 
 
@@ -185,7 +198,7 @@ namespace Principal
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Error al eliminar la membresía: " + ex.Message);
+                        MessageBox.Show("Error al eliminar la membresía. Intente de nuevo mas tarde." + ex.Message);
                     }
                 }
             }
