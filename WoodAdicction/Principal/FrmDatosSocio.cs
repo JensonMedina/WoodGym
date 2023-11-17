@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Dominio;
 using Datos;
+using System.Configuration;
 
 namespace Principal
 {
@@ -59,11 +60,15 @@ namespace Principal
                 if (!string.IsNullOrEmpty(rutaFoto))
                 {
                     pbxCliente.Image = Image.FromFile(rutaFoto);
-                    //pbxCliente.SizeMode = PictureBoxSizeMode.Zoom;
                 }
                 else
                 {
-                    pbxCliente.Image = Image.FromFile(@"C:/Users/chuni/OneDrive/Escritorio/WoodAdicctionGym/Imagenes/placeholderPortrait.jpg");
+                    //pbxCliente.Image = Image.FromFile(@"C:/Users/chuni/OneDrive/Escritorio/WoodAdicctionGym/Imagenes/placeholderPortrait.jpg");
+                    //pbxCliente.Image = Image.FromFile(@"./placeholderPortrait.jpg");
+                    //pbxCliente.Image = Image.FromFile(@"..\..\Imagenes\placeholderPortrait.jpg");
+                    string filePath = ConfigurationManager.AppSettings["images-folder"] + "placeholderPortrait.jpg";
+                    //pbxCliente.Image = Image.FromFile(filePath);
+                    pbxCliente.Load(filePath);
                 }
             }
             catch (Exception ex)
@@ -117,8 +122,6 @@ namespace Principal
                     {
                         lblTitulo.Text = "Modificar Datos";
 
-                        //label9.Visible = false;
-                        //txtMonto.Visible = false;
                     }
                     txtNombre.ReadOnly = false;
                     txtApellido.ReadOnly = false;
@@ -196,7 +199,10 @@ namespace Principal
                 }
                 else
                 {
-                    pbxCliente.Load(@"C:/Users/chuni/OneDrive/Escritorio/WoodAdicctionGym/Imagenes/placeholderPortrait.jpg");
+                    string filePath = ConfigurationManager.AppSettings["images-folder"] + "placeholderPortrait.jpg";
+                    //pbxCliente.Image = Image.FromFile(filePath);
+                    pbxCliente.Load(filePath);
+                    //pbxCliente.Image = Image.FromFile(@"..\..\Imagenes\placeholderPortrait.jpg");
                 }
                 dniAmodificar = Cliente.Dni.ToString();
                 if (Cliente.Saldo > 0)
@@ -352,7 +358,10 @@ namespace Principal
                 }
                 else
                 {
-                    cliente.urlImagen = "C: /Users/chuni/OneDrive/Escritorio/WoodAdicctionGym/Imagenes/placeholderPortrait.jpg";
+                    //cliente.urlImagen = @"C:\Users\chuni\OneDrive\Escritorio\WoodAdicctionGym\Imagenes\placeholderPortrait.jpg";
+                    //cliente.urlImagen = @"..\..\Imagenes\placeholderPortrait.jpg";
+                    string filePath = ConfigurationManager.AppSettings["images-folder"] + "placeholderPortrait.jpg";
+                    cliente.urlImagen = filePath;
                 }
 
                 cliente.fechaInicio = fechaInicio;

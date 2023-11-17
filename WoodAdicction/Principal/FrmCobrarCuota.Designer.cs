@@ -29,6 +29,7 @@ namespace Principal
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCobrarCuota));
             this.label1 = new System.Windows.Forms.Label();
             this.dtpFechaInicio = new System.Windows.Forms.DateTimePicker();
             this.Nombre = new System.Windows.Forms.Label();
@@ -256,9 +257,10 @@ namespace Principal
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnCerrar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmCobrarCuota";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmCobrarCuota";
+            this.Text = "Cobrar Cuota";
             this.Load += new System.EventHandler(this.FrmCobrarCuota_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

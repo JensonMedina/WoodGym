@@ -14,12 +14,12 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace Principal
 {
     public partial class FrmCapturarImagen : Form
     {
-        private string path = @"C:\Users\chuni\OneDrive\Escritorio\WoodAdicctionGym\ImagenesPerfiles\";
         private bool hayDispositivos;
         public string RutaImagenGuardada { get; private set; }
         private FilterInfoCollection misDispositivos; //Esto me sirve para obtener una lista de los dispositivos que hay en mi equipo instalados
@@ -62,12 +62,20 @@ namespace Principal
         private void btnGrabar_Click(object sender, EventArgs e)
         {
             CerrarWebCam();
-            int i = cbxGrabar.SelectedIndex;
-            string nombreVideo = misDispositivos[i].MonikerString;
-            miWebCam = new VideoCaptureDevice(nombreVideo);
-            miWebCam.NewFrame += new NewFrameEventHandler(Capturando);
-            miWebCam.Start();
-            btnCapturar.Visible = true;
+            if (hayDispositivos)
+            {
+                int i = cbxGrabar.SelectedIndex;
+                string nombreVideo = misDispositivos[i].MonikerString;
+                miWebCam = new VideoCaptureDevice(nombreVideo);
+                miWebCam.NewFrame += new NewFrameEventHandler(Capturando);
+                miWebCam.Start();
+                btnCapturar.Visible = true;
+            }
+            else
+            {
+                MessageBox.Show("No hay dispositivos disponibles");
+            }
+            
         }
         private void CerrarWebCam()
         {
@@ -100,11 +108,12 @@ namespace Principal
                 if (ValidarImagen())
                     return;
                 string nombreArchivo = "Cliente" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".jpg";
-                string rutaCompleta = Path.Combine(path, nombreArchivo);
+                string filePath = ConfigurationManager.AppSettings["images-folder"] + nombreArchivo;
+                
 
-                pbxCapturar.Image.Save(rutaCompleta, ImageFormat.Jpeg);
+                pbxCapturar.Image.Save(filePath, ImageFormat.Jpeg);
 
-                RutaImagenGuardada = rutaCompleta; // Almacena la ruta de la imagen guardada
+                RutaImagenGuardada = filePath; // Almacena la ruta de la imagen guardada
 
                 MessageBox.Show("Imagen cargada con éxito");
                 this.Close();

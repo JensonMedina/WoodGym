@@ -29,6 +29,7 @@ namespace Principal
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCapturarImagen));
             this.btnGrabar = new System.Windows.Forms.Button();
             this.cbxGrabar = new System.Windows.Forms.ComboBox();
             this.pbxGrabar = new System.Windows.Forms.PictureBox();
@@ -150,9 +151,10 @@ namespace Principal
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmCapturarImagen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmCapturarImagen";
+            this.Text = "Capturar Imagen";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmCapturarImagen_FormClosed);
             this.Load += new System.EventHandler(this.FrmCapturarImagen_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbxGrabar)).EndInit();

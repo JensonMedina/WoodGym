@@ -12,6 +12,7 @@ using Datos;
 using Dominio;
 using System.Media;
 using System.Windows.Media;
+using System.Configuration;
 
 namespace Principal
 {
@@ -65,7 +66,10 @@ namespace Principal
             }
             else
             {
-                pbxImagenCliente.Load(@"C:/Users/chuni/OneDrive/Escritorio/WoodAdicctionGym/Imagenes/placeholderPortrait.jpg");
+                //pbxImagenCliente.Load(@"C:/Users/chuni/OneDrive/Escritorio/WoodAdicctionGym/Imagenes/placeholderPortrait.jpg");
+                string filePath = ConfigurationManager.AppSettings["images-folder"] + "placeholderPortrait.jpg";
+                //pbxImagenCliente.Image = Image.FromFile(filePath);
+                pbxImagenCliente.Load(filePath);
             }
             lblNombre.Text = cliente.Nombre + " " + cliente.Apellido;
             lblNroSocio.Text = cliente.NroSocio.ToString();

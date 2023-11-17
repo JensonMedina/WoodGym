@@ -29,6 +29,7 @@ namespace Principal
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAccesos));
             this.label1 = new System.Windows.Forms.Label();
             this.txtDni = new System.Windows.Forms.TextBox();
             this.lblEstado = new System.Windows.Forms.Label();
@@ -39,10 +40,10 @@ namespace Principal
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pbxImagenCliente = new System.Windows.Forms.PictureBox();
-            this.btnCerrar = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.lblDebe = new System.Windows.Forms.Label();
+            this.pbxImagenCliente = new System.Windows.Forms.PictureBox();
+            this.btnCerrar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxImagenCliente)).BeginInit();
             this.SuspendLayout();
@@ -155,6 +156,27 @@ namespace Principal
             this.panel1.TabIndex = 12;
             this.panel1.Visible = false;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
+            this.label5.Location = new System.Drawing.Point(343, 186);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(60, 23);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Debe:";
+            // 
+            // lblDebe
+            // 
+            this.lblDebe.AutoSize = true;
+            this.lblDebe.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
+            this.lblDebe.ForeColor = System.Drawing.Color.GreenYellow;
+            this.lblDebe.Location = new System.Drawing.Point(433, 186);
+            this.lblDebe.Name = "lblDebe";
+            this.lblDebe.Size = new System.Drawing.Size(19, 23);
+            this.lblDebe.TabIndex = 12;
+            this.lblDebe.Text = "$";
+            // 
             // pbxImagenCliente
             // 
             this.pbxImagenCliente.Location = new System.Drawing.Point(29, 30);
@@ -177,27 +199,6 @@ namespace Principal
             this.btnCerrar.UseVisualStyleBackColor = true;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
-            this.label5.Location = new System.Drawing.Point(343, 186);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(60, 23);
-            this.label5.TabIndex = 13;
-            this.label5.Text = "Debe:";
-            // 
-            // lblDebe
-            // 
-            this.lblDebe.AutoSize = true;
-            this.lblDebe.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
-            this.lblDebe.ForeColor = System.Drawing.Color.GreenYellow;
-            this.lblDebe.Location = new System.Drawing.Point(433, 186);
-            this.lblDebe.Name = "lblDebe";
-            this.lblDebe.Size = new System.Drawing.Size(19, 23);
-            this.lblDebe.TabIndex = 12;
-            this.lblDebe.Text = "$";
-            // 
             // FrmAccesos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -208,9 +209,10 @@ namespace Principal
             this.Controls.Add(this.txtDni);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmAccesos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmAccesos";
+            this.Text = "Accesos";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxImagenCliente)).EndInit();

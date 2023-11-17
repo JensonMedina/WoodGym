@@ -30,6 +30,7 @@ namespace Principal
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCarga));
             this.label3 = new System.Windows.Forms.Label();
             this.myProgressBar = new System.Windows.Forms.ProgressBar();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -70,9 +71,11 @@ namespace Principal
             this.Controls.Add(this.label3);
             this.Font = new System.Drawing.Font("MS PGothic", 21.75F, System.Drawing.FontStyle.Bold);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.Name = "FormCarga";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "WoodAdicctionGym";
             this.Load += new System.EventHandler(this.FormCarga_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

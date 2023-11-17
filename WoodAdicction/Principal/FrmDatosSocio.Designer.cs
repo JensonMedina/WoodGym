@@ -400,12 +400,13 @@ namespace Principal
             this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.pbxCliente);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmDatosSocio";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmDatosSocio";
+            this.Text = "Datos Socios";
             this.Load += new System.EventHandler(this.FrmDatosSocio_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbxCliente)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

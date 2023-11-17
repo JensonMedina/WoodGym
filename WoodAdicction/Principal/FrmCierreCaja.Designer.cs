@@ -29,6 +29,7 @@ namespace Principal
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCierreCaja));
             this.txtCajaFinalEfectivo = new System.Windows.Forms.TextBox();
             this.dtpCierreCaja = new System.Windows.Forms.DateTimePicker();
             this.label12 = new System.Windows.Forms.Label();
@@ -36,24 +37,24 @@ namespace Principal
             this.cbxTipoCierre = new System.Windows.Forms.ComboBox();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtTotalIngresos = new System.Windows.Forms.TextBox();
+            this.txtTotalGastos = new System.Windows.Forms.TextBox();
+            this.txtIngresosTransferencia = new System.Windows.Forms.TextBox();
+            this.txtGastosTransferencias = new System.Windows.Forms.TextBox();
+            this.txtGastosEfectivo = new System.Windows.Forms.TextBox();
+            this.txtIngresosEfectivo = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtCajaFinalTransferencias = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.txtIngresosEfectivo = new System.Windows.Forms.TextBox();
-            this.txtGastosEfectivo = new System.Windows.Forms.TextBox();
-            this.txtGastosTransferencias = new System.Windows.Forms.TextBox();
-            this.txtIngresosTransferencia = new System.Windows.Forms.TextBox();
-            this.txtTotalGastos = new System.Windows.Forms.TextBox();
-            this.txtTotalIngresos = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -154,6 +155,148 @@ namespace Principal
             this.panel1.Size = new System.Drawing.Size(576, 548);
             this.panel1.TabIndex = 40;
             // 
+            // txtTotalIngresos
+            // 
+            this.txtTotalIngresos.Font = new System.Drawing.Font("Calibri", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotalIngresos.Location = new System.Drawing.Point(36, 390);
+            this.txtTotalIngresos.Name = "txtTotalIngresos";
+            this.txtTotalIngresos.ReadOnly = true;
+            this.txtTotalIngresos.Size = new System.Drawing.Size(211, 32);
+            this.txtTotalIngresos.TabIndex = 55;
+            // 
+            // txtTotalGastos
+            // 
+            this.txtTotalGastos.Font = new System.Drawing.Font("Calibri", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotalGastos.Location = new System.Drawing.Point(301, 390);
+            this.txtTotalGastos.Name = "txtTotalGastos";
+            this.txtTotalGastos.ReadOnly = true;
+            this.txtTotalGastos.Size = new System.Drawing.Size(211, 32);
+            this.txtTotalGastos.TabIndex = 54;
+            // 
+            // txtIngresosTransferencia
+            // 
+            this.txtIngresosTransferencia.Font = new System.Drawing.Font("Calibri", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtIngresosTransferencia.Location = new System.Drawing.Point(36, 308);
+            this.txtIngresosTransferencia.Name = "txtIngresosTransferencia";
+            this.txtIngresosTransferencia.ReadOnly = true;
+            this.txtIngresosTransferencia.Size = new System.Drawing.Size(211, 32);
+            this.txtIngresosTransferencia.TabIndex = 53;
+            // 
+            // txtGastosTransferencias
+            // 
+            this.txtGastosTransferencias.Font = new System.Drawing.Font("Calibri", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGastosTransferencias.Location = new System.Drawing.Point(301, 308);
+            this.txtGastosTransferencias.Name = "txtGastosTransferencias";
+            this.txtGastosTransferencias.ReadOnly = true;
+            this.txtGastosTransferencias.Size = new System.Drawing.Size(211, 32);
+            this.txtGastosTransferencias.TabIndex = 52;
+            // 
+            // txtGastosEfectivo
+            // 
+            this.txtGastosEfectivo.Font = new System.Drawing.Font("Calibri", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGastosEfectivo.Location = new System.Drawing.Point(301, 226);
+            this.txtGastosEfectivo.Name = "txtGastosEfectivo";
+            this.txtGastosEfectivo.ReadOnly = true;
+            this.txtGastosEfectivo.Size = new System.Drawing.Size(211, 32);
+            this.txtGastosEfectivo.TabIndex = 51;
+            // 
+            // txtIngresosEfectivo
+            // 
+            this.txtIngresosEfectivo.Font = new System.Drawing.Font("Calibri", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtIngresosEfectivo.Location = new System.Drawing.Point(36, 226);
+            this.txtIngresosEfectivo.Name = "txtIngresosEfectivo";
+            this.txtIngresosEfectivo.ReadOnly = true;
+            this.txtIngresosEfectivo.Size = new System.Drawing.Size(211, 32);
+            this.txtIngresosEfectivo.TabIndex = 50;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Berlin Sans FB", 10F);
+            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
+            this.label10.Location = new System.Drawing.Point(298, 53);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(43, 16);
+            this.label10.TabIndex = 49;
+            this.label10.Text = "Fecha";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Berlin Sans FB", 10F);
+            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
+            this.label9.Location = new System.Drawing.Point(33, 53);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(87, 16);
+            this.label9.TabIndex = 48;
+            this.label9.Text = "Tipo de cierre";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Berlin Sans FB", 10F);
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
+            this.label8.Location = new System.Drawing.Point(301, 275);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(128, 16);
+            this.label8.TabIndex = 47;
+            this.label8.Text = "Gastos transferencias";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Berlin Sans FB", 10F);
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
+            this.label7.Location = new System.Drawing.Point(36, 275);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(136, 16);
+            this.label7.TabIndex = 46;
+            this.label7.Text = "Ingresos transferencias";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Berlin Sans FB", 10F);
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
+            this.label6.Location = new System.Drawing.Point(301, 193);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(93, 16);
+            this.label6.TabIndex = 45;
+            this.label6.Text = "Gastos efectivo";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Berlin Sans FB", 10F);
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
+            this.label5.Location = new System.Drawing.Point(36, 193);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(101, 16);
+            this.label5.TabIndex = 44;
+            this.label5.Text = "Ingresos efectivo";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Berlin Sans FB", 10F);
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
+            this.label4.Location = new System.Drawing.Point(301, 357);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(77, 16);
+            this.label4.TabIndex = 43;
+            this.label4.Text = "Total gastos";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Berlin Sans FB", 10F);
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
+            this.label3.Location = new System.Drawing.Point(36, 357);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(85, 16);
+            this.label3.TabIndex = 42;
+            this.label3.Text = "Total ingresos";
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -195,148 +338,6 @@ namespace Principal
             this.pictureBox1.TabIndex = 41;
             this.pictureBox1.TabStop = false;
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Berlin Sans FB", 10F);
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
-            this.label3.Location = new System.Drawing.Point(36, 357);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(85, 16);
-            this.label3.TabIndex = 42;
-            this.label3.Text = "Total ingresos";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Berlin Sans FB", 10F);
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
-            this.label4.Location = new System.Drawing.Point(301, 357);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(77, 16);
-            this.label4.TabIndex = 43;
-            this.label4.Text = "Total gastos";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Berlin Sans FB", 10F);
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
-            this.label5.Location = new System.Drawing.Point(36, 193);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(101, 16);
-            this.label5.TabIndex = 44;
-            this.label5.Text = "Ingresos efectivo";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Berlin Sans FB", 10F);
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
-            this.label6.Location = new System.Drawing.Point(301, 193);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(93, 16);
-            this.label6.TabIndex = 45;
-            this.label6.Text = "Gastos efectivo";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Berlin Sans FB", 10F);
-            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
-            this.label7.Location = new System.Drawing.Point(36, 275);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(136, 16);
-            this.label7.TabIndex = 46;
-            this.label7.Text = "Ingresos transferencias";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Berlin Sans FB", 10F);
-            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
-            this.label8.Location = new System.Drawing.Point(301, 275);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(128, 16);
-            this.label8.TabIndex = 47;
-            this.label8.Text = "Gastos transferencias";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Berlin Sans FB", 10F);
-            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
-            this.label9.Location = new System.Drawing.Point(33, 53);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(87, 16);
-            this.label9.TabIndex = 48;
-            this.label9.Text = "Tipo de cierre";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Berlin Sans FB", 10F);
-            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
-            this.label10.Location = new System.Drawing.Point(298, 53);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(43, 16);
-            this.label10.TabIndex = 49;
-            this.label10.Text = "Fecha";
-            // 
-            // txtIngresosEfectivo
-            // 
-            this.txtIngresosEfectivo.Font = new System.Drawing.Font("Calibri", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtIngresosEfectivo.Location = new System.Drawing.Point(36, 226);
-            this.txtIngresosEfectivo.Name = "txtIngresosEfectivo";
-            this.txtIngresosEfectivo.ReadOnly = true;
-            this.txtIngresosEfectivo.Size = new System.Drawing.Size(211, 32);
-            this.txtIngresosEfectivo.TabIndex = 50;
-            // 
-            // txtGastosEfectivo
-            // 
-            this.txtGastosEfectivo.Font = new System.Drawing.Font("Calibri", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGastosEfectivo.Location = new System.Drawing.Point(301, 226);
-            this.txtGastosEfectivo.Name = "txtGastosEfectivo";
-            this.txtGastosEfectivo.ReadOnly = true;
-            this.txtGastosEfectivo.Size = new System.Drawing.Size(211, 32);
-            this.txtGastosEfectivo.TabIndex = 51;
-            // 
-            // txtGastosTransferencias
-            // 
-            this.txtGastosTransferencias.Font = new System.Drawing.Font("Calibri", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGastosTransferencias.Location = new System.Drawing.Point(301, 308);
-            this.txtGastosTransferencias.Name = "txtGastosTransferencias";
-            this.txtGastosTransferencias.ReadOnly = true;
-            this.txtGastosTransferencias.Size = new System.Drawing.Size(211, 32);
-            this.txtGastosTransferencias.TabIndex = 52;
-            // 
-            // txtIngresosTransferencia
-            // 
-            this.txtIngresosTransferencia.Font = new System.Drawing.Font("Calibri", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtIngresosTransferencia.Location = new System.Drawing.Point(36, 308);
-            this.txtIngresosTransferencia.Name = "txtIngresosTransferencia";
-            this.txtIngresosTransferencia.ReadOnly = true;
-            this.txtIngresosTransferencia.Size = new System.Drawing.Size(211, 32);
-            this.txtIngresosTransferencia.TabIndex = 53;
-            // 
-            // txtTotalGastos
-            // 
-            this.txtTotalGastos.Font = new System.Drawing.Font("Calibri", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalGastos.Location = new System.Drawing.Point(301, 390);
-            this.txtTotalGastos.Name = "txtTotalGastos";
-            this.txtTotalGastos.ReadOnly = true;
-            this.txtTotalGastos.Size = new System.Drawing.Size(211, 32);
-            this.txtTotalGastos.TabIndex = 54;
-            // 
-            // txtTotalIngresos
-            // 
-            this.txtTotalIngresos.Font = new System.Drawing.Font("Calibri", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalIngresos.Location = new System.Drawing.Point(36, 390);
-            this.txtTotalIngresos.Name = "txtTotalIngresos";
-            this.txtTotalIngresos.ReadOnly = true;
-            this.txtTotalIngresos.Size = new System.Drawing.Size(211, 32);
-            this.txtTotalIngresos.TabIndex = 55;
-            // 
             // FrmCierreCaja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -347,12 +348,13 @@ namespace Principal
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnCerrar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmCierreCaja";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmCierreCaja";
+            this.Text = "Cerrar Caja";
             this.Load += new System.EventHandler(this.FrmCierreCaja_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
