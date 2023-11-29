@@ -49,7 +49,7 @@ namespace Principal
         {
             try
             {
-                
+
                 ClienteDatos datos = new ClienteDatos();
                 listaClientes = datos.listarClientesConSP();
                 listaClientes = listaClientes.OrderByDescending(c => c.fechaInicio).ToList();
@@ -143,13 +143,13 @@ namespace Principal
             {
                 for (int i = 3; i < 23; i++)
                 {
-                    if(i <= 9)
+                    if (i <= 9)
                     {
                         cbxAñoInicio.Items.Add("202" + i);
                     }
                     else
                     {
-                        if(i <= 19)
+                        if (i <= 19)
                         {
                             cbxAñoInicio.Items.Add("203" + (i - 10));
                         }
@@ -158,7 +158,7 @@ namespace Principal
                             cbxAñoInicio.Items.Add("204" + (i - 20));
                         }
                     }
-                    
+
                 }
                 cbxMesInicio.Items.Add("Enero");
                 cbxMesInicio.Items.Add("Febrero");
@@ -184,7 +184,7 @@ namespace Principal
             {
                 MessageBox.Show("Hubo un error al tratar de cargar los campos del filtro avanzado." + ex.ToString());
             }
-            
+
         }
 
         private void btnOcultar_Click(object sender, EventArgs e)
@@ -223,23 +223,19 @@ namespace Principal
             this.Close();
         }
 
-        private void txtNombre_TextChanged(object sender, EventArgs e)
-        {
-            FiltroRapido();
-        }
-
         public void FiltroRapido()
         {
             List<Cliente> ListaFiltrada;
             string filtro = txtNombre.Text;
             if (filtro.Length >= 3)
+            {
                 ListaFiltrada = listaClientes.FindAll(x => x.Nombre.ToUpper().Contains(filtro.ToUpper()));
-            else
-                ListaFiltrada = listaClientes;
-            dgvClientes.DataSource = null;
-            dgvClientes.DataSource = ListaFiltrada;
-            OcultarYModificarColumnas();
+                dgvClientes.DataSource = null;
+                dgvClientes.DataSource = ListaFiltrada;
+                OcultarYModificarColumnas();
+            }
         }
+
 
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -271,7 +267,7 @@ namespace Principal
                 if (cbxMesInicio.SelectedIndex >= 0)
                 {
                     int mes = cbxMesInicio.SelectedIndex + 1;
-                    if(mes < 10)
+                    if (mes < 10)
                     {
                         mesInicio = "0" + mes.ToString();
                     }
@@ -279,14 +275,14 @@ namespace Principal
                     {
                         mesInicio = mes.ToString();
                     }
-                    
+
                 }
                 else
                 {
                     mesInicio = null;
                 }
                 string tipoMembresia;
-                if(cbxTipoMembresia.SelectedIndex >= 0)
+                if (cbxTipoMembresia.SelectedIndex >= 0)
                 {
                     tipoMembresia = cbxTipoMembresia.SelectedItem.ToString();
                 }
@@ -304,7 +300,7 @@ namespace Principal
                     edad = -1;
                 }
                 string estado;
-                if(cbxEstado.SelectedIndex >= 0)
+                if (cbxEstado.SelectedIndex >= 0)
                 {
                     estado = cbxEstado.SelectedItem.ToString();
                 }
@@ -323,7 +319,7 @@ namespace Principal
 
         private bool ValidarFiltro()
         {
-            if(string.IsNullOrEmpty(txtDni.Text) &&
+            if (string.IsNullOrEmpty(txtDni.Text) &&
                 cbxAñoInicio.SelectedIndex < 0 &&
                 cbxMesInicio.SelectedIndex < 0 &&
                 cbxTipoMembresia.SelectedIndex < 0 &&
@@ -350,7 +346,7 @@ namespace Principal
         private void txtDni_KeyPress(object sender, KeyPressEventArgs e)
         {
             int maxLength = 9;
-            if(!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) || (txtDni.Text.Length >= maxLength && e.KeyChar != (char)Keys.Back))
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) || (txtDni.Text.Length >= maxLength && e.KeyChar != (char)Keys.Back))
             {
                 e.Handled = true;
             }
@@ -359,7 +355,7 @@ namespace Principal
         private void txtEdad_KeyPress(object sender, KeyPressEventArgs e)
         {
             int maxLength = 3;
-            if(!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) || (txtEdad.Text.Length >= maxLength && e.KeyChar != (char)Keys.Back))
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) || (txtEdad.Text.Length >= maxLength && e.KeyChar != (char)Keys.Back))
             {
                 e.Handled = true;
             }
@@ -379,6 +375,19 @@ namespace Principal
             {
                 MessageBox.Show("Debe seleccionar un socio", "Error de seleccion", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void btnBuscarFiltroRapido_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtNombre.Text))
+            {
+                FiltroRapido();
+            }
+            else
+            {
+                Cargar();
+            }
+            
         }
     }
 }

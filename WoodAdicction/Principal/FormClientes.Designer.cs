@@ -29,20 +29,10 @@ namespace Principal
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormClientes));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormClientes));
-            this.dgvClientes = new System.Windows.Forms.DataGridView();
-            this.btnVerCliente = new System.Windows.Forms.Button();
-            this.btnAgregarCliente = new System.Windows.Forms.Button();
-            this.btnModificar = new System.Windows.Forms.Button();
-            this.panelContainerSocios = new System.Windows.Forms.Panel();
-            this.btnCobrarCuota = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.panelAviso = new System.Windows.Forms.Panel();
-            this.label10 = new System.Windows.Forms.Label();
-            this.txtNombre = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.panelContainerFiltro = new System.Windows.Forms.Panel();
             this.panelFiltroAvanzado = new System.Windows.Forms.Panel();
             this.cbxEstado = new System.Windows.Forms.ComboBox();
@@ -65,188 +55,39 @@ namespace Principal
             this.label8 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnCerrar = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).BeginInit();
-            this.panelContainerSocios.SuspendLayout();
-            this.panelAviso.SuspendLayout();
+            this.panelContainerSocios = new System.Windows.Forms.Panel();
+            this.btnBuscarFiltroRapido = new System.Windows.Forms.Button();
+            this.btnCobrarCuota = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.panelAviso = new System.Windows.Forms.Panel();
+            this.label10 = new System.Windows.Forms.Label();
+            this.dgvClientes = new System.Windows.Forms.DataGridView();
+            this.btnModificar = new System.Windows.Forms.Button();
+            this.txtNombre = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnAgregarCliente = new System.Windows.Forms.Button();
+            this.btnVerCliente = new System.Windows.Forms.Button();
+            this.btnCerrar = new System.Windows.Forms.Button();
+            this.panel1.SuspendLayout();
             this.panelContainerFiltro.SuspendLayout();
             this.panelFiltroAvanzado.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.panelContainerSocios.SuspendLayout();
+            this.panelAviso.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).BeginInit();
             this.SuspendLayout();
             // 
-            // dgvClientes
+            // panel1
             // 
-            this.dgvClientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvClientes.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dgvClientes.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(40)))), ((int)(((byte)(41)))));
-            this.dgvClientes.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
-            this.dgvClientes.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(40)))), ((int)(((byte)(41)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Berlin Sans FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(40)))), ((int)(((byte)(41)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvClientes.ColumnHeadersHeight = 30;
-            this.dgvClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(40)))), ((int)(((byte)(41)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Berlin Sans FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.WindowFrame;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvClientes.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvClientes.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvClientes.EnableHeadersVisualStyles = false;
-            this.dgvClientes.Location = new System.Drawing.Point(35, 167);
-            this.dgvClientes.Name = "dgvClientes";
-            this.dgvClientes.RowHeadersVisible = false;
-            this.dgvClientes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dgvClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvClientes.Size = new System.Drawing.Size(770, 254);
-            this.dgvClientes.TabIndex = 1;
-            this.dgvClientes.SelectionChanged += new System.EventHandler(this.dgvClientes_SelectionChanged);
-            // 
-            // btnVerCliente
-            // 
-            this.btnVerCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
-            this.btnVerCliente.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnVerCliente.FlatAppearance.BorderSize = 0;
-            this.btnVerCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVerCliente.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
-            this.btnVerCliente.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnVerCliente.Location = new System.Drawing.Point(235, 464);
-            this.btnVerCliente.Name = "btnVerCliente";
-            this.btnVerCliente.Size = new System.Drawing.Size(168, 48);
-            this.btnVerCliente.TabIndex = 3;
-            this.btnVerCliente.Text = "Ver Socio";
-            this.btnVerCliente.UseVisualStyleBackColor = false;
-            this.btnVerCliente.Click += new System.EventHandler(this.btnVerCliente_Click);
-            // 
-            // btnAgregarCliente
-            // 
-            this.btnAgregarCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
-            this.btnAgregarCliente.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAgregarCliente.FlatAppearance.BorderSize = 0;
-            this.btnAgregarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAgregarCliente.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
-            this.btnAgregarCliente.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnAgregarCliente.Location = new System.Drawing.Point(35, 464);
-            this.btnAgregarCliente.Name = "btnAgregarCliente";
-            this.btnAgregarCliente.Size = new System.Drawing.Size(168, 48);
-            this.btnAgregarCliente.TabIndex = 4;
-            this.btnAgregarCliente.Text = "Agregar Socio";
-            this.btnAgregarCliente.UseVisualStyleBackColor = false;
-            this.btnAgregarCliente.Click += new System.EventHandler(this.btnAgregarCliente_Click);
-            // 
-            // btnModificar
-            // 
-            this.btnModificar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
-            this.btnModificar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnModificar.FlatAppearance.BorderSize = 0;
-            this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnModificar.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
-            this.btnModificar.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnModificar.Location = new System.Drawing.Point(435, 464);
-            this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(168, 48);
-            this.btnModificar.TabIndex = 5;
-            this.btnModificar.Text = "Modificar Socio";
-            this.btnModificar.UseVisualStyleBackColor = false;
-            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
-            // 
-            // panelContainerSocios
-            // 
-            this.panelContainerSocios.AutoScroll = true;
-            this.panelContainerSocios.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelContainerSocios.Controls.Add(this.btnCobrarCuota);
-            this.panelContainerSocios.Controls.Add(this.label9);
-            this.panelContainerSocios.Controls.Add(this.panelAviso);
-            this.panelContainerSocios.Controls.Add(this.dgvClientes);
-            this.panelContainerSocios.Controls.Add(this.btnModificar);
-            this.panelContainerSocios.Controls.Add(this.txtNombre);
-            this.panelContainerSocios.Controls.Add(this.label1);
-            this.panelContainerSocios.Controls.Add(this.btnAgregarCliente);
-            this.panelContainerSocios.Controls.Add(this.btnVerCliente);
-            this.panelContainerSocios.Location = new System.Drawing.Point(23, 165);
-            this.panelContainerSocios.Name = "panelContainerSocios";
-            this.panelContainerSocios.Size = new System.Drawing.Size(840, 540);
-            this.panelContainerSocios.TabIndex = 6;
-            // 
-            // btnCobrarCuota
-            // 
-            this.btnCobrarCuota.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
-            this.btnCobrarCuota.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCobrarCuota.FlatAppearance.BorderSize = 0;
-            this.btnCobrarCuota.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCobrarCuota.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
-            this.btnCobrarCuota.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnCobrarCuota.Location = new System.Drawing.Point(635, 464);
-            this.btnCobrarCuota.Name = "btnCobrarCuota";
-            this.btnCobrarCuota.Size = new System.Drawing.Size(168, 48);
-            this.btnCobrarCuota.TabIndex = 17;
-            this.btnCobrarCuota.Text = "Cobrar Cuota";
-            this.btnCobrarCuota.UseVisualStyleBackColor = false;
-            this.btnCobrarCuota.Click += new System.EventHandler(this.btnCobrarCuota_Click);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Berlin Sans FB", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label9.Location = new System.Drawing.Point(386, 17);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(78, 30);
-            this.label9.TabIndex = 6;
-            this.label9.Text = "Socios";
-            // 
-            // panelAviso
-            // 
-            this.panelAviso.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(173)))), ((int)(((byte)(91)))));
-            this.panelAviso.Controls.Add(this.label10);
-            this.panelAviso.Location = new System.Drawing.Point(456, 70);
-            this.panelAviso.Name = "panelAviso";
-            this.panelAviso.Size = new System.Drawing.Size(340, 70);
-            this.panelAviso.TabIndex = 16;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Berlin Sans FB", 17F);
-            this.label10.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label10.Location = new System.Drawing.Point(22, 22);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(296, 26);
-            this.label10.TabIndex = 12;
-            this.label10.Text = "Busca un socio por su nombre";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // txtNombre
-            // 
-            this.txtNombre.Font = new System.Drawing.Font("Calibri", 15.75F);
-            this.txtNombre.Location = new System.Drawing.Point(84, 91);
-            this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(183, 33);
-            this.txtNombre.TabIndex = 13;
-            this.txtNombre.TextChanged += new System.EventHandler(this.txtNombre_TextChanged);
-            this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
-            this.label1.Location = new System.Drawing.Point(84, 65);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(78, 23);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Nombre";
+            this.panel1.Controls.Add(this.panelContainerFiltro);
+            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Controls.Add(this.panelContainerSocios);
+            this.panel1.Controls.Add(this.btnCerrar);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1386, 788);
+            this.panel1.TabIndex = 9;
             // 
             // panelContainerFiltro
             // 
@@ -515,6 +356,199 @@ namespace Principal
             this.label3.TabIndex = 5;
             this.label3.Text = "Buscar Socios";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(23, 23);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(178, 136);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 8;
+            this.pictureBox1.TabStop = false;
+            // 
+            // panelContainerSocios
+            // 
+            this.panelContainerSocios.AutoScroll = true;
+            this.panelContainerSocios.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelContainerSocios.Controls.Add(this.btnBuscarFiltroRapido);
+            this.panelContainerSocios.Controls.Add(this.btnCobrarCuota);
+            this.panelContainerSocios.Controls.Add(this.label9);
+            this.panelContainerSocios.Controls.Add(this.panelAviso);
+            this.panelContainerSocios.Controls.Add(this.dgvClientes);
+            this.panelContainerSocios.Controls.Add(this.btnModificar);
+            this.panelContainerSocios.Controls.Add(this.txtNombre);
+            this.panelContainerSocios.Controls.Add(this.label1);
+            this.panelContainerSocios.Controls.Add(this.btnAgregarCliente);
+            this.panelContainerSocios.Controls.Add(this.btnVerCliente);
+            this.panelContainerSocios.Location = new System.Drawing.Point(23, 165);
+            this.panelContainerSocios.Name = "panelContainerSocios";
+            this.panelContainerSocios.Size = new System.Drawing.Size(840, 540);
+            this.panelContainerSocios.TabIndex = 6;
+            // 
+            // btnBuscarFiltroRapido
+            // 
+            this.btnBuscarFiltroRapido.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnBuscarFiltroRapido.BackgroundImage")));
+            this.btnBuscarFiltroRapido.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBuscarFiltroRapido.FlatAppearance.BorderSize = 0;
+            this.btnBuscarFiltroRapido.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBuscarFiltroRapido.Location = new System.Drawing.Point(233, 88);
+            this.btnBuscarFiltroRapido.Name = "btnBuscarFiltroRapido";
+            this.btnBuscarFiltroRapido.Size = new System.Drawing.Size(40, 40);
+            this.btnBuscarFiltroRapido.TabIndex = 18;
+            this.btnBuscarFiltroRapido.UseVisualStyleBackColor = true;
+            this.btnBuscarFiltroRapido.Click += new System.EventHandler(this.btnBuscarFiltroRapido_Click);
+            // 
+            // btnCobrarCuota
+            // 
+            this.btnCobrarCuota.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
+            this.btnCobrarCuota.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCobrarCuota.FlatAppearance.BorderSize = 0;
+            this.btnCobrarCuota.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCobrarCuota.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
+            this.btnCobrarCuota.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnCobrarCuota.Location = new System.Drawing.Point(635, 464);
+            this.btnCobrarCuota.Name = "btnCobrarCuota";
+            this.btnCobrarCuota.Size = new System.Drawing.Size(168, 48);
+            this.btnCobrarCuota.TabIndex = 17;
+            this.btnCobrarCuota.Text = "Cobrar Cuota";
+            this.btnCobrarCuota.UseVisualStyleBackColor = false;
+            this.btnCobrarCuota.Click += new System.EventHandler(this.btnCobrarCuota_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Berlin Sans FB", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label9.Location = new System.Drawing.Point(386, 17);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(78, 30);
+            this.label9.TabIndex = 6;
+            this.label9.Text = "Socios";
+            // 
+            // panelAviso
+            // 
+            this.panelAviso.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(173)))), ((int)(((byte)(91)))));
+            this.panelAviso.Controls.Add(this.label10);
+            this.panelAviso.Location = new System.Drawing.Point(456, 70);
+            this.panelAviso.Name = "panelAviso";
+            this.panelAviso.Size = new System.Drawing.Size(340, 70);
+            this.panelAviso.TabIndex = 16;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Berlin Sans FB", 17F);
+            this.label10.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label10.Location = new System.Drawing.Point(22, 22);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(296, 26);
+            this.label10.TabIndex = 12;
+            this.label10.Text = "Busca un socio por su nombre";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // dgvClientes
+            // 
+            this.dgvClientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvClientes.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvClientes.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(40)))), ((int)(((byte)(41)))));
+            this.dgvClientes.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
+            this.dgvClientes.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(40)))), ((int)(((byte)(41)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Berlin Sans FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(40)))), ((int)(((byte)(41)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvClientes.ColumnHeadersHeight = 30;
+            this.dgvClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(40)))), ((int)(((byte)(41)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Berlin Sans FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.WindowFrame;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvClientes.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvClientes.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dgvClientes.EnableHeadersVisualStyles = false;
+            this.dgvClientes.Location = new System.Drawing.Point(35, 167);
+            this.dgvClientes.Name = "dgvClientes";
+            this.dgvClientes.RowHeadersVisible = false;
+            this.dgvClientes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dgvClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvClientes.Size = new System.Drawing.Size(770, 254);
+            this.dgvClientes.TabIndex = 1;
+            this.dgvClientes.SelectionChanged += new System.EventHandler(this.dgvClientes_SelectionChanged);
+            // 
+            // btnModificar
+            // 
+            this.btnModificar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
+            this.btnModificar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnModificar.FlatAppearance.BorderSize = 0;
+            this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnModificar.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
+            this.btnModificar.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnModificar.Location = new System.Drawing.Point(435, 464);
+            this.btnModificar.Name = "btnModificar";
+            this.btnModificar.Size = new System.Drawing.Size(168, 48);
+            this.btnModificar.TabIndex = 5;
+            this.btnModificar.Text = "Modificar Socio";
+            this.btnModificar.UseVisualStyleBackColor = false;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
+            // 
+            // txtNombre
+            // 
+            this.txtNombre.Font = new System.Drawing.Font("Calibri", 15.75F);
+            this.txtNombre.Location = new System.Drawing.Point(35, 90);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(183, 33);
+            this.txtNombre.TabIndex = 13;
+            this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
+            this.label1.Location = new System.Drawing.Point(35, 64);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(78, 23);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Nombre";
+            // 
+            // btnAgregarCliente
+            // 
+            this.btnAgregarCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
+            this.btnAgregarCliente.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAgregarCliente.FlatAppearance.BorderSize = 0;
+            this.btnAgregarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAgregarCliente.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
+            this.btnAgregarCliente.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnAgregarCliente.Location = new System.Drawing.Point(35, 464);
+            this.btnAgregarCliente.Name = "btnAgregarCliente";
+            this.btnAgregarCliente.Size = new System.Drawing.Size(168, 48);
+            this.btnAgregarCliente.TabIndex = 4;
+            this.btnAgregarCliente.Text = "Agregar Socio";
+            this.btnAgregarCliente.UseVisualStyleBackColor = false;
+            this.btnAgregarCliente.Click += new System.EventHandler(this.btnAgregarCliente_Click);
+            // 
+            // btnVerCliente
+            // 
+            this.btnVerCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
+            this.btnVerCliente.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVerCliente.FlatAppearance.BorderSize = 0;
+            this.btnVerCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVerCliente.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
+            this.btnVerCliente.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnVerCliente.Location = new System.Drawing.Point(235, 464);
+            this.btnVerCliente.Name = "btnVerCliente";
+            this.btnVerCliente.Size = new System.Drawing.Size(168, 48);
+            this.btnVerCliente.TabIndex = 3;
+            this.btnVerCliente.Text = "Ver Socio";
+            this.btnVerCliente.UseVisualStyleBackColor = false;
+            this.btnVerCliente.Click += new System.EventHandler(this.btnVerCliente_Click);
+            // 
             // btnCerrar
             // 
             this.btnCerrar.BackgroundImage = global::Principal.Properties.Resources.iconoCerrar;
@@ -527,28 +561,6 @@ namespace Principal
             this.btnCerrar.TabIndex = 7;
             this.btnCerrar.UseVisualStyleBackColor = true;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Principal.Properties.Resources.FondoWoodGym;
-            this.pictureBox1.Location = new System.Drawing.Point(23, 23);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(178, 136);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 8;
-            this.pictureBox1.TabStop = false;
-            // 
-            // panel1
-            // 
-            this.panel1.BackgroundImage = global::Principal.Properties.Resources.FondoWoodGym;
-            this.panel1.Controls.Add(this.panelContainerFiltro);
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Controls.Add(this.panelContainerSocios);
-            this.panel1.Controls.Add(this.btnCerrar);
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1386, 788);
-            this.panel1.TabIndex = 9;
             // 
             // FormClientes
             // 
@@ -565,17 +577,17 @@ namespace Principal
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Clientes";
             this.Load += new System.EventHandler(this.FormClientes_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).EndInit();
-            this.panelContainerSocios.ResumeLayout(false);
-            this.panelContainerSocios.PerformLayout();
-            this.panelAviso.ResumeLayout(false);
-            this.panelAviso.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.panelContainerFiltro.ResumeLayout(false);
             this.panelContainerFiltro.PerformLayout();
             this.panelFiltroAvanzado.ResumeLayout(false);
             this.panelFiltroAvanzado.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panel1.ResumeLayout(false);
+            this.panelContainerSocios.ResumeLayout(false);
+            this.panelContainerSocios.PerformLayout();
+            this.panelAviso.ResumeLayout(false);
+            this.panelAviso.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -618,5 +630,6 @@ namespace Principal
         private System.Windows.Forms.Button btnCobrarCuota;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnBuscarFiltroRapido;
     }
 }
