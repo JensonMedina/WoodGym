@@ -47,6 +47,8 @@ namespace Principal
             this.txtMonto = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.dtpFechaMovimientoCaja = new System.Windows.Forms.DateTimePicker();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -56,16 +58,16 @@ namespace Principal
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
-            this.label1.Location = new System.Drawing.Point(17, 148);
+            this.label1.Location = new System.Drawing.Point(17, 150);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(70, 23);
+            this.label1.Size = new System.Drawing.Size(211, 23);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Fecha: ";
+            this.label1.Text = "Fecha Inicio membresia: ";
             // 
             // dtpFechaInicio
             // 
             this.dtpFechaInicio.Font = new System.Drawing.Font("Calibri", 15F);
-            this.dtpFechaInicio.Location = new System.Drawing.Point(220, 143);
+            this.dtpFechaInicio.Location = new System.Drawing.Point(245, 147);
             this.dtpFechaInicio.Name = "dtpFechaInicio";
             this.dtpFechaInicio.Size = new System.Drawing.Size(206, 32);
             this.dtpFechaInicio.TabIndex = 1;
@@ -75,7 +77,7 @@ namespace Principal
             this.Nombre.AutoSize = true;
             this.Nombre.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
             this.Nombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
-            this.Nombre.Location = new System.Drawing.Point(17, 89);
+            this.Nombre.Location = new System.Drawing.Point(17, 90);
             this.Nombre.Name = "Nombre";
             this.Nombre.Size = new System.Drawing.Size(83, 23);
             this.Nombre.TabIndex = 2;
@@ -86,7 +88,7 @@ namespace Principal
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
-            this.label4.Location = new System.Drawing.Point(17, 207);
+            this.label4.Location = new System.Drawing.Point(17, 210);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(172, 23);
             this.label4.TabIndex = 4;
@@ -96,7 +98,7 @@ namespace Principal
             // 
             this.cbxTipoMembresia.Font = new System.Drawing.Font("Calibri", 15F);
             this.cbxTipoMembresia.FormattingEnabled = true;
-            this.cbxTipoMembresia.Location = new System.Drawing.Point(220, 202);
+            this.cbxTipoMembresia.Location = new System.Drawing.Point(245, 207);
             this.cbxTipoMembresia.Name = "cbxTipoMembresia";
             this.cbxTipoMembresia.Size = new System.Drawing.Size(206, 32);
             this.cbxTipoMembresia.TabIndex = 5;
@@ -109,7 +111,7 @@ namespace Principal
             this.btnCobrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCobrar.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
             this.btnCobrar.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnCobrar.Location = new System.Drawing.Point(127, 394);
+            this.btnCobrar.Location = new System.Drawing.Point(127, 466);
             this.btnCobrar.Name = "btnCobrar";
             this.btnCobrar.Size = new System.Drawing.Size(98, 31);
             this.btnCobrar.TabIndex = 6;
@@ -131,7 +133,7 @@ namespace Principal
             // txtDni
             // 
             this.txtDni.Font = new System.Drawing.Font("Calibri", 15F);
-            this.txtDni.Location = new System.Drawing.Point(220, 25);
+            this.txtDni.Location = new System.Drawing.Point(245, 27);
             this.txtDni.Name = "txtDni";
             this.txtDni.ReadOnly = true;
             this.txtDni.Size = new System.Drawing.Size(206, 32);
@@ -140,7 +142,7 @@ namespace Principal
             // txtNombre
             // 
             this.txtNombre.Font = new System.Drawing.Font("Calibri", 15F);
-            this.txtNombre.Location = new System.Drawing.Point(220, 84);
+            this.txtNombre.Location = new System.Drawing.Point(245, 87);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.ReadOnly = true;
             this.txtNombre.Size = new System.Drawing.Size(206, 32);
@@ -154,7 +156,7 @@ namespace Principal
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelar.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
             this.btnCancelar.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnCancelar.Location = new System.Drawing.Point(245, 394);
+            this.btnCancelar.Location = new System.Drawing.Point(245, 466);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(98, 31);
             this.btnCancelar.TabIndex = 21;
@@ -178,6 +180,8 @@ namespace Principal
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.dtpFechaMovimientoCaja);
+            this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.cbxMetodoPago);
             this.panel1.Controls.Add(this.txtMonto);
@@ -194,7 +198,7 @@ namespace Principal
             this.panel1.Controls.Add(this.Nombre);
             this.panel1.Location = new System.Drawing.Point(170, 41);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(460, 460);
+            this.panel1.Size = new System.Drawing.Size(497, 527);
             this.panel1.TabIndex = 26;
             // 
             // label3
@@ -202,7 +206,7 @@ namespace Principal
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
-            this.label3.Location = new System.Drawing.Point(17, 266);
+            this.label3.Location = new System.Drawing.Point(17, 270);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(151, 23);
             this.label3.TabIndex = 24;
@@ -212,7 +216,7 @@ namespace Principal
             // 
             this.cbxMetodoPago.Font = new System.Drawing.Font("Calibri", 15F);
             this.cbxMetodoPago.FormattingEnabled = true;
-            this.cbxMetodoPago.Location = new System.Drawing.Point(220, 261);
+            this.cbxMetodoPago.Location = new System.Drawing.Point(245, 267);
             this.cbxMetodoPago.Name = "cbxMetodoPago";
             this.cbxMetodoPago.Size = new System.Drawing.Size(206, 32);
             this.cbxMetodoPago.TabIndex = 25;
@@ -220,7 +224,7 @@ namespace Principal
             // txtMonto
             // 
             this.txtMonto.Font = new System.Drawing.Font("Calibri", 15F);
-            this.txtMonto.Location = new System.Drawing.Point(220, 320);
+            this.txtMonto.Location = new System.Drawing.Point(245, 327);
             this.txtMonto.Name = "txtMonto";
             this.txtMonto.Size = new System.Drawing.Size(206, 32);
             this.txtMonto.TabIndex = 23;
@@ -231,7 +235,7 @@ namespace Principal
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
-            this.label2.Location = new System.Drawing.Point(17, 325);
+            this.label2.Location = new System.Drawing.Point(17, 330);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(67, 23);
             this.label2.TabIndex = 22;
@@ -247,12 +251,31 @@ namespace Principal
             this.pictureBox1.TabIndex = 39;
             this.pictureBox1.TabStop = false;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Berlin Sans FB", 15F);
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
+            this.label6.Location = new System.Drawing.Point(17, 390);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(207, 23);
+            this.label6.TabIndex = 26;
+            this.label6.Text = "Fecha movimiento caja:";
+            // 
+            // dtpFechaMovimientoCaja
+            // 
+            this.dtpFechaMovimientoCaja.Font = new System.Drawing.Font("Calibri", 15F);
+            this.dtpFechaMovimientoCaja.Location = new System.Drawing.Point(245, 387);
+            this.dtpFechaMovimientoCaja.Name = "dtpFechaMovimientoCaja";
+            this.dtpFechaMovimientoCaja.Size = new System.Drawing.Size(206, 32);
+            this.dtpFechaMovimientoCaja.TabIndex = 27;
+            // 
             // FrmCobrarCuota
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ClientSize = new System.Drawing.Size(800, 549);
+            this.ClientSize = new System.Drawing.Size(800, 621);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnCerrar);
@@ -288,5 +311,7 @@ namespace Principal
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cbxMetodoPago;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.DateTimePicker dtpFechaMovimientoCaja;
+        private System.Windows.Forms.Label label6;
     }
 }

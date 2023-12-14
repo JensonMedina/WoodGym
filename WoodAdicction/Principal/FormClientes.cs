@@ -69,7 +69,7 @@ namespace Principal
             dgvClientes.Columns["TipoMembresia"].HeaderText = "Membresia";
             dgvClientes.Columns["telefono"].Visible = false;
             dgvClientes.Columns["edad"].Visible = false;
-            dgvClientes.Columns["apellido"].Visible = false;
+            dgvClientes.Columns["apellido"].HeaderText = "Apellido";
             dgvClientes.Columns["Saldo"].Visible = false;
         }
         private void dgvClientes_SelectionChanged(object sender, EventArgs e)

@@ -70,6 +70,7 @@ namespace Principal
                     if (resultado == DialogResult.Yes)
                     {
                         nuevaCuota = true;
+                        dtpFechaInicio.Value = cliente.fechaInicio.AddMonths(1);
                     }
                     else
                     {
@@ -77,6 +78,8 @@ namespace Principal
                         {
                             cbxTipoMembresia.Enabled = false;
                             txtMonto.Text = (cliente.Saldo * -1).ToString();
+                            dtpFechaInicio.Value = cliente.fechaInicio;
+                            dtpFechaInicio.Enabled = false;
                         }
                         else
                         {
@@ -121,6 +124,7 @@ namespace Principal
         {
             txtDni.Text = cliente.Dni.ToString();
             txtNombre.Text = cliente.Nombre;
+            
             
         }
 
@@ -222,6 +226,7 @@ namespace Principal
                                     cliente.Saldo = resto;
                                 }
                                 movimiento.Descripcion = "Cobro de saldo de " + txtNombre.Text;
+                                
                                 MessageBox.Show("Saldo cobrado con éxito");
                             }
                         }
@@ -229,11 +234,11 @@ namespace Principal
                     
                     
                     datos.ModificarClienteConSP(cliente, cliente.Dni);
-                    
+
                     //despues de cobrar la cuota
-                    
-                    movimiento.Fecha = cliente.fechaInicio;
-                    
+
+                    movimiento.Fecha = dtpFechaMovimientoCaja.Value;
+
                     decimal monto = decimal.Parse(txtMonto.Text);
                     movimiento.Monto = monto;
 
