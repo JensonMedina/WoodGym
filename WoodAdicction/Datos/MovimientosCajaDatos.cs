@@ -40,6 +40,28 @@ namespace Datos
                 throw ex;
             }
         }
+        public void ModificarMovimientoCaja(MovimientosCaja seleccionado)
+        {
+            AccesoDatos Datos = new AccesoDatos();
+            try
+            {
+                Datos.setearStoredProcedure("storedModificarMovimiento");
+                Datos.setParametros("@fecha", seleccionado.Fecha);
+                Datos.setParametros("@descripcion", seleccionado.Descripcion);
+                Datos.setParametros("@monto", seleccionado.Monto);
+                Datos.setParametros("@metodoPagoId", seleccionado.MetodoPago.IdMetodoPago);
+                Datos.setParametros("@transaccionId", seleccionado.TransaccionId);
+                Datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Error al modificar el movimiento de caja. Por favor, inténtelo de nuevo más tarde.", ex);
+            }
+            finally
+            {
+                Datos.CerrarConexion();
+            }
+        }
         public void AgregarMovimientoCaja(MovimientosCaja nuevoMovimiento)
         {
             AccesoDatos Datos = new AccesoDatos();

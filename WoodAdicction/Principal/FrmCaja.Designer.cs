@@ -121,6 +121,7 @@ namespace Principal
             this.dgvMovimientos.TabIndex = 0;
             this.dgvMovimientos.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvMovimientos_CellFormatting);
             this.dgvMovimientos.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvMovimientos_DataError);
+            this.dgvMovimientos.SelectionChanged += new System.EventHandler(this.dgvMovimientos_SelectionChanged);
             // 
             // txtDescripcion
             // 

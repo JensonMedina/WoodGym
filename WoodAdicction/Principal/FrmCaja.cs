@@ -16,6 +16,8 @@ namespace Principal
     {
         private List<MovimientosCaja> listaMovimientosCaja;
         public MovimientosCaja movimientosCaja = null;
+        private bool modoModificar = false;
+        private string tipoMovimiento = null;
         public FrmCaja()
         {
             InitializeComponent();
@@ -72,6 +74,8 @@ namespace Principal
 
                 cbxTipoMovimiento.Items.Add("Ingreso");
                 cbxTipoMovimiento.Items.Add("Gasto");
+                cbxTipoMovimiento.SelectedIndex = -1;
+               
 
 
                 cbxTipoMovimientoFiltrar.Items.Add("Ingreso");
@@ -107,16 +111,29 @@ namespace Principal
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (ValidacionAgregarNuevoMovimiento())
+            if (ValidacionMovimiento())
             {
                 MovimientosCajaDatos Datos = new MovimientosCajaDatos();
                 if (movimientosCaja == null)
                     movimientosCaja = new MovimientosCaja();
                 try
                 {
-                    CargarNuevoMovimiento(movimientosCaja);
-                    Datos.AgregarMovimientoCaja(movimientosCaja);
-                    MessageBox.Show("Agregado exitosamente");
+                    if (modoModificar)
+                    {
+                        ModificarMovimiento();
+                        DialogResult result = MessageBox.Show("¿ Estas modificando el valor del monto de un cliente ? ", "Pregunta", MessageBoxButtons.YesNo);
+                        if(result == DialogResult.Yes)
+                        {
+                            FrmModificarMonto frmModificarMonto = new FrmModificarMonto();
+                            frmModificarMonto.ShowDialog();
+                        }
+                    }
+                    else
+                    {
+                        AgregarMovimiento();
+                    }
+                    
+                    MessageBox.Show(modoModificar ? "Modificado exitosamente" : "Agregado exitosamente");
                     CargarGrilla();
                 }
                 catch (Exception ex)
@@ -131,21 +148,60 @@ namespace Principal
 
         }
 
-        private void CargarNuevoMovimiento(MovimientosCaja movimientosCaja)
+        private void AgregarMovimiento()
+        {
+            CargarMovimiento();
+            MovimientosCajaDatos Datos = new MovimientosCajaDatos();
+            try
+            {
+                Datos.AgregarMovimientoCaja(movimientosCaja);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error. Intente de nuevo mas tarde.", ex.ToString());
+            }
+        }
+
+        private void ModificarMovimiento()
+        {
+            CargarMovimiento();
+            MovimientosCajaDatos Datos = new MovimientosCajaDatos();
+            try
+            {
+                Datos.ModificarMovimientoCaja(movimientosCaja);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error. Intente de nuevo mas tarde.", ex.ToString());
+            }
+        }
+
+        private void CargarMovimiento()
         {
             try
             {
                 DateTime fecha = dtpFecha.Value;
-                int tipoMovimiento = cbxTipoMovimiento.SelectedIndex;
+                string TipoMovimiento = cbxTipoMovimiento.Text;
                 string descripcion = txtDescripcion.Text;
                 decimal monto = decimal.Parse(txtMonto.Text);
                 int metodoPagoId = (int)cbxMetodoPago.SelectedValue;
+                if (modoModificar)
+                {
+                    if(tipoMovimiento != TipoMovimiento)
+                    {
+                        monto *= (-1);
+                    }
+                }
+                else
+                {
+                    if (TipoMovimiento == "Gasto")
+                    {
+                        monto *= (-1);
+                    }
+                }
                 //0 ingreso
                 //1 gasto
-                if (tipoMovimiento == 1)
-                {
-                    monto *= (-1);
-                }
+                
                 movimientosCaja.Fecha = fecha;
                 movimientosCaja.Descripcion = descripcion;
                 movimientosCaja.Monto = monto;
@@ -163,10 +219,16 @@ namespace Principal
             dtpFecha.Value = DateTime.Now;
             txtDescripcion.Text = "";
             txtMonto.Text = "";
+
             cbxMetodoPago.SelectedIndex = -1;
             cbxTipoMovimiento.SelectedIndex = -1;
+            cbxTipoMovimiento.Text = "";
             cbxMetodoPagoFiltrar.SelectedIndex = -1;
             cbxTipoMovimientoFiltrar.SelectedIndex = -1;
+
+            modoModificar = false;
+            movimientosCaja = null;
+            tipoMovimiento = null;
         }
 
         private void dgvMovimientos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -201,7 +263,7 @@ namespace Principal
             // Manejar el error de formato aquí o simplemente suprimirlo si no es crítico.
             e.Cancel = true;
         }
-        private bool ValidacionAgregarNuevoMovimiento()
+        private bool ValidacionMovimiento()
         {
             return cbxTipoMovimiento.SelectedIndex >= 0 &&
                    cbxMetodoPago.SelectedIndex >= 0 &&
@@ -340,6 +402,22 @@ namespace Principal
                 invocarElMetodoFiltrar();
             }
 
+        }
+
+        private void dgvMovimientos_SelectionChanged(object sender, EventArgs e)
+        {
+            if(dgvMovimientos.CurrentRow != null)
+            {
+                MovimientosCaja seleccionado = (MovimientosCaja)dgvMovimientos.CurrentRow.DataBoundItem;
+                dtpFecha.Value = seleccionado.Fecha;
+                cbxTipoMovimiento.Text = seleccionado.Monto > 0 ? "Ingreso" : "Gasto";
+                cbxMetodoPago.Text = seleccionado.MetodoPago.NombreMetodoPago;
+                txtDescripcion.Text = seleccionado.Descripcion;
+                txtMonto.Text = seleccionado.Monto.ToString();
+                modoModificar = true;
+                movimientosCaja = seleccionado;
+                tipoMovimiento = cbxTipoMovimiento.Text;
+            }
         }
     }
 }
