@@ -59,9 +59,6 @@ La pantalla de cierre de caja es una interfaz que permite a los usuarios realiza
 ![](https://scontent-mad1-1.xx.fbcdn.net/v/t39.30808-6/432139715_1505766573702596_9117337561148879516_n.jpg?stp=dst-jpg_p180x540&_nc_cat=105&ccb=1-7&_nc_sid=5f2048&_nc_ohc=b-BOC5ZMQWMAX_1j-Hy&_nc_ht=scontent-mad1-1.xx&oh=00_AfDuouWlPAlAEoBi3H8alj4CJD51kLM46_z1EF8vMhsvxg&oe=66088059)
 ## Soporte
 Si necesitas ayuda o tienes algún problema con Wood Adicction Gym, te puedes contactar conmigo mediante este correo: medinajenson74@gmail.com
-## Contribuciones
-Se aceptan pull requests. Para cambios mayores, por favor abra una incidencia primero para discutir lo que le gustaría cambiar.
-Asegúrese de actualizar las pruebas según corresponda.
 ## Estado del Proyecto
 El sistema de gestión de Wood Adicction Gym actualmente se encuentra en su versión inicial, diseñada para satisfacer las necesidades de gestión básicas del gimnasio. 
 Aunque la versión actual proporciona una base sólida para la gestión del gimnasio, reconozco que siempre hay margen para mejoras y expansiones futuras. Estoy abiertos a sugerencias y comentarios de nuevos usuarios para seguir mejorando el sistema y adaptarlo a sus necesidades en constante evolución.
