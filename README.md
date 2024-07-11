@@ -21,7 +21,7 @@ SQL Server (versión 16.0.1000.6)
 ### Creación de la Base de Datos
 1. Abra SQL Server Management Studio (SSMS) y conéctese a su instancia de SQL Server.
 
-3. Abra el archivo de script proporcionado.
+3. Abra el archivo de script proporcionado. [Script de la base de datos]("https://github.com/JensonMedina/WoodGym/blob/main/WoodAdicctionGymBD.sql).
 
 5. Ejecute el script en SSMS para crear la base de datos y las tablas necesarias.
 
